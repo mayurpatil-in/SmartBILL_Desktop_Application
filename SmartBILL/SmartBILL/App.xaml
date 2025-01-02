@@ -4,6 +4,16 @@
              xmlns:local="clr-namespace:SmartBILL"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+
+        <!--StartupUri="Views/LoginView.xaml">-->
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles/UIColors.xaml"/>
+                <ResourceDictionary Source="/Resources/Styles/ButtonStyles.xaml"/>
+                <ResourceDictionary Source="/Resources/Styles/PopupStyle.xaml"/>
+                <ResourceDictionary Source="/Resources/Styles/TabStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
     </Application.Resources>
 </Application>
