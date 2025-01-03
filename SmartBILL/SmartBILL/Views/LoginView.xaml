@@ -169,7 +169,7 @@
                             Margin="0,50,0,0"
                             Click="btnLogin_Click"
                             Style="{StaticResource loginButton}"
-                            Template="{StaticResource loginButtonTemplate}">
+                            Template="{StaticResource loginButtonTemplate}" LostFocus="btnLogin_LostFocus">
                     </Button>
 
                     <!--<TextBlock Foreground="White" 

@@ -60,5 +60,10 @@ namespace SmartBILL.Views
                 UseShellExecute = true
             });
         }
+
+        private void btnLogin_LostFocus(object sender, RoutedEventArgs e)
+        {
+            txtUser.Focus();
+        }
     }
 }
