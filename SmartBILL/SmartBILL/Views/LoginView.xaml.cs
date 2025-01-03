@@ -22,6 +22,7 @@ namespace SmartBILL.Views
         public LoginView()
         {
             InitializeComponent();
+            runYear.Text = $"© 2018-{DateTime.Now.Year}, ";
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)

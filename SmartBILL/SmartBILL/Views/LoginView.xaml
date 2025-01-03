@@ -172,7 +172,7 @@
                             Template="{StaticResource loginButtonTemplate}">
                     </Button>
 
-                    <TextBlock Foreground="White" 
+                    <!--<TextBlock Foreground="White" 
                        FontSize="16" 
                        FontWeight="Medium" 
                        FontFamily="Montserrat" 
@@ -182,6 +182,12 @@
                         <Hyperlink NavigateUri="https://www.mayurpatil.in" 
                                    Foreground="LightBlue" 
                                    RequestNavigate="Hyperlink_RequestNavigate">
+                            www.mayurpatil.in
+                        </Hyperlink>
+                    </TextBlock>-->
+                    <TextBlock Foreground="White" FontSize="14.5" FontWeight="Medium" FontFamily="Montserrat" Margin="0,30,0,0">
+                        <Run x:Name="runYear" Text=" "/>
+                        <Hyperlink NavigateUri="https://www.mayurpatil.in" RequestNavigate="Hyperlink_RequestNavigate" Style="{StaticResource hyperLinkMayur}">
                             www.mayurpatil.in
                         </Hyperlink>
                     </TextBlock>
