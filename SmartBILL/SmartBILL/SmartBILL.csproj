@@ -140,8 +140,14 @@
   <ItemGroup>
     <Resource Include="Resources\Images\back-image.jpg" />
     <Resource Include="Resources\Images\key-icon.png" />
-    <Resource Include="Resources\Images\logo.png" />
+    <Resource Include="Resources\Images\logo1.png" />
     <Resource Include="Resources\Images\user-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\smartbill.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\mayur.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

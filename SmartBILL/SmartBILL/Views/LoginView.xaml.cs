@@ -39,5 +39,25 @@ namespace SmartBILL.Views
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            txtUser.Focus();
+        }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+        {
+            // Open the link in the default web browser
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = e.Uri.AbsoluteUri,
+                UseShellExecute = true
+            });
+        }
     }
 }

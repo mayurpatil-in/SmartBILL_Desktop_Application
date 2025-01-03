@@ -152,5 +152,26 @@
         </Border>
     </ControlTemplate>
 
+    <!--Login Form login button-->
+    <Style x:Key="loginButton" TargetType="Button">
+        <Setter Property="Background" Value="#462AD8"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#28AEED"/>
+            </Trigger>
+            <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="Background" Value="#28AEED"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <ControlTemplate x:Key="loginButtonTemplate" TargetType="Button">
+        <Border Width="150" Height="40"
+                                        CornerRadius="20"
+                                        Background="{TemplateBinding Background}">
+            <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+        </Border>
+    </ControlTemplate>
+
 
 </ResourceDictionary>

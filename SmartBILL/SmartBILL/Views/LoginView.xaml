@@ -11,7 +11,7 @@
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         AllowsTransparency="True"
-        MouseDown="Window_MouseDown">
+        MouseDown="Window_MouseDown" Loaded="Window_Loaded">
     <Border CornerRadius="12">
         <!--Add Image Design Start-->
         <Border.Background>
@@ -64,7 +64,10 @@
                     <!--Add Login Name Left Design Stop-->
 
                     <!--Start: Button Minimize Design-->
-                    <Button x:Name="btnMinimize" BorderThickness="0" Content="-" Foreground="White" FontSize="16" FontFamily="Montserrat"
+                    <Button x:Name="btnMinimize" 
+                    BorderThickness="0" 
+                    Content="-" Foreground="White" 
+                    FontSize="16" FontFamily="Montserrat"
                     Cursor="Hand"
                     Grid.Column="1"
                     Click="btnMinimize_Click"
@@ -90,7 +93,103 @@
                     
                 </Grid>
                 <!--Edit First Part Header: Stop-->
-                
+
+                <!--Start: Content Form-->
+                <StackPanel Width="220"
+                Grid.Row="1"
+                Orientation="Vertical"
+                Margin="0,35,0,0">
+                    <Image Source="/Resources/Images/smartbill.png" Width="100" Height="100"/>
+
+                    <TextBlock Text="SAMARTH INDUSTRIES"
+                       Foreground="White"
+                       FontSize="20"
+                       FontWeight="Medium"
+                       FontFamily="Montserrat"
+                       HorizontalAlignment="Center" Margin="0,5,0,0"/>
+
+                    <TextBlock Text="Username"
+                       Foreground="DarkGray"
+                       FontSize="12"
+                       FontWeight="Medium"
+                       FontFamily="Montserrat"                             
+                       Margin="0,35,0,0"/>
+
+                    <TextBox x:Name="txtUser"
+                             FontSize="13"
+                             FontWeight="Medium"
+                             FontFamily="Montserrat"                            
+                             Foreground="White"
+                             CaretBrush="LightGray"
+                             BorderBrush="DarkGray"
+                             BorderThickness="0,0,0,2"
+                             Height="28"
+                             VerticalContentAlignment="Center"
+                             Margin="0,5,0,0"
+                             Padding="20,0,0,0">
+                        <TextBox.Background>
+                            <ImageBrush ImageSource="/Resources/Images/user-icon.png"
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                        </TextBox.Background>
+                    </TextBox>
+
+                    <TextBlock Text="Password"
+                               Foreground="DarkGray"
+                               FontSize="12"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"                             
+                               Margin="0,15,0,0"/>
+                    <PasswordBox x:Name="txtPass"
+                             FontSize="13"
+                             FontWeight="Medium"
+                             FontFamily="Montserrat"                            
+                             Foreground="White"
+                             CaretBrush="LightGray"
+                             BorderBrush="DarkGray"
+                             BorderThickness="0,0,0,2"
+                             Height="28"
+                             VerticalContentAlignment="Center"
+                             Margin="0,5,0,0"
+                             Padding="20,0,0,0">
+                        <PasswordBox.Background>
+                            <ImageBrush ImageSource="/Resources/Images/key-icon.png"
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                        </PasswordBox.Background>
+                    </PasswordBox>
+
+                    <Button x:Name="btnLogin"                          
+                            BorderThickness="0"
+                            Content="LOG IN"
+                            Foreground="White"
+                            FontSize="12"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"                           
+                            Margin="0,50,0,0"
+                            Click="btnLogin_Click"
+                            Style="{StaticResource loginButton}"
+                            Template="{StaticResource loginButtonTemplate}">
+                    </Button>
+
+                    <TextBlock Foreground="White" 
+                       FontSize="16" 
+                       FontWeight="Medium" 
+                       FontFamily="Montserrat" 
+                       HorizontalAlignment="Center" 
+                       Margin="0,30,0,0">
+                        <Run Text="© 2025, "/>
+                        <Hyperlink NavigateUri="https://www.mayurpatil.in" 
+                                   Foreground="LightBlue" 
+                                   RequestNavigate="Hyperlink_RequestNavigate">
+                            www.mayurpatil.in
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <Image Source="/Resources/Images/mayur.png" Width="50" Height="50" Margin="0,15,0,0"/>
+                </StackPanel>
+                <!--Stop: Content Form-->
+
             </Grid>
         </Border>
         <!--Add Border Design Stop-->
