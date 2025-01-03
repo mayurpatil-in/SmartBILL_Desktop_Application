@@ -116,6 +116,41 @@
         <Setter Property="Height" Value="16"/>
     </Style>
 
+    <!--Minimize Form button-->
+    <Style x:Key="miniButton" TargetType="Button">
+        <Setter Property="Background" Value="#28AEED"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#278BEF"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <ControlTemplate x:Key="miniButtonTemplate" TargetType="Button">
+        <Border Width="18" Height="18"
+                    CornerRadius="9"
+                    Background="{TemplateBinding Background}">
+            <ContentPresenter VerticalAlignment="Center"
+                                  HorizontalAlignment="Center"/>
+        </Border>
+    </ControlTemplate>
+
+    <!--Close Form button-->
+    <Style x:Key="closeButton" TargetType="Button">
+        <Setter Property="Background" Value="#DA34AE"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#C62DAE"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <ControlTemplate x:Key="closeButtonTemplate" TargetType="Button">
+        <Border Width="18" Height="18"
+        CornerRadius="9"
+        Background="{TemplateBinding Background}">
+            <ContentPresenter VerticalAlignment="Center"
+                      HorizontalAlignment="Center"/>
+        </Border>
+    </ControlTemplate>
 
 
 </ResourceDictionary>

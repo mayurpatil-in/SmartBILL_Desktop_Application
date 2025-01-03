@@ -5,8 +5,95 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartBILL.Views"
         mc:Ignorable="d"
-        Title="LoginView" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="LoginView" Height="550" Width="800"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown">
+    <Border CornerRadius="12">
+        <!--Add Image Design Start-->
+        <Border.Background>
+            <ImageBrush ImageSource="\Resources\Images\back-image.jpg"
+                Stretch="None"/>
+        </Border.Background>
+        <!--Add Border Design Start-->
+        <Border CornerRadius="10" BorderThickness="2" Opacity="0.95">
+            <!--Add Border Background Color Start-->
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="{StaticResource winBorderColor1}" Offset="0"/>
+                    <GradientStop Color="{StaticResource winBorderColor2}" Offset="0.75"/>
+                    <GradientStop Color="{StaticResource winBorderColor3}" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="{StaticResource primaryBackColor1}" Offset="0"/>
+                    <GradientStop Color="{StaticResource primaryBackColor2}" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <!--Add Border Background Color Stop-->
+            
+            <Grid>
+                <!--Divide Two Part First Header and Second Main Form: Start-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!--Divide Two Part First Header and Second Main Form: Stop-->
+
+                <!--Edit First Part Header: Start-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--Add Login Name Left Design Start-->
+                    <TextBlock Text="LOG IN"
+                       Foreground="DarkGray"
+                       FontSize="10"
+                       FontFamily="Montserrat"
+                       Grid.Column="0"
+                       VerticalAlignment="Center"
+                       Margin="10,0,0,0" FontWeight="Bold"/>  
+                    <!--Add Login Name Left Design Stop-->
+
+                    <!--Start: Button Minimize Design-->
+                    <Button x:Name="btnMinimize" BorderThickness="0" Content="-" Foreground="White" FontSize="16" FontFamily="Montserrat"
+                    Cursor="Hand"
+                    Grid.Column="1"
+                    Click="btnMinimize_Click"
+                    Style="{StaticResource miniButton}"        
+                    Template="{StaticResource miniButtonTemplate}">
+                    </Button>
+                    <!--Stop: Button Minimize Design-->
+
+                    <!--Start: Button Close Design-->
+                    <Button x:Name="btnClose"                          
+                    BorderThickness="0"
+                    Content="X"
+                    Foreground="White"
+                    FontSize="12"
+                    FontFamily="Montserrat"
+                    Cursor="Hand"
+                    Grid.Column="2"
+                    Click="btnClose_Click"
+                    Style="{StaticResource closeButton}"
+                    Template="{StaticResource closeButtonTemplate}">
+                    </Button>
+                    <!--Stop: Button Close Design-->
+                    
+                </Grid>
+                <!--Edit First Part Header: Stop-->
+                
+            </Grid>
+        </Border>
+        <!--Add Border Design Stop-->
+    </Border>
+    <!--Add Image Design Stop-->
 </Window>
