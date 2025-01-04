@@ -22,17 +22,7 @@ namespace SmartBILL.Views
         public LoginView()
         {
             InitializeComponent();
-            runYear.Text = $"© 2018-{DateTime.Now.Year}, ";
-        }
-
-        private void btnClose_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-        private void btnMinimize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
+            runYear.Text = $"© {DateTime.Now.Year}, ";
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -46,11 +36,6 @@ namespace SmartBILL.Views
             txtUser.Focus();
         }
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
         {
             // Open the link in the default web browser
@@ -61,7 +46,22 @@ namespace SmartBILL.Views
             });
         }
 
-        private void btnLogin_LostFocus(object sender, RoutedEventArgs e)
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void BtnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void BtnLogin_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnLogin_LostFocus(object sender, RoutedEventArgs e)
         {
             txtUser.Focus();
         }

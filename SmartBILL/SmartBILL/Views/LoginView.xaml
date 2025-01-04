@@ -47,6 +47,7 @@
                 <!--Edit First Part Header: Start-->
                 <Grid>
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="35"/>
                         <ColumnDefinition/>
                         <ColumnDefinition Width="25"/>
                         <ColumnDefinition Width="25"/>
@@ -54,38 +55,39 @@
                     </Grid.ColumnDefinitions>
 
                     <!--Add Login Name Left Design Start-->
+                    <Image Source="/Resources/Images/IconLogo.png" Width="25" Height="25" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0" HorizontalAlignment="Left"/>
                     <TextBlock Text="LOG IN"
                        Foreground="DarkGray"
                        FontSize="10"
                        FontFamily="Montserrat"
-                       Grid.Column="0"
+                       Grid.Column="1"
                        VerticalAlignment="Center"
-                       Margin="10,0,0,0" FontWeight="Bold"/>  
+                       Margin="5,0,0,0" FontWeight="Bold"/>  
                     <!--Add Login Name Left Design Stop-->
 
                     <!--Start: Button Minimize Design-->
-                    <Button x:Name="btnMinimize" 
+                    <Button x:Name="BtnMinimize" 
                     BorderThickness="0" 
                     Content="-" Foreground="White" 
                     FontSize="16" FontFamily="Montserrat"
                     Cursor="Hand"
-                    Grid.Column="1"
-                    Click="btnMinimize_Click"
+                    Grid.Column="2"
+                    Click="BtnMinimize_Click"
                     Style="{StaticResource miniButton}"        
                     Template="{StaticResource miniButtonTemplate}">
                     </Button>
                     <!--Stop: Button Minimize Design-->
 
                     <!--Start: Button Close Design-->
-                    <Button x:Name="btnClose"                          
+                    <Button x:Name="BtnClose"                          
                     BorderThickness="0"
                     Content="X"
                     Foreground="White"
                     FontSize="12"
                     FontFamily="Montserrat"
                     Cursor="Hand"
-                    Grid.Column="2"
-                    Click="btnClose_Click"
+                    Grid.Column="3"
+                    Click="BtnClose_Click"
                     Style="{StaticResource closeButton}"
                     Template="{StaticResource closeButtonTemplate}">
                     </Button>
@@ -159,7 +161,7 @@
                         </PasswordBox.Background>
                     </PasswordBox>
 
-                    <Button x:Name="btnLogin"                          
+                    <Button x:Name="BtnLogin"                          
                             BorderThickness="0"
                             Content="LOG IN"
                             Foreground="White"
@@ -167,9 +169,9 @@
                             FontFamily="Montserrat"
                             Cursor="Hand"                           
                             Margin="0,50,0,0"
-                            Click="btnLogin_Click"
+                            Click="BtnLogin_Click"
                             Style="{StaticResource loginButton}"
-                            Template="{StaticResource loginButtonTemplate}" LostFocus="btnLogin_LostFocus">
+                            Template="{StaticResource loginButtonTemplate}" LostFocus="BtnLogin_LostFocus">
                     </Button>
 
                     <!--<TextBlock Foreground="White" 
@@ -185,14 +187,14 @@
                             www.mayurpatil.in
                         </Hyperlink>
                     </TextBlock>-->
-                    <TextBlock Foreground="White" FontSize="14.5" FontWeight="Medium" FontFamily="Montserrat" Margin="0,30,0,0">
+                    <TextBlock Foreground="White" FontSize="14.5" FontWeight="Medium" FontFamily="Montserrat" Margin="0,90,0,0" HorizontalAlignment="Center">
                         <Run x:Name="runYear" Text=" "/>
                         <Hyperlink NavigateUri="https://www.mayurpatil.in" RequestNavigate="Hyperlink_RequestNavigate" Style="{StaticResource hyperLinkMayur}">
                             www.mayurpatil.in
                         </Hyperlink>
                     </TextBlock>
 
-                    <Image Source="/Resources/Images/mayur.png" Width="50" Height="50" Margin="0,15,0,0"/>
+                    
                 </StackPanel>
                 <!--Stop: Content Form-->
 
