@@ -27,7 +27,7 @@ namespace SmartBILL
             //        loginView.Close();
             //    }
             //};
-            var registerview = new RegisterView();
+            var registerview = new MainView();
             registerview.Show();
         }
     }
