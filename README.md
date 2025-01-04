@@ -22,5 +22,8 @@ SmartBILL software built with C#, WPF MVVM, .NET 4.8.1, SAP Crystal Report SP 37
 **Ideal For:**
 - Small to medium-sized businesses seeking a professional and efficient billing solution.
 
+## 👤 Register
+![Register View](./images/register.png)
+
 ## 💻 Login
 ![Login View](./images/login.png)
