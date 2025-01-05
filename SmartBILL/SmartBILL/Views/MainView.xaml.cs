@@ -25,7 +25,7 @@ namespace SmartBILL.Views
         {
             InitializeComponent();
             runYear.Text = $"© {DateTime.Now.Year}, ";
-            DataContext = new MainViewModel(); // Set DataContext for binding
+            this.DataContext = new MainViewModel(); // Set DataContext for binding
         }
         private void HyperlinkDash_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
         {

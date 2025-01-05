@@ -12,6 +12,21 @@
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True">
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+
+        <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+            <local:HomeView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:CustomerViewModel}">
+            <local:CustomerView/>
+        </DataTemplate>
+
+    </Window.Resources>
+
     <Border CornerRadius="10"                    
         BorderThickness="1">
         <Border.BorderBrush>
@@ -57,8 +72,8 @@
                         <!--Menu Buttons-->
                         <RadioButton Style="{StaticResource menuButton}"
                          Tag="{StaticResource color1}"
-                         IsChecked="True">
-                            <!--Command="{Binding ShowHomeViewCommand}">-->
+                         IsChecked="True"
+                            Command="{Binding ShowHomeViewCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
                                 <TextBlock Text="Dashboard" Style="{StaticResource menuButtonText}"/>
@@ -66,8 +81,8 @@
                         </RadioButton>
 
                         <RadioButton Style="{StaticResource menuButton}"
-                        Tag="{StaticResource color2}">
-                            <!--Command="{Binding ShowCustomerViewCommand}"-->
+                        Tag="{StaticResource color2}"
+                            Command="{Binding ShowCustomerViewCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="UserGroup" Style="{StaticResource menuButtonIcon}"/>
                                 <TextBlock Text="Customers" Style="{StaticResource menuButtonText}"/>
@@ -163,6 +178,7 @@
                         <RowDefinition Height="30"/>
                     </Grid.RowDefinitions>
 
+                    <!--Control bar-->
                     <Grid Grid.Row="0" Margin="0,5,0,5">
                         <Grid.ColumnDefinitions>
                             
@@ -201,6 +217,45 @@
                         <!--Stop: Button Close Design-->
 
                     </Grid>
+
+                    <!--Header / Caption-->
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <!--Caption-->
+                        <Border Margin="0,0,318.8,0.2" CornerRadius="0,10,10,0">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0.7">
+                                    <GradientStop Color="{StaticResource secondaryBackColor1}" Offset="0"/>
+                                    <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <StackPanel Grid.Column="0"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                                <fa:IconImage Icon="{Binding Icon}"
+                                  Height="20"
+                                  Width="20"
+                                  Foreground="{StaticResource titleColor2}"
+                                  Margin="35,0,10,0"/>
+
+                                <TextBlock Text="{Binding Caption}"
+                                   Foreground="{StaticResource titleColor2}"
+                                   FontSize="16"
+                                   FontFamily="Montserrat"
+                                   FontWeight="Medium"
+                                   VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <!--Content section / Child views-->
+                    <ContentControl Content="{Binding CurrentChildView}"
+                Grid.Row="2"
+                Margin="25"/>
 
                     <Grid Grid.Row="3">
                         <Border BorderThickness="1" CornerRadius="0,0,10,0">

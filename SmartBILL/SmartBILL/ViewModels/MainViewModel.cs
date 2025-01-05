@@ -5,14 +5,22 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Windows.Threading;
+using FontAwesome.Sharp;
+using SmartBILL.Commands;
+
 
 namespace SmartBILL.ViewModels
 {
-    public class MainViewModel:INotifyPropertyChanged
+    public class MainViewModel : ViewModelBase
     {
         private string _currentDateTime;
+        private string _caption;
+        private IconChar _icon;
+        private ViewModelBase _currentChildView;
 
+        #region Date and Time Dashboard
         // Property for binding with the view
         public string CurrentDateTime
         {
@@ -20,9 +28,10 @@ namespace SmartBILL.ViewModels
             set
             {
                 _currentDateTime = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(CurrentDateTime));
             }
         }
+        
 
         public MainViewModel()
         {
@@ -35,12 +44,69 @@ namespace SmartBILL.ViewModels
             };
             timer.Start();
         }
+        #endregion
 
-        // INotifyPropertyChanged implementation
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        #region Property Main Caption and Icon
+        public string Caption
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            get
+            {
+                return _caption;
+            }
+            set
+            {
+                _caption = value;
+                OnPropertyChanged(nameof(Caption));
+            }
+        }
+
+        public IconChar Icon
+        {
+            get
+            {
+                return _icon;
+            }
+            set
+            {
+                _icon = value;
+                OnPropertyChanged(nameof(Icon));
+            }
+        }
+
+        #endregion
+
+        #region Property Child View
+        public ViewModelBase CurrentChildView
+        {
+            get
+            {
+                return _currentChildView;
+            }
+            set
+            {
+                _currentChildView = value;
+                OnPropertyChanged(nameof(CurrentChildView));
+            }
+        }
+        #endregion
+
+        //--> Commands
+        public ICommand ShowHomeViewCommand { get; }
+        public ICommand ShowCustomerViewCommand { get; }
+
+        
+
+        private void ExecuteShowCustomerViewCommand(object obj)
+        {
+            CurrentChildView = new CustomerViewModel();
+            Caption = "Customers";
+            Icon = IconChar.UserGroup;
+        }
+        private void ExecuteShowHomeViewCommand(object obj)
+        {
+            CurrentChildView = new HomeViewModel();
+            Caption = "Dashboard";
+            Icon = IconChar.Home;
         }
     }
 }
