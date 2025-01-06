@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="/Resources/Styles/ButtonStyles.xaml"/>
                 <ResourceDictionary Source="/Resources/Styles/PopupStyle.xaml"/>
                 <ResourceDictionary Source="/Resources/Styles/TabStyle.xaml"/>
+                <ResourceDictionary Source="/Resources/Styles/BorderStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 
