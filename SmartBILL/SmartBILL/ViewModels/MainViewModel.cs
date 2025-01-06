@@ -30,20 +30,7 @@ namespace SmartBILL.ViewModels
                 _currentDateTime = value;
                 OnPropertyChanged(nameof(CurrentDateTime));
             }
-        }
-        
-
-        public MainViewModel()
-        {
-            // Initialize and start the timer
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1); // Update every second
-            timer.Tick += (sender, args) =>
-            {
-                CurrentDateTime = DateTime.Now.ToString("dd MMMM yyyy, hh:mm tt"); // "F" for full date/time pattern dddd, MMMM d, yyyy, hh:mm tt
-            };
-            timer.Start();
-        }
+        }        
         #endregion
 
         #region Property Main Caption and Icon
@@ -88,14 +75,12 @@ namespace SmartBILL.ViewModels
                 OnPropertyChanged(nameof(CurrentChildView));
             }
         }
-        #endregion
+        
 
         //--> Commands
         public ICommand ShowHomeViewCommand { get; }
         public ICommand ShowCustomerViewCommand { get; }
-
         
-
         private void ExecuteShowCustomerViewCommand(object obj)
         {
             CurrentChildView = new CustomerViewModel();
@@ -107,6 +92,27 @@ namespace SmartBILL.ViewModels
             CurrentChildView = new HomeViewModel();
             Caption = "Dashboard";
             Icon = IconChar.Home;
+        }
+        #endregion
+
+        public MainViewModel()
+        {
+            // Initialize and start the timer
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1); // Update every second
+            timer.Tick += (sender, args) =>
+            {
+                CurrentDateTime = DateTime.Now.ToString("dd MMMM yyyy, hh:mm tt"); // "F" for full date/time pattern dddd, MMMM d, yyyy, hh:mm tt
+            };
+            timer.Start();
+
+            //Initialize commands
+            ShowHomeViewCommand = new RelayCommand(ExecuteShowHomeViewCommand);
+            ShowCustomerViewCommand = new RelayCommand(ExecuteShowCustomerViewCommand);
+
+
+            //Default view
+            ExecuteShowHomeViewCommand(null);
         }
     }
 }
