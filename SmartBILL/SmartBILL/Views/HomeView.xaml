@@ -22,8 +22,17 @@
             <!--Year Panel-->
                 <Border Margin="20,120,20,20" Style="{StaticResource CardBorderStyle}">
                     <StackPanel Margin="10 88 10 20">
-                        <TextBlock Text="Accounting Year" Foreground="White" TextAlignment="Center" FontSize="34" FontWeight="SemiBold"></TextBlock>
+                        <TextBlock Text="Accounting Year" Foreground="White" TextAlignment="Center" FontSize="34" FontWeight="SemiBold"/>
                         
+                        <Grid Margin="0 12 0 22">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Content="Create" Style="{StaticResource activeTabButton}"></Button>
+                            <Button Content="Select" Grid.Column="1" Style="{StaticResource tabYearButton}"></Button>
+                        </Grid>
+                        <TextBlock/>
                     </StackPanel>
                 
                 </Border>
@@ -38,8 +47,9 @@
                         </LinearGradientBrush>
                     </Border.Background>
                     <Grid>
-                        <fa:IconImage Icon="CalendarDay" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Opacity="0.9" Width="25" Margin="15 8 0 0"></fa:IconImage>
-                        <fa:IconImage Icon="BuildingColumns" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="White" Opacity="0.9" Width="30" Margin="0,8,15,0"></fa:IconImage>
+                        <fa:IconImage Icon="BuildingColumns" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Opacity="0.9" Width="30" Margin="0,8,15,0"></fa:IconImage>
+                        <fa:IconImage Icon="CalendarDay" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="White" Opacity="0.9" Width="25" Margin="15 8 0 0"></fa:IconImage>
+                        
                     </Grid>
                 </Border>
             </Grid>

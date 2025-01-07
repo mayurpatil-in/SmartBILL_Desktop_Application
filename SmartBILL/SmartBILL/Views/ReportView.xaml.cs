@@ -124,7 +124,7 @@ namespace SmartBILL.Views
             //string basePath = AppDomain.CurrentDomain.BaseDirectory;
 
             //// Build the relative path to the report file
-            //string reportPath = System.IO.Path.Combine(basePath, @"Reports\test.rpt");
+            //string reportPath = System.IO.Path.Combine(basePath, "Reports", "test.rpt");
 
             //// Check if the report file exists
             //if (System.IO.File.Exists(reportPath))
