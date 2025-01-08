@@ -24,5 +24,27 @@ namespace SmartBILL.Views
         {
             InitializeComponent();
         }
+
+        private void BtnTabCreate_Click(object sender, RoutedEventArgs e)
+        {
+            // Show Create tab content, hide Select tab content
+            CreateTabPanel.Visibility = Visibility.Visible;
+            SelectTabPanel.Visibility = Visibility.Collapsed;
+
+            // Change button styles to indicate active tab
+            BtnTabCreate.Style = (Style)FindResource("activeTabButton");
+            BtnTabSelect.Style = (Style)FindResource("tabYearButton");
+        }
+
+        private void BtnTabSelect_Click(object sender, RoutedEventArgs e)
+        {
+            // Show Select tab content, hide Create tab content
+            SelectTabPanel.Visibility = Visibility.Visible;
+            CreateTabPanel.Visibility = Visibility.Collapsed;
+
+            // Change button styles to indicate active tab
+            BtnTabSelect.Style = (Style)FindResource("activeTabButton");
+            BtnTabCreate.Style = (Style)FindResource("tabYearButton");
+        }
     }
 }

@@ -221,6 +221,12 @@
             <Trigger Property="IsMouseCaptured" Value="True">
                 <Setter Property="Foreground" Value="#ffffff"/>
             </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Foreground" Value="WhiteSmoke"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="FontSize" Value="15"/>
+            </Trigger>
+
         </Style.Triggers>
     </Style>
 
@@ -241,6 +247,87 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsVisible" Value="True">
+                <Setter Property="Foreground" Value="WhiteSmoke"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="FontSize" Value="15"/>
+            </Trigger>
+        </Style.Triggers>
+        
     </Style>
+
+    <Style x:Key="textLabel" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="#fcfcfc" />
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontStyle" Value="Oblique"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
+
+    <Style TargetType="TextBox">
+        <Setter Property="Background" Value="#3F375F" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Padding" Value="15 12" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Foreground" Value="#fcfcfc" />
+        <Style.Resources>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="CornerRadius" Value="15"/>
+            </Style>
+        </Style.Resources>
+    </Style>
+
+    <!--Calender Save-->
+    <Style x:Key="sendButton" TargetType="Button">
+        <Setter Property="Height" Value="50" />
+        <Setter Property="Foreground" Value="#f0f0f0" />
+        <Setter Property="Margin" Value="0 15 0 0" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="20" Padding="20 0 20 0" BorderThickness="0">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                                <GradientStop Color="#7985FF" Offset="0" />
+                                <GradientStop Color="#6AD8FD" Offset="1" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border CornerRadius="20" Padding="20 0 20 0" BorderThickness="0">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                                        <GradientStop Color="#7985FF" Offset="0.5" />
+                                        <GradientStop Color="#6AD8FD" Offset="1" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+
+
+
 
 </ResourceDictionary>

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:SmartBILL.Views"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="650" d:DesignWidth="800">
     <Border CornerRadius="10" BorderThickness="1" Style="{StaticResource WinBorderStyle}">
         
         
@@ -29,10 +29,35 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Button Content="Create" Style="{StaticResource activeTabButton}"></Button>
-                            <Button Content="Select" Grid.Column="1" Style="{StaticResource tabYearButton}"></Button>
+                            <Button x:Name="BtnTabCreate" Content="Create" Style="{StaticResource activeTabButton}" Click="BtnTabCreate_Click"></Button>
+                            <Button x:Name="BtnTabSelect" Content="Select" Grid.Column="1" Style="{StaticResource tabYearButton}" Click="BtnTabSelect_Click"></Button>
                         </Grid>
-                        <TextBlock/>
+
+                        <!-- Content Panel -->
+                        <StackPanel Name="CreateTabPanel" Visibility="Visible">
+                            <TextBlock Text="Start Date: " Style="{StaticResource textLabel}" />
+                            <!--<TextBox Margin="0 10 0 5" Text="fad23b456g56fsd2sdf4sdj76urdetgx22d" TextAlignment="Center"/>-->
+                            <DatePicker Margin="0 10 0 15"/>
+
+                            <TextBlock Text="End Date: " Style="{StaticResource textLabel}" />
+                            <!--<TextBox Margin="0 10 0 5" Text="fad23b456g56fsd2sdf4sdj76urdetgx22d" TextAlignment="Center"/>-->
+                            <DatePicker Margin="0 10 0 20"/>
+
+                            <Button Style="{StaticResource sendButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:IconImage Icon="CalendarCheck" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Opacity="0.9" Width="20" Margin="0,0,5,0"></fa:IconImage>
+                                    <TextBlock Text="Save" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="15"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+
+                        <!--<TextBlock Text="Please enter the wallet id or destination email" FontSize="9" Foreground="#e0e0e0" TextAlignment="Center" Opacity="0.5" Margin="0 0 0 20"/>-->
+                        <!-- Select Tab Content -->
+                        <StackPanel Name="SelectTabPanel" Visibility="Collapsed">
+                            <TextBlock Text="This is the Select tab content." 
+                           FontSize="16" 
+                           Margin="10"/>
+                        </StackPanel>
                     </StackPanel>
                 
                 </Border>
