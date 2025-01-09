@@ -7,9 +7,20 @@
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              mc:Ignorable="d" 
              d:DesignHeight="650" d:DesignWidth="800">
+
+
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="btnAdd">
+            <BeginStoryboard Storyboard="{StaticResource Storyboard1}"></BeginStoryboard>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="btnCancel">
+            <BeginStoryboard Storyboard="{StaticResource Storyboard2}"></BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
+
     <Border CornerRadius="10" BorderThickness="1" Style="{StaticResource WinBorderStyle}">
-        
-        
+
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <!--Navigation menu-->
@@ -19,11 +30,11 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="1">
-            <!--Year Panel-->
+                <!--Year Panel-->
                 <Border Margin="20,120,20,20" Style="{StaticResource CardBorderStyle}">
                     <StackPanel Margin="10 88 10 20">
                         <TextBlock Text="Accounting Year" Foreground="White" TextAlignment="Center" FontSize="34" FontWeight="SemiBold"/>
-                        
+
                         <Grid Margin="0 12 0 22">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -59,7 +70,7 @@
                            Margin="10"/>
                         </StackPanel>
                     </StackPanel>
-                
+
                 </Border>
 
                 <!--Year Card-->
@@ -74,9 +85,41 @@
                     <Grid>
                         <fa:IconImage Icon="BuildingColumns" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Opacity="0.9" Width="30" Margin="0,8,15,0"></fa:IconImage>
                         <fa:IconImage Icon="CalendarDay" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="White" Opacity="0.9" Width="25" Margin="15 8 0 0"></fa:IconImage>
-                        
+
                     </Grid>
                 </Border>
+            </Grid>
+
+            <!--Pop Up Setting-->
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="450"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="75"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="1">
+                <Button x:Name="btnFiles" Style="{DynamicResource ButtonStyle2}" Content="" HorizontalAlignment="Center" Height="40" Margin="0,380,0,0" VerticalAlignment="Top" Width="40" Background="#FF2D5CD8" BorderBrush="{x:Null}" Click="btnFiles_Click"/>
+                <Button x:Name="btnFolders" Style="{DynamicResource ButtonStyle4}" Content="" HorizontalAlignment="Center" Height="40" Margin="0,380,0,0" VerticalAlignment="Top" Width="40" Background="#FF2D5CD8" BorderBrush="{x:Null}"/>
+                <Button x:Name="btnPhotos" Style="{DynamicResource ButtonStyle5}" Content="" HorizontalAlignment="Center" Height="40" VerticalAlignment="Top" Width="40" Background="#FF2D5CD8" Margin="0,380,0,0" BorderBrush="{x:Null}"/>
+                <Button x:Name="btnCamera" Style="{DynamicResource ButtonStyle6}" Content="" HorizontalAlignment="Center" Height="40" VerticalAlignment="Top" Width="40" Background="#FF2D5CD8" Margin="0,380,0,0" BorderBrush="{x:Null}"/>
+                <Ellipse HorizontalAlignment="Center" Height="40" Margin="0,383,0,0" VerticalAlignment="Top" Width="40" Fill="White"/>
+                <Button x:Name="btnAdd" Style="{DynamicResource ButtonStyle1}" Content="" HorizontalAlignment="Center" Height="55" Margin="0,375,0,0" VerticalAlignment="Top" Width="55" BorderBrush="{x:Null}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Resources/Images/UserSet.png"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="btnCancel" Style="{DynamicResource ButtonStyle1}" Content="" HorizontalAlignment="Center" Height="55" Margin="0,375,0,0" VerticalAlignment="Top" Width="55" BorderBrush="{x:Null}" Visibility="Hidden">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Resources/Images/icons8-cancel-50.png"/>
+                    </Button.Background>
+                </Button>
+                    </Grid>
+                </Grid>
+
             </Grid>
         </Grid>
     </Border>

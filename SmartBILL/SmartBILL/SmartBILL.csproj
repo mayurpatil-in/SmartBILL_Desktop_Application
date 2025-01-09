@@ -222,6 +222,26 @@
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\icons8-add-50.png" />
+    <Resource Include="Resources\Images\icons8-camera-48.png" />
+    <Resource Include="Resources\Images\icons8-cancel-50.png" />
+    <Resource Include="Resources\Images\icons8-file-48.png" />
+    <Resource Include="Resources\Images\icons8-folder-48.png" />
+    <Resource Include="Resources\Images\icons8-photo-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\UserSet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Backup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Register.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\UserEdit.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

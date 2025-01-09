@@ -9,9 +9,11 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SmartBILL.Views;
 
 namespace SmartBILL.Views
 {
@@ -45,6 +47,23 @@ namespace SmartBILL.Views
             // Change button styles to indicate active tab
             BtnTabSelect.Style = (Style)FindResource("activeTabButton");
             BtnTabCreate.Style = (Style)FindResource("tabYearButton");
+        }
+
+        private void btnFiles_Click(object sender, RoutedEventArgs e)
+        {
+            //RegisterView registerView = new RegisterView();
+            //registerView.Show();
+            // Apply blur effect to the main window
+            BlurEffect blur = new BlurEffect { Radius = 10 };
+            this.Effect = blur;
+
+            // Create and show the new window
+            RegisterView newWindow = new RegisterView();
+            /*newWindow.Owner = this; */// Set owner to ensure modal behavior
+            newWindow.ShowDialog(); // Show as a modal dialog
+
+            // Remove blur effect when the new window is closed
+            this.Effect = null;
         }
     }
 }
