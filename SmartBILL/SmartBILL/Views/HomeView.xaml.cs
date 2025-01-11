@@ -49,7 +49,7 @@ namespace SmartBILL.Views
             BtnTabCreate.Style = (Style)FindResource("tabYearButton");
         }
 
-        private void btnFiles_Click(object sender, RoutedEventArgs e)
+        private void BtnFiles_Click(object sender, RoutedEventArgs e)
         {
             //RegisterView registerView = new RegisterView();
             //registerView.Show();

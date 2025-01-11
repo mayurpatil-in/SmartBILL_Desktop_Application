@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using SmartBILL.ViewModels;
+using SmartBILL.CustomControl;
 
 namespace SmartBILL.Views
 {
@@ -23,6 +25,7 @@ namespace SmartBILL.Views
         {
             InitializeComponent();
             runYear.Text = $"© {DateTime.Now.Year}, ";
+            this.DataContext = new RegisterViewModel();
         }
 
         private void BtnRegMinimize_Click(object sender, RoutedEventArgs e)
@@ -63,5 +66,6 @@ namespace SmartBILL.Views
         {
 
         }
+        
     }
 }

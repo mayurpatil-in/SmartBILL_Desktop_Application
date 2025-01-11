@@ -98,8 +98,10 @@ namespace SmartBILL.ViewModels
         public MainViewModel()
         {
             // Initialize and start the timer
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1); // Update every second
+            var timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(1) // Update every second
+            };
             timer.Tick += (sender, args) =>
             {
                 CurrentDateTime = DateTime.Now.ToString("dd MMMM yyyy, hh:mm tt"); // "F" for full date/time pattern dddd, MMMM d, yyyy, hh:mm tt

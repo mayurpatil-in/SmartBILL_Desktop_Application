@@ -102,7 +102,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="1">
-                <Button x:Name="btnFiles" Style="{DynamicResource ButtonStyle2}" Content="" HorizontalAlignment="Center" Height="40" Margin="0,380,0,0" VerticalAlignment="Top" Width="40" Background="#FF2D5CD8" BorderBrush="{x:Null}" Click="btnFiles_Click"/>
+                <Button x:Name="btnFiles" Style="{DynamicResource ButtonStyle2}" Content="" HorizontalAlignment="Center" Height="40" Margin="0,380,0,0" VerticalAlignment="Top" Width="40" Background="#FF2D5CD8" BorderBrush="{x:Null}" Click="BtnFiles_Click"/>
                 <Button x:Name="btnFolders" Style="{DynamicResource ButtonStyle4}" Content="" HorizontalAlignment="Center" Height="40" Margin="0,380,0,0" VerticalAlignment="Top" Width="40" Background="#FF2D5CD8" BorderBrush="{x:Null}"/>
                 <Button x:Name="btnPhotos" Style="{DynamicResource ButtonStyle5}" Content="" HorizontalAlignment="Center" Height="40" VerticalAlignment="Top" Width="40" Background="#FF2D5CD8" Margin="0,380,0,0" BorderBrush="{x:Null}"/>
                 <Button x:Name="btnCamera" Style="{DynamicResource ButtonStyle6}" Content="" HorizontalAlignment="Center" Height="40" VerticalAlignment="Top" Width="40" Background="#FF2D5CD8" Margin="0,380,0,0" BorderBrush="{x:Null}"/>
