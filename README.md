@@ -32,3 +32,18 @@ SmartBILL software built with C#, WPF MVVM, .NET 4.8.1, SAP Crystal Report SP 37
 
 ## 💻 Dashboard
 ![Dashboard View](./images/Dashboard.png)
+
+## ⚙️ Requirements
+> [!IMPORTANT]
+
+**Basics:**
+- .NET Framework 4.8.1
+- SAP Crystal Report SP 37
+- SQL Server 22
+- FontAwesome
+	- ```Install-Package FontAwesome.Sharp```
+- Entity Framework
+	- ```Install-Package EntityFramework ```
+	- ```enable migration```	- ```Add-Migration InitialCreate ```	- ```Update-Database ```	      				
+	
+	 
