@@ -4,6 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartBILL.Views"
+        xmlns:local1="clr-namespace:SmartBILL.ViewModels"
+        xmlns:helpers="clr-namespace:SmartBILL.CustomControl"
+        
         mc:Ignorable="d"
         Title="LoginView" Height="550" Width="800"
         WindowStyle="None"
@@ -12,6 +15,8 @@
         Background="Transparent"
         AllowsTransparency="True"
         MouseDown="Window_MouseDown" Loaded="Window_Loaded">
+    
+    
     <Border CornerRadius="12">
         <!--Add Image Design Start-->
         <Border.Background>
@@ -118,6 +123,7 @@
                        Margin="0,35,0,0"/>
 
                     <TextBox x:Name="txtUser"
+                             Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
                              FontSize="13"
                              FontWeight="Medium"
                              FontFamily="Montserrat"                            
@@ -142,24 +148,14 @@
                                FontWeight="Medium"
                                FontFamily="Montserrat"                             
                                Margin="0,15,0,0"/>
-                    <PasswordBox x:Name="txtPass"
-                             FontSize="13"
-                             FontWeight="Medium"
-                             FontFamily="Montserrat"                            
-                             Foreground="White"
-                             CaretBrush="LightGray"
-                             BorderBrush="DarkGray"
-                             BorderThickness="0,0,0,2"
-                             Height="28"
-                             VerticalContentAlignment="Center"
-                             Margin="0,5,0,0"
-                             Padding="20,0,0,0">
-                        <PasswordBox.Background>
-                            <ImageBrush ImageSource="/Resources/Images/key-icon.png"
-                                        Stretch="None"
-                                        AlignmentX="Left"/>
-                        </PasswordBox.Background>
-                    </PasswordBox>
+                    <helpers:BindablePasswordBox Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="28"
+                             
+                             
+                             Margin="0,5,0,0">
+
+
+
+                    </helpers:BindablePasswordBox>
 
                     <Button x:Name="BtnLogin"                          
                             BorderThickness="0"
@@ -171,8 +167,10 @@
                             Margin="0,50,0,0"
                             Click="BtnLogin_Click"
                             Style="{StaticResource loginButton}"
+                            Command="{Binding LoginCommand}"
                             Template="{StaticResource loginButtonTemplate}" LostFocus="BtnLogin_LostFocus">
                     </Button>
+                    
 
                     <!--<TextBlock Foreground="White" 
                        FontSize="16" 

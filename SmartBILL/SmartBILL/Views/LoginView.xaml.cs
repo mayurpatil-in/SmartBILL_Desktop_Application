@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using SmartBILL.ViewModels;
 
 namespace SmartBILL.Views
 {
@@ -23,6 +24,7 @@ namespace SmartBILL.Views
         {
             InitializeComponent();
             runYear.Text = $"© {DateTime.Now.Year}, ";
+            this.DataContext = new LoginViewModel();
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -65,5 +67,7 @@ namespace SmartBILL.Views
         {
             txtUser.Focus();
         }
+
+        
     }
 }

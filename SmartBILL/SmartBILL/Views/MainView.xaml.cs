@@ -21,12 +21,16 @@ namespace SmartBILL.Views
     /// </summary>
     public partial class MainView : Window
     {
-        public MainView()
+        
+        public MainView(string username)
         {
             InitializeComponent();
             runYear.Text = $"© {DateTime.Now.Year}, ";
-            this.DataContext = new MainViewModel(); // Set DataContext for binding
+            DataContext = new MainViewModel(username); // Set DataContext for binding
+            
+
         }
+        
         private void HyperlinkDash_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
         {
             // Open the link in the default web browser

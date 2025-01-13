@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using FontAwesome.Sharp;
 using SmartBILL.Commands;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 
 namespace SmartBILL.ViewModels
@@ -19,6 +20,9 @@ namespace SmartBILL.ViewModels
         private string _caption;
         private IconChar _icon;
         private ViewModelBase _currentChildView;
+        public string WelcomeMessage { get; }
+
+        
 
         #region Date and Time Dashboard
         // Property for binding with the view
@@ -95,8 +99,9 @@ namespace SmartBILL.ViewModels
         }
         #endregion
 
-        public MainViewModel()
+        public MainViewModel(string username)
         {
+            WelcomeMessage = $"Welcome, {username}!";
             // Initialize and start the timer
             var timer = new DispatcherTimer
             {
