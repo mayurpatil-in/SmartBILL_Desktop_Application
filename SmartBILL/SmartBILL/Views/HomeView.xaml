@@ -111,12 +111,24 @@
                     <Button.Background>
                                 <ImageBrush ImageSource="/SmartBILL;component/Resources/Images/UserSet.png"/>
                     </Button.Background>
+                    <Button.ToolTip>
+                                <StackPanel>
+                                    <TextBlock Text="Open" FontWeight="Bold" Margin="0,0,0,5" Foreground="Green"/>
+                                    <TextBlock Text="Open User Account" FontStyle="Italic"/>
+                                </StackPanel>
+                    </Button.ToolTip>
                 </Button>
                 <Button x:Name="btnCancel" Style="{DynamicResource ButtonStyle1}" Content="" HorizontalAlignment="Center" Height="55" Margin="0,375,0,0" VerticalAlignment="Top" Width="55" BorderBrush="{x:Null}" Visibility="Hidden">
                     <Button.Background>
                                 <ImageBrush ImageSource="/SmartBILL;component/Resources/Images/icons8-cancel-50.png"/>
                     </Button.Background>
-                </Button>
+                            <Button.ToolTip>
+                                <StackPanel>
+                                    <TextBlock Text="Close" FontWeight="Bold" Margin="0,0,0,5" Foreground="Red"/>
+                                    <TextBlock Text="Close User Account" FontStyle="Italic"/>
+                                </StackPanel>
+                            </Button.ToolTip>
+                        </Button>
                     </Grid>
                 </Grid>
 
