@@ -7,7 +7,7 @@
         xmlns:local1="clr-namespace:SmartBILL.ViewModels"
         xmlns:helpers="clr-namespace:SmartBILL.CustomControl"
         mc:Ignorable="d"
-        Title="RegisterView" Height="500" Width="550"
+        Title="RegisterView" Height="550" Width="550"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
@@ -46,7 +46,7 @@
                 <!--Divide Two Part First Header and Second Main Form: Start-->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
-                    <RowDefinition Height="445"/>
+                    <RowDefinition Height="490"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <!--Divide Two Part First Header and Second Main Form: Stop-->
@@ -204,6 +204,13 @@ Margin="0,5,0,0">
                         Style="{StaticResource loginButton}"
                         Template="{StaticResource loginButtonTemplate}" LostFocus="BtnRegister_LostFocus" Command="{Binding RegisterCommand}">
                     </Button>
+                    <TextBlock x:Name="LoginText" Text="Login"
+Foreground="DarkSeaGreen"
+FontSize="12"
+FontWeight="Bold"
+FontFamily="Montserrat"                             
+Margin="0,15,0,0"
+TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" MouseLeftButtonDown="LoginText_MouseLeftButtonDown"/>
                 </StackPanel>   
 
                 <Grid Grid.Row="2">

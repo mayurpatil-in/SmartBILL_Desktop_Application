@@ -66,6 +66,12 @@ namespace SmartBILL.Views
         {
 
         }
-        
+
+        private void LoginText_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            LoginView loginView = new LoginView();
+            loginView.Show();
+            this.Close();
+        }
     }
 }

@@ -109,12 +109,12 @@
                 <Ellipse HorizontalAlignment="Center" Height="40" Margin="0,383,0,0" VerticalAlignment="Top" Width="40" Fill="White"/>
                 <Button x:Name="btnAdd" Style="{DynamicResource ButtonStyle1}" Content="" HorizontalAlignment="Center" Height="55" Margin="0,375,0,0" VerticalAlignment="Top" Width="55" BorderBrush="{x:Null}">
                     <Button.Background>
-                        <ImageBrush ImageSource="/Resources/Images/UserSet.png"/>
+                                <ImageBrush ImageSource="/SmartBILL;component/Resources/Images/UserSet.png"/>
                     </Button.Background>
                 </Button>
                 <Button x:Name="btnCancel" Style="{DynamicResource ButtonStyle1}" Content="" HorizontalAlignment="Center" Height="55" Margin="0,375,0,0" VerticalAlignment="Top" Width="55" BorderBrush="{x:Null}" Visibility="Hidden">
                     <Button.Background>
-                        <ImageBrush ImageSource="/Resources/Images/icons8-cancel-50.png"/>
+                                <ImageBrush ImageSource="/SmartBILL;component/Resources/Images/icons8-cancel-50.png"/>
                     </Button.Background>
                 </Button>
                     </Grid>
