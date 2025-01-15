@@ -60,7 +60,7 @@ namespace SmartBILL.Views
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void BtnLogin_LostFocus(object sender, RoutedEventArgs e)
@@ -68,6 +68,11 @@ namespace SmartBILL.Views
             txtUser.Focus();
         }
 
-        
+        private void BtnReg_Click(object sender, RoutedEventArgs e)
+        {
+            RegisterView registerView = new RegisterView();
+            registerView.Show();
+            Application.Current.MainWindow.Close();
+        }
     }
 }

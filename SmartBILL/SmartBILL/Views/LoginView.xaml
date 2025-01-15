@@ -170,7 +170,19 @@
                             Command="{Binding LoginCommand}"
                             Template="{StaticResource loginButtonTemplate}" LostFocus="BtnLogin_LostFocus">
                     </Button>
-                    
+                    <Button x:Name="BtnReg"                          
+        BorderThickness="0"
+        Content="Register"
+        Foreground="White"
+        FontSize="12"
+        FontFamily="Montserrat"
+        Cursor="Hand"                           
+        Margin="0,20,0,0"
+        Style="{StaticResource sendButton}"
+        LostFocus="BtnLogin_LostFocus" Height="30" Width="90" Click="BtnReg_Click"/>
+
+
+
 
                     <!--<TextBlock Foreground="White" 
                        FontSize="16" 
