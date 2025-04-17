@@ -22,7 +22,18 @@ namespace SmartBILL.ViewModels
         private ViewModelBase _currentChildView;
         public string WelcomeMessage { get; }
 
-        
+        private bool _isCustomersExpanded;
+        public bool IsCustomersExpanded
+        {
+            get => _isCustomersExpanded;
+            set
+            {
+                _isCustomersExpanded = value;
+                OnPropertyChanged(nameof(IsCustomersExpanded));
+            }
+        }
+
+
 
         #region Date and Time Dashboard
         // Property for binding with the view
@@ -90,12 +101,14 @@ namespace SmartBILL.ViewModels
             CurrentChildView = new CustomerViewModel();
             Caption = "Customers";
             Icon = IconChar.UserGroup;
+            
         }
         private void ExecuteShowHomeViewCommand(object obj)
         {
             CurrentChildView = new HomeViewModel();
             Caption = "Dashboard";
             Icon = IconChar.Home;
+            
         }
         #endregion
 

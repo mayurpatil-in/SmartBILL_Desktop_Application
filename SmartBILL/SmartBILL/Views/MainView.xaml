@@ -72,14 +72,48 @@
                             </StackPanel>
                         </RadioButton>
 
-                        <RadioButton Style="{StaticResource menuButton}"
+                        <!--<RadioButton Style="{StaticResource menuButton}"
                         Tag="{StaticResource color2}"
                             Command="{Binding ShowCustomerViewCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="UserGroup" Style="{StaticResource menuButtonIcon}"/>
                                 <TextBlock Text="Customers" Style="{StaticResource menuButtonText}"/>
                             </StackPanel>
+                        </RadioButton>-->
+
+                        <!-- Customers Parent RadioButton -->
+                        <RadioButton x:Name="RadioCustomers" Style="{StaticResource menuButton}" Tag="{StaticResource color2}" IsChecked="{Binding IsCustomersExpanded, Mode=TwoWay}">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="UserGroup" Style="{StaticResource menuButtonIcon}"/>
+                                <TextBlock Text="Customers" Style="{StaticResource menuButtonText}"/>
+                                <TextBlock Text="▼" Margin="5,0,0,0" VerticalAlignment="Center" FontSize="10" RenderTransformOrigin="0.5,0.5">
+                                    <TextBlock.RenderTransform>
+                                        <RotateTransform Angle="{Binding IsCustomersExpanded, Converter={StaticResource BoolToAngleConverter}}"/>
+                                    </TextBlock.RenderTransform>
+                                </TextBlock>
+                            </StackPanel>
                         </RadioButton>
+
+                        <!-- Submenu (Visible when Customers is expanded) -->
+                        <StackPanel Margin="30,0,0,0" Visibility="{Binding IsCustomersExpanded, Converter={StaticResource BoolToVisibilityConverter}}">
+
+                            <RadioButton Style="{StaticResource menuButton}" Tag="{StaticResource color2}" Command="{Binding ShowCustomerViewCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:IconImage Icon="UserPlus" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Add Customer" Style="{StaticResource menuButtonText}"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <RadioButton Style="{StaticResource menuButton}" Tag="{StaticResource color2}" Command="{Binding ShowAddCustomerCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:IconImage Icon="UserPlus" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Add Party" Style="{StaticResource menuButtonText}"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                        </StackPanel>
+                        <!--Stop Customers Parent RadioButton -->
+
                         <RadioButton Style="{StaticResource menuButton}"
                          Tag="{StaticResource color3}">
 
@@ -128,6 +162,8 @@
                                 <TextBlock Text="Bill Report" Style="{StaticResource menuButtonText}"/>
                             </StackPanel>
                         </RadioButton>
+
+                        
                     </StackPanel>
 
                     <Grid Grid.Row="1">

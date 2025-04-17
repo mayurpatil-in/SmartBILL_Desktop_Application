@@ -50,5 +50,7 @@ namespace SmartBILL.Views
         {
             Application.Current.Shutdown();
         }
+
+        
     }
 }
