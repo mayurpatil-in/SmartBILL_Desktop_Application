@@ -100,7 +100,7 @@
                             <RadioButton Style="{StaticResource menuButton}" Tag="{StaticResource color2}" Command="{Binding ShowCustomerViewCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <fa:IconImage Icon="UserPlus" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Add Customer" Style="{StaticResource menuButtonText}"/>
+                                    <TextBlock Text="Add User" Style="{StaticResource menuButtonText}"/>
                                 </StackPanel>
                             </RadioButton>
 

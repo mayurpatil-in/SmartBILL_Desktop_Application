@@ -14,6 +14,7 @@
                 <ResourceDictionary Source="/Resources/Styles/PopupStyle.xaml"/>
                 <ResourceDictionary Source="/Resources/Styles/TabStyle.xaml"/>
                 <ResourceDictionary Source="/Resources/Styles/BorderStyles.xaml"/>
+                <ResourceDictionary Source="/Resources/Styles/DatagridStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>

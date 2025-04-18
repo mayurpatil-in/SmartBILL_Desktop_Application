@@ -14,6 +14,19 @@
         </Setter>
     </Style>
 
+
+    <Style x:Key="BorderBackgroundStyle" TargetType="Border">
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#6ad8fd" Offset="-0.2"></GradientStop>
+                    <GradientStop Color="#7985ff" Offset="0.5"></GradientStop>
+                    <GradientStop Color="#d489ff" Offset="1"></GradientStop>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!--Card Border-->
     <Style x:Key="CardBorderStyle" TargetType="Border">
         <Setter Property="Background" Value="#362f54"/>
