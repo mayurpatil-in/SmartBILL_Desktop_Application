@@ -33,6 +33,9 @@ SmartBILL software built with C#, WPF MVVM, .NET 4.8.1, SAP Crystal Report SP 37
 ## 💻 Dashboard
 ![Dashboard View](./images/Dashboard.png)
 
+## 📃 Customer Form
+![Customer View](./images/UserForm.png)
+
 ## ⚙️ Requirements
 
 **Basics:**
