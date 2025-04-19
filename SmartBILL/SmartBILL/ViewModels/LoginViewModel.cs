@@ -45,7 +45,7 @@ namespace SmartBILL.ViewModels
 
         private void Login(object parameter)
         {
-            using (var context = new RegistrationContext())
+            using (var context = new AppDbContext())
             {
                 var user = context.Users.FirstOrDefault(u => u.Username == Username && u.Password == Password);
 

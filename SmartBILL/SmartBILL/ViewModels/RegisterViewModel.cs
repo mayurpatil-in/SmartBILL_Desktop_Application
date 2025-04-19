@@ -71,7 +71,7 @@ namespace SmartBILL.ViewModels
 
         private void Register(object parameter)
         {            
-            using (var context = new RegistrationContext())
+            using (var context = new AppDbContext())
             {
                 // List of valid product keys
                 var validProductKeys = new List<string> { "ABC123-XYZ789", "DEF456-MNO123", "GHI789-PQR456" };

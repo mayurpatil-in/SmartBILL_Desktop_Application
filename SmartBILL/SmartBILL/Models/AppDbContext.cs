@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 
 namespace SmartBILL.Models
 {
-    public class RegistrationContext : DbContext
+    public class AppDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
         public DbSet<UsedProductKey> UsedProductKeys { get; set; }
+        
+        public DbSet<CustUser> CustUsers { get; set; }
 
-        public RegistrationContext() : base("name=AppDbContext")
+        public AppDbContext() : base("name=AppDbContext")
         {
         }
     }

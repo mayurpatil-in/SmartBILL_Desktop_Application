@@ -82,6 +82,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Commands\RelayCommandGeneric.cs" />
     <Compile Include="Converters\BoolToAngleConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="CustomControl\BindablePasswordBox.xaml.cs">
@@ -96,8 +97,21 @@
     <Compile Include="Migrations\202501111559261_UpdateInitialCreate.Designer.cs">
       <DependentUpon>202501111559261_UpdateInitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202504190458113_InitialCreate2.cs" />
+    <Compile Include="Migrations\202504190458113_InitialCreate2.Designer.cs">
+      <DependentUpon>202504190458113_InitialCreate2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202504190539380_InitialCreate3.cs" />
+    <Compile Include="Migrations\202504190539380_InitialCreate3.Designer.cs">
+      <DependentUpon>202504190539380_InitialCreate3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202504191059238_InitialCreate4.cs" />
+    <Compile Include="Migrations\202504191059238_InitialCreate4.Designer.cs">
+      <DependentUpon>202504191059238_InitialCreate4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\RegistrationContext.cs" />
+    <Compile Include="Models\CustUser.cs" />
+    <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\UsedProductKey.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Reports\test.cs">
@@ -106,6 +120,7 @@
       <DependentUpon>test.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ViewModels\CustomerUserViewModel.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -214,6 +229,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202501111559261_UpdateInitialCreate.resx">
       <DependentUpon>202501111559261_UpdateInitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202504190458113_InitialCreate2.resx">
+      <DependentUpon>202504190458113_InitialCreate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202504190539380_InitialCreate3.resx">
+      <DependentUpon>202504190539380_InitialCreate3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202504191059238_InitialCreate4.resx">
+      <DependentUpon>202504191059238_InitialCreate4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

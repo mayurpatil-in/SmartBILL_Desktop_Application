@@ -4,9 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SmartBILL.Views"
-             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:local1="clr-namespace:SmartBILL.ViewModels"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" xmlns:vm="clr-namespace:SmartBILL.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="650" d:DesignWidth="1000">
+   
     <Border CornerRadius="10"                    
         BorderThickness="1">
         <Border.BorderBrush>
@@ -58,11 +60,11 @@
                                                 <Label Content="GST No. :" Margin="5,160,0,0" FontSize="20" Foreground="WhiteSmoke"/>
                                                 <Label Content="House No. :" Margin="5,210,0,0" FontSize="20" Foreground="WhiteSmoke"/>
 
-                                                <TextBox x:Name="TxtTitle" TextWrapping="Wrap" Text="" Margin="142,10,42,239" FontSize="16" VerticalContentAlignment="Center" Height="30" Width="300"/>
-                                                <TextBox x:Name="TxtName" TextWrapping="Wrap" Text="" Width="300" Height="30" Margin="142,60,42,189" VerticalContentAlignment="Center" FontSize="16"/>
-                                                <TextBox x:Name="TxtMN" TextWrapping="Wrap" Text="" Width="300" Height="30" Margin="142,110,42,139" VerticalContentAlignment="Center" FontSize="16"/>
-                                                <TextBox x:Name="TxtGst" TextWrapping="Wrap" Text="" Width="300" Height="30" Margin="142,160,42,89" VerticalContentAlignment="Center" FontSize="16"/>
-                                                <TextBox x:Name="TxtHN" TextWrapping="Wrap" Text="" Width="300" Height="30" Margin="142,210,42,39" VerticalContentAlignment="Center" FontSize="16"/>
+                                                <TextBox x:Name="TxtTitle" TextWrapping="Wrap" Text="{Binding NewTitle, UpdateSourceTrigger=PropertyChanged}" Margin="142,10,42,239" FontSize="16" VerticalContentAlignment="Center" Height="30" Width="300"/>
+                                                <TextBox x:Name="TxtName" TextWrapping="Wrap" Text="{Binding NewCompany, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30" Margin="142,60,42,189" VerticalContentAlignment="Center" FontSize="16"/>
+                                                <TextBox x:Name="TxtMN" TextWrapping="Wrap" Text="{Binding NewMobile, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30" Margin="142,110,42,139" VerticalContentAlignment="Center" FontSize="16"/>
+                                                <TextBox x:Name="TxtGst" TextWrapping="Wrap" Text="{Binding NewGstNo, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30" Margin="142,160,42,89" VerticalContentAlignment="Center" FontSize="16"/>
+                                                <TextBox x:Name="TxtHN" TextWrapping="Wrap" Text="{Binding NewHouse, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30" Margin="142,210,42,39" VerticalContentAlignment="Center" FontSize="16"/>
 
                                             </Grid>
                                         </Border>
@@ -76,11 +78,11 @@
                                                 <Label Content="State :" Margin="5,160,0,0" FontSize="20" Foreground="WhiteSmoke"/>
                                                 <Label Content="Pin Code :" Margin="5,210,0,0" FontSize="20" Foreground="WhiteSmoke"/>
 
-                                                <TextBox x:Name="TxtPlace" TextWrapping="Wrap" Text="" Margin="142,10,42,239" FontSize="16" VerticalContentAlignment="Center" Height="30" Width="300"/>
-                                                <TextBox x:Name="TxtTalk" TextWrapping="Wrap" Text="" Width="300" Height="30" Margin="142,60,42,189" VerticalContentAlignment="Center" FontSize="16"/>
-                                                <TextBox x:Name="TxtDist" TextWrapping="Wrap" Text="" Width="300" Height="30" Margin="142,110,42,139" VerticalContentAlignment="Center" FontSize="16"/>
-                                                <TextBox x:Name="TxtState" TextWrapping="Wrap" Text="" Width="300" Height="30" Margin="142,160,42,89" VerticalContentAlignment="Center" FontSize="16"/>
-                                                <TextBox x:Name="TxtPin" TextWrapping="Wrap" Text="" Width="300" Height="30" Margin="142,210,42,39" VerticalContentAlignment="Center" FontSize="16"/>
+                                                <TextBox x:Name="TxtPlace" TextWrapping="Wrap" Text="{Binding NewPlace, UpdateSourceTrigger=PropertyChanged}" Margin="142,10,42,239" FontSize="16" VerticalContentAlignment="Center" Height="30" Width="300"/>
+                                                <TextBox x:Name="TxtTalk" TextWrapping="Wrap" Text="{Binding NewTal, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30" Margin="142,60,42,189" VerticalContentAlignment="Center" FontSize="16"/>
+                                                <TextBox x:Name="TxtDist" TextWrapping="Wrap" Text="{Binding NewDist, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30" Margin="142,110,42,139" VerticalContentAlignment="Center" FontSize="16"/>
+                                                <TextBox x:Name="TxtState" TextWrapping="Wrap" Text="{Binding NewState, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30" Margin="142,160,42,89" VerticalContentAlignment="Center" FontSize="16"/>
+                                                <TextBox x:Name="TxtPin" TextWrapping="Wrap" Text="{Binding NewPinCode, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30" Margin="142,210,42,39" VerticalContentAlignment="Center" FontSize="16"/>
                                             </Grid>
                                         </Border>
                                     </Grid>
@@ -94,19 +96,23 @@
                                 <Border BorderThickness="2" BorderBrush="WhiteSmoke">
                                     <Grid>
                                         <!-- DataGrid listing customers -->
-                                        <DataGrid Grid.Column="0"
-              ItemsSource="{Binding Customers}"
-              SelectedItem="{Binding SelectedCustomer}"
+                                        <DataGrid x:Name="Userdatagrid" Grid.Column="0"
+              ItemsSource="{Binding CustUsers}"
+              SelectedItem="{Binding SelectedCustUser, Mode=TwoWay}"
+              CanUserAddRows="False"
               AutoGenerateColumns="False"
-              IsReadOnly="True" ColumnHeaderStyle="{StaticResource HeaderStyle}">
+              AlternatingRowBackground="#FFA2F7D4"                                    
+              IsReadOnly="False" ColumnHeaderStyle="{StaticResource HeaderStyle}" MouseDoubleClick="Userdatagrid_MouseDoubleClick" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                                             <DataGrid.Columns>
-                                                
-                                                <DataGridCheckBoxColumn Header="Select" Binding="{Binding IsSelected, Mode=TwoWay}" />
-                                                <DataGridTextColumn Header="Company Name" Binding="{Binding Name}" Width="*"/>
-                                                <DataGridTextColumn Header="Mobile No." Binding="{Binding Email}" Width="150"/>
-                                                <DataGridTextColumn Header="GST No." Binding="{Binding Phone}" Width="200"/>
-                                                <DataGridTextColumn Header="Address" Binding="{Binding Phone}" Width="*"/>
+
+                                                <DataGridCheckBoxColumn Header="Select" Binding="{Binding IsActive, UpdateSourceTrigger=PropertyChanged}"/>
+                                                <DataGridTextColumn Header="Company Name" Binding="{Binding Company}" Width="250" IsReadOnly="True"/>
+                                                <DataGridTextColumn Header="Mobile No." Binding="{Binding Mobile}" Width="150" IsReadOnly="True"/>
+                                                <DataGridTextColumn Header="GST No." Binding="{Binding GstNo}" Width="200" IsReadOnly="True"/>
+                                                <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="*" IsReadOnly="True"/>
                                             </DataGrid.Columns>
+
+                                            
                                         </DataGrid>
 
                                     </Grid>
@@ -120,7 +126,7 @@
                     <Grid Grid.Row="2">
                         <Border BorderThickness="2" BorderBrush="WhiteSmoke" CornerRadius="0,0,10,10" Margin="-1,0,1,0">
                             <Grid>
-                                <Button x:Name="BtnUserSave" Style="{StaticResource userSaveButton}" Margin="100,5,780,5" Height="NaN">
+                                <Button x:Name="BtnUserSave" Command="{Binding AddCommand}" Style="{StaticResource userSaveButton}" Margin="100,5,780,5" Height="NaN">
                                     <StackPanel Orientation="Horizontal">
                                         <fa:IconImage Icon="PlusCircle" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Opacity="0.9" Width="20" Margin="0,0,5,0"></fa:IconImage>
                                         <TextBlock Text="Add" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="15"/>
