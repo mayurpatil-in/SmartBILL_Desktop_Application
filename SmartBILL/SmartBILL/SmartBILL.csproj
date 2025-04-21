@@ -109,7 +109,12 @@
     <Compile Include="Migrations\202504191059238_InitialCreate4.Designer.cs">
       <DependentUpon>202504191059238_InitialCreate4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202504210434540_InitialCreateUserParty.cs" />
+    <Compile Include="Migrations\202504210434540_InitialCreateUserParty.Designer.cs">
+      <DependentUpon>202504210434540_InitialCreateUserParty.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\CustParty.cs" />
     <Compile Include="Models\CustUser.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\UsedProductKey.cs" />
@@ -129,13 +134,16 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="ViewModels\CustomerPartyViewModel.cs" />
     <Compile Include="ViewModels\CustomerUserViewModel.cs" />
-    <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\CustomerPartyView.xaml.cs">
+      <DependentUpon>CustomerPartyView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CustomerView.xaml.cs">
       <DependentUpon>CustomerView.xaml</DependentUpon>
     </Compile>
@@ -198,6 +206,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\CustomerPartyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CustomerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -251,6 +263,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202504191059238_InitialCreate4.resx">
       <DependentUpon>202504191059238_InitialCreate4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202504210434540_InitialCreateUserParty.resx">
+      <DependentUpon>202504210434540_InitialCreateUserParty.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

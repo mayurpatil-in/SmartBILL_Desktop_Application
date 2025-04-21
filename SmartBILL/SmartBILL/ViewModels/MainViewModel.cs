@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using FontAwesome.Sharp;
 using SmartBILL.Commands;
+using SmartBILL.Views;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 
@@ -95,10 +96,11 @@ namespace SmartBILL.ViewModels
         //--> Commands
         public ICommand ShowHomeViewCommand { get; }
         public ICommand ShowCustomerViewCommand { get; }
-        
+        public ICommand ShowCustomerPartyViewCommand { get; }
+
         private void ExecuteShowCustomerViewCommand(object obj)
         {
-            CurrentChildView = new CustomerViewModel();
+            CurrentChildView = new CustomerUserViewModel();
             Caption = "Customers";
             Icon = IconChar.UserGroup;
             
@@ -109,6 +111,13 @@ namespace SmartBILL.ViewModels
             Caption = "Dashboard";
             Icon = IconChar.Home;
             
+        }
+        private void ExecuteShowCustomerPartyViewCommand(object obj)
+        {
+            CurrentChildView = new CustomerPartyViewModel();
+            Caption = "Customers";
+            Icon = IconChar.UserGroup;
+
         }
         #endregion
 
@@ -129,7 +138,7 @@ namespace SmartBILL.ViewModels
             //Initialize commands
             ShowHomeViewCommand = new RelayCommand(ExecuteShowHomeViewCommand);
             ShowCustomerViewCommand = new RelayCommand(ExecuteShowCustomerViewCommand);
-
+            ShowCustomerPartyViewCommand = new RelayCommand(ExecuteShowCustomerPartyViewCommand);
 
             //Default view
             ExecuteShowHomeViewCommand(null);

@@ -14,7 +14,7 @@ using SmartBILL.Models;
 
 namespace SmartBILL.ViewModels
 {
-    public class CustomerUserViewModel : INotifyPropertyChanged
+    public class CustomerUserViewModel : ViewModelBase
     {
         private readonly AppDbContext _db = new AppDbContext();
 
@@ -308,13 +308,35 @@ namespace SmartBILL.ViewModels
         // Whenever a Customer's property changes...
         private void CustUser_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            // Only persist when the Active checkbox is toggled
-            if (e.PropertyName == nameof(CustUser.IsActive))
-                _db.SaveChanges();
+            //// Only persist when the Active checkbox is toggled
+            //if (e.PropertyName == nameof(CustUser.IsActive))
+            //    _db.SaveChanges();
+
+            // Only respond when the IsActive property changes
+            if (e.PropertyName != nameof(CustUser.IsActive))
+                return;
+
+            var changedUser = (CustUser)sender;
+
+            // If it's been turned on, turn all the others off
+            if (changedUser.IsActive)
+            {
+                foreach (var user in CustUsers)
+                {
+                    if (user != changedUser && user.IsActive)
+                    {
+                        user.IsActive = false;
+                        // No need to unsubscribe; setting IsActive to false
+                        // will fire PropertyChanged again, but IsActive == false
+                        // will skip this block next time.
+                    }
+                }
+            }
+
+            // Persist the change
+            _db.SaveChanges();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string name = null)
-            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        
     }
 }

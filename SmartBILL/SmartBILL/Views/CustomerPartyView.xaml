@@ -1,16 +1,15 @@
-﻿<UserControl x:Class="SmartBILL.Views.CustomerView"
+﻿<UserControl x:Class="SmartBILL.Views.CustomerPartyView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SmartBILL.Views"
-             xmlns:local1="clr-namespace:SmartBILL.ViewModels"
-             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" xmlns:vm="clr-namespace:SmartBILL.ViewModels"
              mc:Ignorable="d" 
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" xmlns:vm="clr-namespace:SmartBILL.ViewModels"
+              
              d:DesignHeight="650" d:DesignWidth="1000">
-   
     <Border CornerRadius="10"                    
-        BorderThickness="1">
+    BorderThickness="1">
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="{StaticResource winBorderColor1}" Offset="0"/>
@@ -19,7 +18,8 @@
             </LinearGradientBrush>
         </Border.BorderBrush>
         <Grid>
-            <Border CornerRadius="10" BorderThickness="1" Background="#362f54">
+            <Border CornerRadius="10" BorderThickness="1" Background="#FF18454E" >
+                
                 <Grid>
                     <Grid.RowDefinitions>
                         <!--Control bar-->
@@ -32,7 +32,7 @@
                         <Border Style="{StaticResource BorderBackgroundStyle}" CornerRadius="10,10,0,0">
                             <Grid>
                                 <Image Source="/Resources/Images/IconLogo.png" Width="25" Height="25" VerticalAlignment="Center" Margin="10,0,0,0" HorizontalAlignment="Left"/>
-                                <TextBlock Text="Add User Form" Foreground="AntiqueWhite" FontSize="15" FontFamily="Montserrat" VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,15,0"/>
+                                <TextBlock Text="Add Party Form" Foreground="AntiqueWhite" FontSize="15" FontFamily="Montserrat" VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,15,0"/>
                             </Grid>
                         </Border>
                     </Grid>
@@ -60,11 +60,11 @@
                                                 <Label Content="GST No. :" Margin="5,160,0,0" FontSize="20" Foreground="WhiteSmoke"/>
                                                 <Label Content="House No. :" Margin="5,210,0,0" FontSize="20" Foreground="WhiteSmoke"/>
 
-                                                <TextBox x:Name="TxtTitle" TextWrapping="Wrap" Text="{Binding NewTitle, UpdateSourceTrigger=PropertyChanged}" Margin="142,10,42,239" FontSize="16" VerticalContentAlignment="Center" Height="30" Width="300"/>
-                                                <TextBox x:Name="TxtName" TextWrapping="Wrap" Text="{Binding NewCompany, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30" Margin="142,60,42,189" VerticalContentAlignment="Center" FontSize="16"/>
-                                                <TextBox x:Name="TxtMN" TextWrapping="Wrap" Text="{Binding NewMobile, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30" Margin="142,110,42,139" VerticalContentAlignment="Center" FontSize="16"/>
-                                                <TextBox x:Name="TxtGst" TextWrapping="Wrap" Text="{Binding NewGstNo, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30" Margin="142,160,42,89" VerticalContentAlignment="Center" FontSize="16"/>
-                                                <TextBox x:Name="TxtHN" TextWrapping="Wrap" Text="{Binding NewHouse, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30" Margin="142,210,42,39" VerticalContentAlignment="Center" FontSize="16"/>
+                                                <TextBox x:Name="TxtPTitle" TextWrapping="Wrap" Text="{Binding NewTitleP, UpdateSourceTrigger=PropertyChanged}" Margin="142,10,42,239" FontSize="16" VerticalContentAlignment="Center" Height="30" Width="300"/>
+                                                <TextBox x:Name="TxtPName" TextWrapping="Wrap" Text="{Binding NewCompanyP, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30" Margin="142,60,42,189" VerticalContentAlignment="Center" FontSize="16"/>
+                                                <TextBox x:Name="TxtPMN" TextWrapping="Wrap" Text="{Binding NewMobileP, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30" Margin="142,110,42,139" VerticalContentAlignment="Center" FontSize="16"/>
+                                                <TextBox x:Name="TxtPGst" TextWrapping="Wrap" Text="{Binding NewGstNoP, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30" Margin="142,160,42,89" VerticalContentAlignment="Center" FontSize="16"/>
+                                                <TextBox x:Name="TxtPHN" TextWrapping="Wrap" Text="{Binding NewHouseP, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30" Margin="142,210,42,39" VerticalContentAlignment="Center" FontSize="16"/>
 
                                             </Grid>
                                         </Border>
@@ -78,11 +78,11 @@
                                                 <Label Content="State :" Margin="5,160,0,0" FontSize="20" Foreground="WhiteSmoke"/>
                                                 <Label Content="Pin Code :" Margin="5,210,0,0" FontSize="20" Foreground="WhiteSmoke"/>
 
-                                                <TextBox x:Name="TxtPlace" TextWrapping="Wrap" Text="{Binding NewPlace, UpdateSourceTrigger=PropertyChanged}" Margin="142,10,42,239" FontSize="16" VerticalContentAlignment="Center" Height="30" Width="300"/>
-                                                <TextBox x:Name="TxtTalk" TextWrapping="Wrap" Text="{Binding NewTal, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30" Margin="142,60,42,189" VerticalContentAlignment="Center" FontSize="16"/>
-                                                <TextBox x:Name="TxtDist" TextWrapping="Wrap" Text="{Binding NewDist, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30" Margin="142,110,42,139" VerticalContentAlignment="Center" FontSize="16"/>
-                                                <TextBox x:Name="TxtState" TextWrapping="Wrap" Text="{Binding NewState, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30" Margin="142,160,42,89" VerticalContentAlignment="Center" FontSize="16"/>
-                                                <TextBox x:Name="TxtPin" TextWrapping="Wrap" Text="{Binding NewPinCode, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30" Margin="142,210,42,39" VerticalContentAlignment="Center" FontSize="16"/>
+                                                <TextBox x:Name="TxtPPlace" TextWrapping="Wrap" Text="{Binding NewPlaceP, UpdateSourceTrigger=PropertyChanged}" Margin="142,10,42,239" FontSize="16" VerticalContentAlignment="Center" Height="30" Width="300"/>
+                                                <TextBox x:Name="TxtPTalk" TextWrapping="Wrap" Text="{Binding NewTalP, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30" Margin="142,60,42,189" VerticalContentAlignment="Center" FontSize="16"/>
+                                                <TextBox x:Name="TxtPDist" TextWrapping="Wrap" Text="{Binding NewDistP, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30" Margin="142,110,42,139" VerticalContentAlignment="Center" FontSize="16"/>
+                                                <TextBox x:Name="TxtPState" TextWrapping="Wrap" Text="{Binding NewStateP, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30" Margin="142,160,42,89" VerticalContentAlignment="Center" FontSize="16"/>
+                                                <TextBox x:Name="TxtPPin" TextWrapping="Wrap" Text="{Binding NewPinCodeP, UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30" Margin="142,210,42,39" VerticalContentAlignment="Center" FontSize="16"/>
                                             </Grid>
                                         </Border>
                                     </Grid>
@@ -96,23 +96,23 @@
                                 <Border BorderThickness="2" BorderBrush="WhiteSmoke">
                                     <Grid>
                                         <!-- DataGrid listing customers -->
-                                        <DataGrid x:Name="Userdatagrid" Grid.Column="0"
-              ItemsSource="{Binding CustUsers}"
-              SelectedItem="{Binding SelectedCustUser, Mode=TwoWay}"
-              CanUserAddRows="False"
-              AutoGenerateColumns="False"
-              AlternatingRowBackground="#FFA2F7D4"                                    
-              IsReadOnly="False" ColumnHeaderStyle="{StaticResource HeaderStyle}" MouseDoubleClick="Userdatagrid_MouseDoubleClick" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                                        <DataGrid x:Name="Partydatagrid" Grid.Column="0"
+          ItemsSource="{Binding CustPartys}"
+          SelectedItem="{Binding SelectedCustParty, Mode=TwoWay}"
+          CanUserAddRows="False"
+          AutoGenerateColumns="False"
+          AlternatingRowBackground="#FFA2F7D4"                                    
+          IsReadOnly="False" ColumnHeaderStyle="{StaticResource HeaderStyle}" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDoubleClick="Partydatagrid_MouseDoubleClick">
                                             <DataGrid.Columns>
 
                                                 <DataGridCheckBoxColumn Header="Select" Binding="{Binding IsActive, UpdateSourceTrigger=PropertyChanged}"/>
-                                                <DataGridTextColumn Header="Company Name" Binding="{Binding Company}" Width="250" IsReadOnly="True"/>
-                                                <DataGridTextColumn Header="Mobile No." Binding="{Binding Mobile}" Width="150" IsReadOnly="True"/>
-                                                <DataGridTextColumn Header="GST No." Binding="{Binding GstNo}" Width="200" IsReadOnly="True"/>
+                                                <DataGridTextColumn Header="Company Name" Binding="{Binding CompanyP}" Width="250" IsReadOnly="True"/>
+                                                <DataGridTextColumn Header="Mobile No." Binding="{Binding MobileP}" Width="150" IsReadOnly="True"/>
+                                                <DataGridTextColumn Header="GST No." Binding="{Binding GstNoP}" Width="200" IsReadOnly="True"/>
                                                 <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="*" IsReadOnly="True"/>
                                             </DataGrid.Columns>
 
-                                            
+
                                         </DataGrid>
 
                                     </Grid>
@@ -126,20 +126,20 @@
                     <Grid Grid.Row="2">
                         <Border BorderThickness="2" BorderBrush="WhiteSmoke" CornerRadius="0,0,10,10" Margin="-1,0,1,0">
                             <Grid>
-                                <Button x:Name="BtnUserSave" Command="{Binding AddCommand}" Style="{StaticResource userSaveButton}" Margin="100,5,780,5" Height="NaN">
+                                <Button x:Name="BtnPartySave" Command="{Binding AddCommandP}" Style="{StaticResource userSaveButton}" Margin="100,5,780,5" Height="NaN">
                                     <StackPanel Orientation="Horizontal">
                                         <fa:IconImage Icon="PlusCircle" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Opacity="0.9" Width="20" Margin="0,0,5,0"></fa:IconImage>
                                         <TextBlock Text="Add" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="15"/>
                                     </StackPanel>
                                 </Button>
-                                <Button x:Name="BtnUserUpdate" Style="{StaticResource userUpdateButton}" Margin="450,5,440,5" Height="NaN" Command="{Binding UpdateCommand}">
+                                <Button x:Name="BtnPartyUpdate" Style="{StaticResource userUpdateButton}" Margin="450,5,440,5" Height="NaN" Command="{Binding UpdateCommandP}">
 
                                     <StackPanel Orientation="Horizontal">
                                         <fa:IconImage Icon="UserPen" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Opacity="0.9" Width="20" Margin="0,0,5,0"></fa:IconImage>
                                         <TextBlock Text="Edit" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="15"/>
                                     </StackPanel>
                                 </Button>
-                                <Button x:Name="BtnUserClear" Style="{StaticResource userClearButton}" Margin="784,5,96,5" Height="NaN" Command="{Binding DeleteCommand}">
+                                <Button x:Name="BtnPartyClear" Style="{StaticResource userClearButton}" Margin="784,5,96,5" Height="NaN" Command="{Binding DeleteCommandP}">
                                     <StackPanel Orientation="Horizontal">
                                         <fa:IconImage Icon="Eraser" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Opacity="0.9" Width="20" Margin="0,0,5,0"></fa:IconImage>
                                         <TextBlock Text="Delete" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="15"/>
