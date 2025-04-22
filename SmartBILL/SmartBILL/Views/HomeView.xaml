@@ -48,13 +48,13 @@
                         <StackPanel Name="CreateTabPanel" Visibility="Visible">
                             <TextBlock Text="Start Date: " Style="{StaticResource textLabel}" />
                             <!--<TextBox Margin="0 10 0 5" Text="fad23b456g56fsd2sdf4sdj76urdetgx22d" TextAlignment="Center"/>-->
-                            <DatePicker Margin="0 10 0 15"/>
+                            <DatePicker SelectedDate="{Binding NewStartDate}" Margin="0 10 0 15"/>
 
                             <TextBlock Text="End Date: " Style="{StaticResource textLabel}" />
                             <!--<TextBox Margin="0 10 0 5" Text="fad23b456g56fsd2sdf4sdj76urdetgx22d" TextAlignment="Center"/>-->
-                            <DatePicker Margin="0 10 0 20"/>
+                            <DatePicker SelectedDate="{Binding NewEndDate}" Margin="0 10 0 20"/>
 
-                            <Button Style="{StaticResource sendButton}">
+                            <Button Style="{StaticResource sendButton}" Command="{Binding SaveCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <fa:IconImage Icon="CalendarCheck" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Opacity="0.9" Width="20" Margin="0,0,5,0"></fa:IconImage>
                                     <TextBlock Text="Save" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="15"/>
@@ -64,10 +64,24 @@
 
                         <!--<TextBlock Text="Please enter the wallet id or destination email" FontSize="9" Foreground="#e0e0e0" TextAlignment="Center" Opacity="0.5" Margin="0 0 0 20"/>-->
                         <!-- Select Tab Content -->
-                        <StackPanel Name="SelectTabPanel" Visibility="Collapsed">
-                            <TextBlock Text="This is the Select tab content." 
-                           FontSize="16" 
-                           Margin="10"/>
+                        <StackPanel Name="SelectTabPanel" Visibility="Collapsed" Height="194">
+                            <!-- DataGrid listing customers -->
+                            <DataGrid x:Name="Accountingdatagrid" Grid.Column="0"
+                            ItemsSource="{Binding YearAccounts}"
+                            SelectedItem="{Binding SelectedCustParty, Mode=TwoWay}"
+                            CanUserAddRows="False"
+                            AutoGenerateColumns="False"
+                            AlternatingRowBackground="#FFA2F7D4"                                    
+                            IsReadOnly="False" ColumnHeaderStyle="{StaticResource HeaderStyle}" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="195">
+                                <DataGrid.Columns>
+
+                                    <DataGridCheckBoxColumn Header="Select" Binding="{Binding IsActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="60"/>
+
+                                    <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate, StringFormat={}{0:dd/MM/yyyy}}" Width="*" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="End Date" Binding="{Binding EndDate, StringFormat={}{0:dd/MM/yyyy}}" Width="*" IsReadOnly="True"/>
+                                </DataGrid.Columns>
+
+                            </DataGrid>
                         </StackPanel>
                     </StackPanel>
 
@@ -83,8 +97,29 @@
                         </LinearGradientBrush>
                     </Border.Background>
                     <Grid>
-                        <fa:IconImage Icon="BuildingColumns" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Opacity="0.9" Width="30" Margin="0,8,15,0"></fa:IconImage>
-                        <fa:IconImage Icon="CalendarDay" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="White" Opacity="0.9" Width="25" Margin="15 8 0 0"></fa:IconImage>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <fa:IconImage Icon="HomeUser" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" Opacity="0.9" Width="30"/>
+
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <fa:IconImage Icon="UserCheck" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Opacity="0.9" Width="25" Margin="10,0,0,0"></fa:IconImage>
+                            <TextBox TextWrapping="Wrap" IsReadOnly="True" Style="{StaticResource RoundedTextBox}" Text="{Binding ActiveCompanyName, Mode=OneWay}" Height="25" Margin="50,9,10,9" FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold"/>
+
+                        </Grid>
+                        <Grid Grid.Row="2">
+                            <fa:IconImage Icon="CalendarCheck" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Opacity="0.9" Width="23" Margin="10,0,0,0" ></fa:IconImage>
+                            <TextBox TextWrapping="Wrap" Text="{Binding SelectedStartDate, Mode=OneWay, StringFormat={}{0:dd/MM/yyyy}, TargetNullValue=''}" Style="{StaticResource RoundedTextBox}" IsReadOnly="True" Margin="48,0,125,0" RenderTransformOrigin="0.358,1.519" VerticalAlignment="Center" Height="22"/>
+                            <Label Content="To" Margin="127,7,70,-7" RenderTransformOrigin="0.94,0.58" FontSize="15" FontWeight="Bold"/>
+                            <TextBox TextWrapping="Wrap" Text="{Binding SelectedEndDate,Mode=OneWay, StringFormat={}{0:dd/MM/yyyy} , TargetNullValue=''}" Style="{StaticResource RoundedTextBox}" IsReadOnly="True" Margin="154,0,10,0" VerticalAlignment="Center" Height="22"/>
+
+
+                        </Grid>
+
 
                     </Grid>
                 </Border>
@@ -102,26 +137,26 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="1">
-                <Button x:Name="btnFiles" Style="{DynamicResource ButtonStyle2}" Content="" HorizontalAlignment="Center" Height="40" Margin="0,380,0,0" VerticalAlignment="Top" Width="40" Background="#FF2D5CD8" BorderBrush="{x:Null}" Click="BtnFiles_Click"/>
-                <Button x:Name="btnFolders" Style="{DynamicResource ButtonStyle4}" Content="" HorizontalAlignment="Center" Height="40" Margin="0,380,0,0" VerticalAlignment="Top" Width="40" Background="#FF2D5CD8" BorderBrush="{x:Null}"/>
-                <Button x:Name="btnPhotos" Style="{DynamicResource ButtonStyle5}" Content="" HorizontalAlignment="Center" Height="40" VerticalAlignment="Top" Width="40" Background="#FF2D5CD8" Margin="0,380,0,0" BorderBrush="{x:Null}"/>
-                <Button x:Name="btnCamera" Style="{DynamicResource ButtonStyle6}" Content="" HorizontalAlignment="Center" Height="40" VerticalAlignment="Top" Width="40" Background="#FF2D5CD8" Margin="0,380,0,0" BorderBrush="{x:Null}"/>
-                <Ellipse HorizontalAlignment="Center" Height="40" Margin="0,383,0,0" VerticalAlignment="Top" Width="40" Fill="White"/>
-                <Button x:Name="btnAdd" Style="{DynamicResource ButtonStyle1}" Content="" HorizontalAlignment="Center" Height="55" Margin="0,375,0,0" VerticalAlignment="Top" Width="55" BorderBrush="{x:Null}">
-                    <Button.Background>
+                        <Button x:Name="btnFiles" Style="{DynamicResource ButtonStyle2}" Content="" HorizontalAlignment="Center" Height="40" Margin="0,380,0,0" VerticalAlignment="Top" Width="40" Background="#FF2D5CD8" BorderBrush="{x:Null}" Click="BtnFiles_Click"/>
+                        <Button x:Name="btnFolders" Style="{DynamicResource ButtonStyle4}" Content="" HorizontalAlignment="Center" Height="40" Margin="0,380,0,0" VerticalAlignment="Top" Width="40" Background="#FF2D5CD8" BorderBrush="{x:Null}"/>
+                        <Button x:Name="btnPhotos" Style="{DynamicResource ButtonStyle5}" Content="" HorizontalAlignment="Center" Height="40" VerticalAlignment="Top" Width="40" Background="#FF2D5CD8" Margin="0,380,0,0" BorderBrush="{x:Null}"/>
+                        <Button x:Name="btnCamera" Style="{DynamicResource ButtonStyle6}" Content="" HorizontalAlignment="Center" Height="40" VerticalAlignment="Top" Width="40" Background="#FF2D5CD8" Margin="0,380,0,0" BorderBrush="{x:Null}"/>
+                        <Ellipse HorizontalAlignment="Center" Height="40" Margin="0,383,0,0" VerticalAlignment="Top" Width="40" Fill="White"/>
+                        <Button x:Name="btnAdd" Style="{DynamicResource ButtonStyle1}" Content="" HorizontalAlignment="Center" Height="55" Margin="0,375,0,0" VerticalAlignment="Top" Width="55" BorderBrush="{x:Null}">
+                            <Button.Background>
                                 <ImageBrush ImageSource="/SmartBILL;component/Resources/Images/UserSet.png"/>
-                    </Button.Background>
-                    <Button.ToolTip>
+                            </Button.Background>
+                            <Button.ToolTip>
                                 <StackPanel>
                                     <TextBlock Text="Open" FontWeight="Bold" Margin="0,0,0,5" Foreground="Green"/>
                                     <TextBlock Text="Open User Account" FontStyle="Italic"/>
                                 </StackPanel>
-                    </Button.ToolTip>
-                </Button>
-                <Button x:Name="btnCancel" Style="{DynamicResource ButtonStyle1}" Content="" HorizontalAlignment="Center" Height="55" Margin="0,375,0,0" VerticalAlignment="Top" Width="55" BorderBrush="{x:Null}" Visibility="Hidden">
-                    <Button.Background>
+                            </Button.ToolTip>
+                        </Button>
+                        <Button x:Name="btnCancel" Style="{DynamicResource ButtonStyle1}" Content="" HorizontalAlignment="Center" Height="55" Margin="0,375,0,0" VerticalAlignment="Top" Width="55" BorderBrush="{x:Null}" Visibility="Hidden">
+                            <Button.Background>
                                 <ImageBrush ImageSource="/SmartBILL;component/Resources/Images/icons8-cancel-50.png"/>
-                    </Button.Background>
+                            </Button.Background>
                             <Button.ToolTip>
                                 <StackPanel>
                                     <TextBlock Text="Close" FontWeight="Bold" Margin="0,0,0,5" Foreground="Red"/>

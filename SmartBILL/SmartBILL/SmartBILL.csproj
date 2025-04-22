@@ -113,12 +113,21 @@
     <Compile Include="Migrations\202504210434540_InitialCreateUserParty.Designer.cs">
       <DependentUpon>202504210434540_InitialCreateUserParty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202504211140001_AddAccountingYearP.cs" />
+    <Compile Include="Migrations\202504211140001_AddAccountingYearP.Designer.cs">
+      <DependentUpon>202504211140001_AddAccountingYearP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202504220358445_ForYear.cs" />
+    <Compile Include="Migrations\202504220358445_ForYear.Designer.cs">
+      <DependentUpon>202504220358445_ForYear.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CustParty.cs" />
     <Compile Include="Models\CustUser.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\UsedProductKey.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\YearAccount.cs" />
     <Compile Include="Reports\test.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -266,6 +275,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202504210434540_InitialCreateUserParty.resx">
       <DependentUpon>202504210434540_InitialCreateUserParty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202504211140001_AddAccountingYearP.resx">
+      <DependentUpon>202504211140001_AddAccountingYearP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202504220358445_ForYear.resx">
+      <DependentUpon>202504220358445_ForYear.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

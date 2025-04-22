@@ -13,6 +13,7 @@ namespace SmartBILL.Models
         public DbSet<UsedProductKey> UsedProductKeys { get; set; }
         public DbSet<CustUser> CustUsers { get; set; }
         public DbSet<CustParty> CustPartys { get; set; }
+        public DbSet<YearAccount> YearAccounts { get; set; }
 
         public AppDbContext() : base("name=AppDbContext")
         {

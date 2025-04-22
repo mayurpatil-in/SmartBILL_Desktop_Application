@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SmartBILL.ViewModels;
 using SmartBILL.Views;
 
 namespace SmartBILL.Views
@@ -25,6 +27,8 @@ namespace SmartBILL.Views
         public HomeView()
         {
             InitializeComponent();
+            if (!DesignerProperties.GetIsInDesignMode(this))
+                DataContext = new HomeViewModel();
         }
 
         private void BtnTabCreate_Click(object sender, RoutedEventArgs e)
