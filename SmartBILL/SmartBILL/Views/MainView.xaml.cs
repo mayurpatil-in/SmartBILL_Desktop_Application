@@ -25,7 +25,7 @@ namespace SmartBILL.Views
         public MainView(string username)
         {
             InitializeComponent();
-            runYear.Text = $"© {DateTime.Now.Year}, ";
+            //runYear.Text = $"© {DateTime.Now.Year}, ";
             DataContext = new MainViewModel(username); // Set DataContext for binding
             
 

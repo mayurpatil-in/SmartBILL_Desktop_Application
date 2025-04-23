@@ -34,7 +34,19 @@ namespace SmartBILL.ViewModels
             }
         }
 
+        #region Copyrights Year
+        // Fixed start year
+        private const int BaseYear = 2025;
 
+        // Exposed property for binding
+        public string YearRange
+            => $"{BaseYear}-{DateTime.Now.Year + 1}";
+
+        // (If you want © and a comma:)
+        public string CopyrightNotice
+            => $"© {YearRange}, ";
+
+        #endregion
 
         #region Date and Time Dashboard
         // Property for binding with the view
@@ -97,6 +109,7 @@ namespace SmartBILL.ViewModels
         public ICommand ShowHomeViewCommand { get; }
         public ICommand ShowCustomerViewCommand { get; }
         public ICommand ShowCustomerPartyViewCommand { get; }
+        public ICommand ShowItemViewCommand { get; }
 
         private void ExecuteShowCustomerViewCommand(object obj)
         {
@@ -119,6 +132,13 @@ namespace SmartBILL.ViewModels
             Icon = IconChar.UserGroup;
 
         }
+        private void ExecuteShowItemViewCommand(object obj)
+        {
+            CurrentChildView = new ItemViewModel();
+            Caption = "Items List";
+            Icon = IconChar.List;
+
+        }
         #endregion
 
         public MainViewModel(string username)
@@ -135,11 +155,13 @@ namespace SmartBILL.ViewModels
             };
             timer.Start();
 
+
+
             //Initialize commands
             ShowHomeViewCommand = new RelayCommand(ExecuteShowHomeViewCommand);
             ShowCustomerViewCommand = new RelayCommand(ExecuteShowCustomerViewCommand);
             ShowCustomerPartyViewCommand = new RelayCommand(ExecuteShowCustomerPartyViewCommand);
-
+            ShowItemViewCommand = new RelayCommand(ExecuteShowItemViewCommand);
             //Default view
             ExecuteShowHomeViewCommand(null);
         }

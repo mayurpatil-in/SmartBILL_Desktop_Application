@@ -23,7 +23,7 @@ namespace SmartBILL.Views
         public LoginView()
         {
             InitializeComponent();
-            runYear.Text = $"© {DateTime.Now.Year}, ";
+            //runYear.Text = $"© {DateTime.Now.Year}, ";
             this.DataContext = new LoginViewModel();
         }
 

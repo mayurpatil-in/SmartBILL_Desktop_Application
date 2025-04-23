@@ -16,6 +16,20 @@ namespace SmartBILL.ViewModels
         private string _username;
         private string _password;
 
+        #region Copyrights Year
+        // Fixed start year
+        private const int BaseYear = 2025;
+
+        // Exposed property for binding
+        public string YearRange
+            => $"{BaseYear}-{DateTime.Now.Year + 1}";
+
+        // (If you want © and a comma:)
+        public string CopyrightNotice
+            => $"© {YearRange}, ";
+
+        #endregion
+
         public string Username
         {
             get => _username;

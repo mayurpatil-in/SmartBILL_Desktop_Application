@@ -25,6 +25,9 @@
         <DataTemplate DataType="{x:Type viewModel:CustomerPartyViewModel}">
             <local:CustomerPartyView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ItemViewModel}">
+            <local:ItemView/>
+        </DataTemplate>
 
     </Window.Resources>
 
@@ -118,8 +121,8 @@
                         <!--Stop Customers Parent RadioButton -->
 
                         <RadioButton Style="{StaticResource menuButton}"
-                         Tag="{StaticResource color3}">
-
+                         Tag="{StaticResource color3}" Command="{Binding ShowItemViewCommand}">
+                           
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="List" Style="{StaticResource menuButtonIcon}"/>
                                 <TextBlock Text="Item List" Style="{StaticResource menuButtonText}"/>
@@ -310,7 +313,7 @@
                         <Border BorderThickness="1" CornerRadius="0,0,10,0" Style="{StaticResource WinBorderStyle}">
 
                             <TextBlock Foreground="White" FontSize="14.5" FontWeight="Medium" FontFamily="Montserrat" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                                <Run x:Name="runYear" Text=" "/>
+                                <Run x:Name="runYear" Text="{Binding CopyrightNotice, Mode=OneWay}"/>
                                 <Hyperlink NavigateUri="https://www.mayurpatil.in" RequestNavigate="HyperlinkDash_RequestNavigate" Style="{StaticResource hyperLinkMayur}">
                                     www.mayurpatil.in
                                 </Hyperlink>
