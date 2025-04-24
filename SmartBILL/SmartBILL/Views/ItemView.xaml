@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SmartBILL.Views"
              mc:Ignorable="d" 
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              d:DesignHeight="650" d:DesignWidth="1000">
     <Border CornerRadius="10"                    
     BorderThickness="1">
@@ -30,6 +31,142 @@
                             <Grid>
                                 <Image Source="/Resources/Images/IconLogo.png" Width="25" Height="25" VerticalAlignment="Center" Margin="10,0,0,0" HorizontalAlignment="Left"/>
                                 <TextBlock Text="Items List" Foreground="AntiqueWhite" FontSize="15" FontFamily="Montserrat" VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,15,0"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="335"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="700"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="140"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Grid Grid.Row="0">
+                                                <Border BorderThickness="2,2,2,1" BorderBrush="WhiteSmoke">
+                                                    <Grid>
+                                                        <TextBlock TextWrapping="Wrap" Text="Select Party : " FontSize="18" Foreground="WhiteSmoke" Margin="59,21,532,77"/>
+                                                        <TextBlock TextWrapping="Wrap" Text="Item Name : " FontSize="18" Foreground="WhiteSmoke" Margin="59,61,532,39"/>
+                                                        <TextBlock TextWrapping="Wrap" Text="Item Rate : " FontSize="18" Foreground="WhiteSmoke" Margin="59,99,532,1"/>
+
+
+                                                        <ComboBox Margin="195,16,130,83"/>
+                                                        <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text="" Margin="195,58,130,45" FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold"/>
+                                                        <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text="" Margin="195,96,130,7" FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold"/>
+
+
+                                                    </Grid>
+                                                </Border>
+                                            </Grid>
+                                            <Grid Grid.Row="1">
+                                                <Border BorderThickness="2,1,2,2" BorderBrush="WhiteSmoke" Background="#FF95863B">
+                                                    <Grid>
+                                                        <TextBlock TextWrapping="Wrap" Text="P.O Number : " FontSize="18" Foreground="WhiteSmoke" Margin="58,7,515,46" />
+                                                        <TextBlock TextWrapping="Wrap" Text="HSN Code : " FontSize="18" Foreground="WhiteSmoke" Margin="57,48,533,9" />
+
+                                                        <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text=""  FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold" Margin="195,7,130,47" Height="34"/>
+                                                        <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text=""  FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold" Margin="195,46,130,6" Height="34"/>
+                                                    </Grid>
+                                                </Border>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid Grid.Column="1">
+                                        <Border BorderThickness="2" BorderBrush="WhiteSmoke" Background="#FF18454E">
+                                            <Grid>
+                                                <Button Command="{Binding AddItemCommand}"
+                Background="{x:Null}"
+                BorderThickness="0"
+                ToolTip="Add new process"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top" Margin="167,34,0,0">
+
+                                                    
+
+                                                    <fa:IconImage Icon="PlusCircle"
+                          Width="30"
+                          Height="30"
+                          Opacity="0.9"
+                          Foreground="DarkSeaGreen"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Left"/>
+                                                </Button>
+                                                <TextBlock TextWrapping="Wrap" Text="Add Process : " FontSize="18" Foreground="WhiteSmoke" Margin="53,34,116,160" />
+                                                <TextBlock TextWrapping="Wrap" Text="Casting Weight : " FontSize="18" Foreground="WhiteSmoke" Margin="23,114,116,81" />
+                                                <TextBlock TextWrapping="Wrap" Text="Scrap Weight : " FontSize="18" Foreground="WhiteSmoke" Margin="23,168,116,27" />
+
+                                                <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text=""  FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold" Margin="163,110,20,83" Height="34"/>
+                                                <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text=""  FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold" Margin="163,164,20,29" Height="34"/>
+                                            </Grid>
+                                        </Border>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                            <!--Start User Datagrid-->
+                            <Grid Grid.Row="1">
+                                <Border BorderThickness="2" BorderBrush="WhiteSmoke">
+                                    <Grid>
+                                        <!-- DataGrid listing customers -->
+                                        <DataGrid x:Name="Userdatagrid" Grid.Column="0"
+ItemsSource="{Binding CustUsers}"
+SelectedItem="{Binding SelectedCustUser, Mode=TwoWay}"
+CanUserAddRows="False"
+AutoGenerateColumns="False"
+AlternatingRowBackground="#FFA2F7D4"                                    
+IsReadOnly="False" ColumnHeaderStyle="{StaticResource HeaderStyle}" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                                            <DataGrid.Columns>
+
+                                                <DataGridCheckBoxColumn Header="Select" Binding="{Binding IsActive, UpdateSourceTrigger=PropertyChanged}"/>
+                                                <DataGridTextColumn Header="Item Name" Binding="{Binding Company}" Width="250" IsReadOnly="True"/>
+                                                <DataGridTextColumn Header="Item Rate" Binding="{Binding Mobile}" Width="100" IsReadOnly="True"/>
+                                                <DataGridTextColumn Header="P.O No." Binding="{Binding GstNo}" Width="200" IsReadOnly="True"/>
+                                                <DataGridTextColumn Header="HSN Code" Binding="{Binding Address}" Width="*" IsReadOnly="True"/>
+                                                <DataGridTextColumn Header="Casting" Binding="{Binding Address}" Width="100" IsReadOnly="True"/>
+                                                <DataGridTextColumn Header="Scrap" Binding="{Binding Address}" Width="100" IsReadOnly="True"/>
+                                            </DataGrid.Columns>
+
+
+                                        </DataGrid>
+
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                    <Grid Grid.Row="2">
+                        <Border BorderThickness="2" BorderBrush="WhiteSmoke" CornerRadius="0,0,10,10" Margin="-1,0,1,0">
+                            <Grid>
+                                <Button x:Name="BtnPartySave" Command="{Binding AddCommandP}" Style="{StaticResource userSaveButton}" Margin="100,5,780,5" Height="NaN">
+                                    <StackPanel Orientation="Horizontal">
+                                        <fa:IconImage Icon="PlusCircle" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Opacity="0.9" Width="20" Margin="0,0,5,0"></fa:IconImage>
+                                        <TextBlock Text="Add" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="15"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button x:Name="BtnPartyUpdate" Style="{StaticResource userUpdateButton}" Margin="450,5,440,5" Height="NaN" Command="{Binding UpdateCommandP}">
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <fa:IconImage Icon="Pencil" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Opacity="0.9" Width="20" Margin="0,0,5,0"></fa:IconImage>
+                                        <TextBlock Text="Edit" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="15"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button x:Name="BtnPartyClear" Style="{StaticResource userClearButton}" Margin="784,5,96,5" Height="NaN" Command="{Binding DeleteCommandP}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <fa:IconImage Icon="Eraser" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Opacity="0.9" Width="20" Margin="0,0,5,0"></fa:IconImage>
+                                        <TextBlock Text="Delete" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="15"/>
+                                    </StackPanel>
+                                </Button>
                             </Grid>
                         </Border>
                     </Grid>
