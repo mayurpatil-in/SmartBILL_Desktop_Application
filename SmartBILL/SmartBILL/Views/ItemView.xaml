@@ -60,11 +60,24 @@
                                                         <TextBlock TextWrapping="Wrap" Text="Select Party : " FontSize="18" Foreground="WhiteSmoke" Margin="59,21,532,77"/>
                                                         <TextBlock TextWrapping="Wrap" Text="Item Name : " FontSize="18" Foreground="WhiteSmoke" Margin="59,61,532,39"/>
                                                         <TextBlock TextWrapping="Wrap" Text="Item Rate : " FontSize="18" Foreground="WhiteSmoke" Margin="59,99,532,1"/>
+                                                        <TextBlock TextWrapping="Wrap" Text="₹" FontSize="21" Foreground="WhiteSmoke" Margin="540,99,123,1"/>
+                                                        <Button Command="{Binding ClearFormCommand}" Background="{x:Null}" BorderThickness="0" ToolTip="Clear All Data" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" Margin="575,18,0,0" >
 
+                                                            <fa:IconImage Icon="WindowClose"
+          Width="35"
+          Height="35"
+          Opacity="0.9"
+          Foreground="OrangeRed"
+          VerticalAlignment="Center"
+          HorizontalAlignment="Left"/>
+                                                        </Button>
 
-                                                        <ComboBox Margin="195,16,130,83"/>
-                                                        <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text="" Margin="195,58,130,45" FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold"/>
-                                                        <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text="" Margin="195,96,130,7" FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold" behaviors:NumericTextBoxBehavior.AllowOnlyNumeric="True"/>
+                                                        <ComboBox Margin="195,16,130,83" ItemsSource="{Binding Parties}"
+    DisplayMemberPath="CompanyP"
+    SelectedItem="{Binding SelectedParty, Mode=TwoWay}" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold"/>
+
+                                                        <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text="{Binding CurrentItem.ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="195,58,130,45" FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold"/>
+                                                        <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text="{Binding CurrentItem.ItemRate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="195,96,166,7" FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold" behaviors:NumericTextBoxBehavior.AllowOnlyNumeric="True"/>
 
 
                                                     </Grid>
@@ -76,8 +89,8 @@
                                                         <TextBlock TextWrapping="Wrap" Text="P.O Number : " FontSize="18" Foreground="WhiteSmoke" Margin="58,7,515,46" />
                                                         <TextBlock TextWrapping="Wrap" Text="HSN Code : " FontSize="18" Foreground="WhiteSmoke" Margin="57,48,533,9" />
 
-                                                        <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text=""  FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold" Margin="195,7,130,47" Height="34"/>
-                                                        <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text=""  FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold" Margin="195,46,130,6" Height="34"/>
+                                                        <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text="{Binding CurrentItem.PopNo, Mode=TwoWay}"  FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold" Margin="195,7,130,47" Height="34"/>
+                                                        <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text="{Binding CurrentItem.HsnCode, Mode=TwoWay}"  FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold" Margin="195,46,130,6" Height="34"/>
                                                     </Grid>
                                                 </Border>
                                             </Grid>
@@ -93,7 +106,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" Margin="167,34,0,0">
 
-                                                    
+
 
                                                     <fa:IconImage Icon="PlusCircle"
                           Width="30"
@@ -107,8 +120,8 @@
                                                 <TextBlock TextWrapping="Wrap" Text="Casting Weight : " FontSize="18" Foreground="WhiteSmoke" Margin="23,114,116,81" />
                                                 <TextBlock TextWrapping="Wrap" Text="Scrap Weight : " FontSize="18" Foreground="WhiteSmoke" Margin="23,168,116,27" />
 
-                                                <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text=""  FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold" Margin="163,110,20,83" Height="34"/>
-                                                <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text=""  FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold" Margin="163,164,20,29" Height="34"/>
+                                                <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text="{Binding CurrentItem.CastWeight, Mode=TwoWay}"  FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold" Margin="163,110,20,83" Height="34"/>
+                                                <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text="{Binding CurrentItem.ScrapWeight, Mode=TwoWay}"  FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold" Margin="163,164,20,29" Height="34"/>
                                             </Grid>
                                         </Border>
                                     </Grid>
@@ -120,23 +133,28 @@
                                     <Grid>
                                         <!-- DataGrid listing customers -->
                                         <DataGrid x:Name="Userdatagrid" Grid.Column="0"
-ItemsSource="{Binding CustUsers}"
-SelectedItem="{Binding SelectedCustUser, Mode=TwoWay}"
+ItemsSource="{Binding Items}"
+SelectedItem="{Binding EditingItem, Mode=TwoWay}"
 CanUserAddRows="False"
 AutoGenerateColumns="False"
 AlternatingRowBackground="#FFA2F7D4"                                    
-IsReadOnly="False" ColumnHeaderStyle="{StaticResource HeaderStyle}" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+IsReadOnly="False" ColumnHeaderStyle="{StaticResource HeaderStyle}" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDoubleClick="Userdatagrid_MouseDoubleClick">
                                             <DataGrid.Columns>
 
                                                 <DataGridCheckBoxColumn Header="Select" Binding="{Binding IsActive, UpdateSourceTrigger=PropertyChanged}"/>
-                                                <DataGridTextColumn Header="Item Name" Binding="{Binding Company}" Width="250" IsReadOnly="True"/>
-                                                <DataGridTextColumn Header="Item Rate" Binding="{Binding Mobile}" Width="100" IsReadOnly="True"/>
-                                                <DataGridTextColumn Header="P.O No." Binding="{Binding GstNo}" Width="200" IsReadOnly="True"/>
-                                                <DataGridTextColumn Header="HSN Code" Binding="{Binding Address}" Width="*" IsReadOnly="True"/>
-                                                <DataGridTextColumn Header="Casting" Binding="{Binding Address}" Width="100" IsReadOnly="True"/>
-                                                <DataGridTextColumn Header="Scrap" Binding="{Binding Address}" Width="100" IsReadOnly="True"/>
+                                                <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName}" Width="250" IsReadOnly="True"/>
+                                                <DataGridTextColumn Header="Item Rate" Binding="{Binding ItemRate}" Width="100" IsReadOnly="True"/>
+                                                <DataGridTextColumn Header="P.O No." Binding="{Binding PopNo}" Width="200" IsReadOnly="True"/>
+                                                <DataGridTextColumn Header="HSN Code" Binding="{Binding HsnCode}" Width="*" IsReadOnly="True"/>
+                                                <DataGridTextColumn Header="Casting" Binding="{Binding CastWeight}" Width="100" IsReadOnly="True"/>
+                                                <DataGridTextColumn Header="Scrap" Binding="{Binding ScrapWeight}" Width="100" IsReadOnly="True"/>
                                             </DataGrid.Columns>
-
+                                            <DataGrid.RowStyle>
+                                                <Style TargetType="DataGridRow">
+                                                    <EventSetter Event="MouseDoubleClick"
+                   Handler="Userdatagrid_MouseDoubleClick"/>
+                                                </Style>
+                                            </DataGrid.RowStyle>
 
                                         </DataGrid>
 
@@ -149,20 +167,20 @@ IsReadOnly="False" ColumnHeaderStyle="{StaticResource HeaderStyle}" FontSize="14
                     <Grid Grid.Row="2">
                         <Border BorderThickness="2" BorderBrush="WhiteSmoke" CornerRadius="0,0,10,10" Margin="-1,0,1,0">
                             <Grid>
-                                <Button x:Name="BtnPartySave" Command="{Binding AddCommandP}" Style="{StaticResource userSaveButton}" Margin="100,5,780,5" Height="NaN">
+                                <Button x:Name="BtnPartySave" Command="{Binding SaveItemCommand}" Style="{StaticResource userSaveButton}" Margin="100,5,780,5" Height="NaN">
                                     <StackPanel Orientation="Horizontal">
                                         <fa:IconImage Icon="PlusCircle" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Opacity="0.9" Width="20" Margin="0,0,5,0"></fa:IconImage>
                                         <TextBlock Text="Add" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="15"/>
                                     </StackPanel>
                                 </Button>
-                                <Button x:Name="BtnPartyUpdate" Style="{StaticResource userUpdateButton}" Margin="450,5,440,5" Height="NaN" Command="{Binding UpdateCommandP}">
+                                <Button x:Name="BtnPartyUpdate" Style="{StaticResource userUpdateButton}" Margin="450,5,440,5" Height="NaN" Command="{Binding UpdateItemCommand}">
 
                                     <StackPanel Orientation="Horizontal">
                                         <fa:IconImage Icon="Pencil" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Opacity="0.9" Width="20" Margin="0,0,5,0"></fa:IconImage>
                                         <TextBlock Text="Edit" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="15"/>
                                     </StackPanel>
                                 </Button>
-                                <Button x:Name="BtnPartyClear" Style="{StaticResource userClearButton}" Margin="784,5,96,5" Height="NaN" Command="{Binding DeleteCommandP}">
+                                <Button x:Name="BtnPartyClear" Style="{StaticResource userClearButton}" Margin="784,5,96,5" Height="NaN" Command="{Binding DeleteItemCommand}">
                                     <StackPanel Orientation="Horizontal">
                                         <fa:IconImage Icon="Eraser" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Opacity="0.9" Width="20" Margin="0,0,5,0"></fa:IconImage>
                                         <TextBlock Text="Delete" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="15"/>

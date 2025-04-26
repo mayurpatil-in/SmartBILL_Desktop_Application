@@ -95,6 +95,9 @@ namespace SmartBILL.Models
             get => _isActive;
             set { if (_isActive != value) { _isActive = value; OnPropertyChanged(); } }
         }
+
+        public virtual ICollection<Item> Items { get; set; } = new HashSet<Item>();
+
         public string Address
             => $"{HouseP}, {PlaceP}, {TalP}, {DistP}, {StateP} – {PincodeP}";
         public event PropertyChangedEventHandler PropertyChanged;

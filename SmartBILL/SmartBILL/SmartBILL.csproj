@@ -122,10 +122,19 @@
     <Compile Include="Migrations\202504220358445_ForYear.Designer.cs">
       <DependentUpon>202504220358445_ForYear.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202504260809434_AddItem.cs" />
+    <Compile Include="Migrations\202504260809434_AddItem.Designer.cs">
+      <DependentUpon>202504260809434_AddItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202504261129138_ChangeRelCustpAndItem.cs" />
+    <Compile Include="Migrations\202504261129138_ChangeRelCustpAndItem.Designer.cs">
+      <DependentUpon>202504261129138_ChangeRelCustpAndItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CustParty.cs" />
     <Compile Include="Models\CustUser.cs" />
     <Compile Include="Models\AppDbContext.cs" />
+    <Compile Include="Models\Item.cs" />
     <Compile Include="Models\UsedProductKey.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\YearAccount.cs" />
@@ -298,6 +307,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202504220358445_ForYear.resx">
       <DependentUpon>202504220358445_ForYear.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202504260809434_AddItem.resx">
+      <DependentUpon>202504260809434_AddItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202504261129138_ChangeRelCustpAndItem.resx">
+      <DependentUpon>202504261129138_ChangeRelCustpAndItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

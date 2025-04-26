@@ -14,6 +14,7 @@ namespace SmartBILL.Models
         public DbSet<CustUser> CustUsers { get; set; }
         public DbSet<CustParty> CustPartys { get; set; }
         public DbSet<YearAccount> YearAccounts { get; set; }
+        public DbSet<Item> Items { get; set; }
 
         public AppDbContext() : base("name=AppDbContext")
         {
