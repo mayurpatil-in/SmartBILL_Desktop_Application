@@ -81,6 +81,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Behaviors\NumericTextBoxBehavior.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\RelayCommandGeneric.cs" />
     <Compile Include="Converters\BoolToAngleConverter.cs" />

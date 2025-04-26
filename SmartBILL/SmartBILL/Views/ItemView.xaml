@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:SmartBILL.Views"
              mc:Ignorable="d" 
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:behaviors="clr-namespace:SmartBILL.Behaviors"
              d:DesignHeight="650" d:DesignWidth="1000">
     <Border CornerRadius="10"                    
     BorderThickness="1">
@@ -63,7 +64,7 @@
 
                                                         <ComboBox Margin="195,16,130,83"/>
                                                         <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text="" Margin="195,58,130,45" FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold"/>
-                                                        <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text="" Margin="195,96,130,7" FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold"/>
+                                                        <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text="" Margin="195,96,130,7" FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold" behaviors:NumericTextBoxBehavior.AllowOnlyNumeric="True"/>
 
 
                                                     </Grid>
