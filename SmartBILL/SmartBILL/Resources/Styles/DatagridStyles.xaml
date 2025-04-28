@@ -29,27 +29,79 @@
         <Setter Property="FontSize" Value="16"/>
     </Style>
     <!-- A red Delete button with hover/pressed feedback -->
-    <Style x:Key="DeleteButtonStyle" TargetType="Button">
-        <Setter Property="Background"    Value="#E74C3C"/>
-        <!-- tomato red -->
-        <Setter Property="Foreground"    Value="White"/>
-        <Setter Property="BorderBrush"   Value="#C0392B"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Padding"       Value="4,2"/>
-        <Setter Property="Margin"        Value="2"/>
-        <Style.Triggers>
-            <!-- mouse-over -->
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#C0392B"/>
-                <Setter Property="Foreground" Value="Black"/>
-                <!-- darker red -->
-            </Trigger>
-            <!-- pressed -->
-            <Trigger Property="IsPressed"   Value="True">
-                <Setter Property="Background" Value="#922B21"/>
-                <!-- darkest red -->
-            </Trigger>
-        </Style.Triggers>
+    <Style x:Key="ModernDeleteButtonStyle" TargetType="Button">
+        <!-- Base setters -->
+        <Setter Property="Background" Value="#E74C3C"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="8,4"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <!-- Drop shadow -->
+                        <Border x:Name="Shadow"
+                            CornerRadius="6"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True">
+                            <Border.Effect>
+                                <DropShadowEffect
+                                Color="Black"
+                                BlurRadius="8"
+                                ShadowDepth="2"
+                                Opacity="0.2"/>
+                            </Border.Effect>
+                        </Border>
+                        <!-- Content border -->
+                        <Border x:Name="Border"
+                            CornerRadius="6"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          RecognizesAccessKey="True"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <!-- Hover -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="#C0392B"/>
+                            <Setter TargetName="Shadow" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect
+                                    Color="Black"
+                                    BlurRadius="12"
+                                    ShadowDepth="3"
+                                    Opacity="0.3"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <!-- Pressed -->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="#922B21"/>
+                            <!-- Scale down slightly on press -->
+                            <Setter TargetName="Border" Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="0.97" ScaleY="0.97"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="Border" Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                        </Trigger>
+                        <!-- Disabled -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Border" Property="Background" Value="#DDD"/>
+                            <Setter Property="Foreground" Value="#888"/>
+                            <Setter TargetName="Shadow" Property="Opacity" Value="0" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style x:Key="GreenCenteredCheckBox" TargetType="CheckBox">
@@ -93,4 +145,38 @@
         </Setter>
     </Style>
 
+    <!-- Cell style: red border when ProcessName is empty -->
+    <Style x:Key="EmptyProcessNameCellStyle" TargetType="DataGridCell">
+        <Setter Property="BorderBrush"     Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="VerticalContentAlignment"   Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ProcessName}" Value="">
+                <Setter Property="BorderBrush"     Value="Red"/>
+                <Setter Property="BorderThickness" Value="2"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Editing mode: red border on empty TextBox -->
+    <Style x:Key="EmptyProcessNameEditingStyle" TargetType="TextBox">
+        <Setter Property="BorderBrush"     Value="Gray"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="VerticalContentAlignment"   Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Style.Triggers>
+            <Trigger Property="Text" Value="">
+                <Setter Property="BorderBrush"     Value="Red"/>
+                <Setter Property="BorderThickness" Value="2"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- 3) Display mode: center the TextBlock in the cell -->
+    <Style x:Key="ProcessNameElementStyle" TargetType="TextBlock">
+        <Setter Property="VerticalAlignment"   Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Padding"             Value="4,2"/>
+    </Style>
 </ResourceDictionary>

@@ -73,6 +73,7 @@
                                                         </Button>
 
                                                         <ComboBox Margin="195,16,130,83" ItemsSource="{Binding Parties}"
+                                                                 
     DisplayMemberPath="CompanyP"
     SelectedItem="{Binding SelectedParty, Mode=TwoWay}" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold"/>
 
@@ -139,9 +140,10 @@ CanUserAddRows="False"
 AutoGenerateColumns="False"
 AlternatingRowBackground="#FFA2F7D4"                                    
 IsReadOnly="False" ColumnHeaderStyle="{StaticResource HeaderStyle}" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDoubleClick="Userdatagrid_MouseDoubleClick">
+                                            
                                             <DataGrid.Columns>
 
-                                                <DataGridCheckBoxColumn Header="Select" Binding="{Binding IsActive, UpdateSourceTrigger=PropertyChanged}"/>
+                                                <DataGridCheckBoxColumn Header="Select" Binding="{Binding IsActive, UpdateSourceTrigger=PropertyChanged}" ElementStyle="{StaticResource GreenCenteredCheckBox}" EditingElementStyle="{StaticResource GreenCenteredCheckBox}"/>
                                                 <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName}" Width="250" IsReadOnly="True"/>
                                                 <DataGridTextColumn Header="Item Rate" Binding="{Binding ItemRate}" Width="100" IsReadOnly="True"/>
                                                 <DataGridTextColumn Header="P.O No." Binding="{Binding PopNo}" Width="200" IsReadOnly="True"/>

@@ -20,7 +20,7 @@ namespace SmartBILL.Models
         }
 
         private string _processName;
-        [Required, MaxLength(100)]
+        [MaxLength(100)]
         public string ProcessName
         {
             get => _processName;

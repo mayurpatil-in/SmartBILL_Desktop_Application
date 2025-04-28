@@ -75,6 +75,14 @@ namespace SmartBILL.ViewModels
         {
             // Auto-persist any change (e.g. IsActive toggled via checkbox)
             _db.SaveChanges();
+            //var item = (ProcessItem)sender;
+
+            //// only auto‐save when the user toggles IsActive on an existing record
+            //if (e.PropertyName == nameof(ProcessItem.IsActive)
+            //    && item.ProcessId != 0)      // zero means 'not yet in database'
+            //{
+            //    _db.SaveChanges();
+            //}
         }
 
         private void Add()

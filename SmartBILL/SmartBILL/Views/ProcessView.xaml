@@ -104,7 +104,8 @@ IsReadOnly="False" ColumnHeaderStyle="{StaticResource HeaderStyle}" FontSize="14
                         <DataGrid.Columns>
 
                             <DataGridCheckBoxColumn Header="Select" Binding="{Binding IsActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="60" ElementStyle="{StaticResource GreenCenteredCheckBox}" EditingElementStyle="{StaticResource GreenCenteredCheckBox}"/>
-                            <DataGridTextColumn Header="Item Name" Binding="{Binding ProcessName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                            <DataGridTextColumn Header="Item Name" Binding="{Binding ProcessName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" CellStyle="{StaticResource EmptyProcessNameCellStyle}" ElementStyle="{StaticResource ProcessNameElementStyle}" EditingElementStyle="{StaticResource EmptyProcessNameEditingStyle}"/>
+
 
 
 
@@ -113,7 +114,7 @@ IsReadOnly="False" ColumnHeaderStyle="{StaticResource HeaderStyle}" FontSize="14
                                     <DataTemplate>
                                         <Button Content="Delete"
                                     Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                                    CommandParameter="{Binding}" Style="{StaticResource DeleteButtonStyle}" />
+                                    CommandParameter="{Binding}" Style="{StaticResource ModernDeleteButtonStyle}" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>

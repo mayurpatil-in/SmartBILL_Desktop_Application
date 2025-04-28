@@ -134,6 +134,10 @@
     <Compile Include="Migrations\202504280555400_AddProcess.Designer.cs">
       <DependentUpon>202504280555400_AddProcess.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202504281602548_allownullProcessItem.cs" />
+    <Compile Include="Migrations\202504281602548_allownullProcessItem.Designer.cs">
+      <DependentUpon>202504281602548_allownullProcessItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CustParty.cs" />
     <Compile Include="Models\CustUser.cs" />
@@ -238,6 +242,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Styles\TextboxStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Styles\UIColors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -329,6 +337,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202504280555400_AddProcess.resx">
       <DependentUpon>202504280555400_AddProcess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202504281602548_allownullProcessItem.resx">
+      <DependentUpon>202504281602548_allownullProcessItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
