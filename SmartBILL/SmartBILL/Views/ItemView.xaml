@@ -99,12 +99,12 @@
                                     <Grid Grid.Column="1">
                                         <Border BorderThickness="2" BorderBrush="WhiteSmoke" Background="#FF18454E">
                                             <Grid>
-                                                <Button Command="{Binding AddItemCommand}"
+                                                <Button x:Name="ShowBtnProcess" Command="{Binding AddItemCommand}"
                 Background="{x:Null}"
                 BorderThickness="0"
                 ToolTip="Add new process"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Top" Margin="167,34,0,0">
+                VerticalAlignment="Top" Margin="167,34,0,0" Click="ShowBtnProcess_Click">
 
 
 

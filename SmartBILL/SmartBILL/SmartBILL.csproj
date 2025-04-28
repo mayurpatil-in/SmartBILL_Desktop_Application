@@ -160,6 +160,7 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\PartyChallanViewModel.cs" />
+    <Compile Include="ViewModels\ProcessViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\CustomerPartyView.xaml.cs">
@@ -182,6 +183,9 @@
     </Compile>
     <Compile Include="Views\PartyChallanView.xaml.cs">
       <DependentUpon>PartyChallanView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProcessView.xaml.cs">
+      <DependentUpon>ProcessView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
@@ -258,6 +262,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PartyChallanView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProcessView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
