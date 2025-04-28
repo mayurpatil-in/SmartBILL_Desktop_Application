@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using SmartBILL.ViewModels;
 
 namespace SmartBILL.Views
 {
@@ -22,6 +24,8 @@ namespace SmartBILL.Views
         public ProcessView()
         {
             InitializeComponent();
+            if (!DesignerProperties.GetIsInDesignMode(this))
+                DataContext = new ProcessViewModel();
         }
 
         private void BtnProMinimize_Click(object sender, RoutedEventArgs e)

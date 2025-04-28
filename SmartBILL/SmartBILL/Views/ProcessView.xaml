@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartBILL.Views"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:vm="clr-namespace:SmartBILL.ViewModels"
+
         mc:Ignorable="d"
         Title="ProcessView" Height="400" Width="400"
         WindowStyle="None"
@@ -13,6 +15,7 @@
         Background="Transparent"
         AllowsTransparency="True"
         MouseDown="Window_MouseDown">
+
     <Border CornerRadius="12" BorderThickness="2">
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -85,23 +88,35 @@
                 <Grid Grid.Row="0">
                     <Border BorderThickness="2" BorderBrush="WhiteSmoke" Background="#FF18454E">
                         <Grid>
-                            <TextBox x:Name="TxtPHN" Style="{StaticResource RoundedTextBox}" TextWrapping="Wrap" Text="{Binding NewHouseP, UpdateSourceTrigger=PropertyChanged}" Height="30" VerticalContentAlignment="Center" FontSize="16" Margin="152,34,29,32"/>
+                            <TextBox x:Name="TxtPHN" Style="{StaticResource ValidateOnSaveTextBox}" TextWrapping="Wrap" Text="{Binding NewProcess.ProcessName, UpdateSourceTrigger=PropertyChanged}" Height="30" VerticalContentAlignment="Center" FontSize="16" Margin="152,34,29,32"/>
                             <TextBlock TextWrapping="Wrap" Text="Process Name : " FontSize="18" Foreground="WhiteSmoke" Margin="16,34,245,34"/>
                         </Grid>
                     </Border>
                 </Grid>
                 <Grid Grid.Row="1">
                     <DataGrid x:Name="Userdatagrid" Grid.Column="0"
-                        ItemsSource="{Binding Items}"
-                        SelectedItem="{Binding EditingItem, Mode=TwoWay}"
+                        ItemsSource="{Binding ProcessItems}"
+                        SelectedItem="{Binding SelectedProcess}"
                         CanUserAddRows="False"
                         AutoGenerateColumns="False"
                         AlternatingRowBackground="#FFA2F7D4"                                    
 IsReadOnly="False" ColumnHeaderStyle="{StaticResource HeaderStyle}" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                         <DataGrid.Columns>
 
-                            <DataGridCheckBoxColumn Header="Select" Binding="{Binding IsActive, UpdateSourceTrigger=PropertyChanged}" Width="60"/>
-                            <DataGridTextColumn Header="Item Name" Binding="{Binding ItemName}" Width="*" IsReadOnly="True"/>
+                            <DataGridCheckBoxColumn Header="Select" Binding="{Binding IsActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="60" ElementStyle="{StaticResource GreenCenteredCheckBox}" EditingElementStyle="{StaticResource GreenCenteredCheckBox}"/>
+                            <DataGridTextColumn Header="Item Name" Binding="{Binding ProcessName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+
+
+
+                            <DataGridTemplateColumn Header="Delete">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Delete"
+                                    Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                    CommandParameter="{Binding}" Style="{StaticResource DeleteButtonStyle}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
 
                         </DataGrid.Columns>
 
@@ -111,9 +126,8 @@ IsReadOnly="False" ColumnHeaderStyle="{StaticResource HeaderStyle}" FontSize="14
             </Grid>
             <Grid Grid.Row="2">
                 <Grid>
-                    <Button Content="Add" Style="{StaticResource userSaveButton}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="78" Height="30" Background="#FF99E489" FontSize="16" Margin="31,3,0,0"/>
-                    <Button Content="Edit" Style="{StaticResource userUpdateButton}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="73" Height="30" Background="#FF99E489" FontSize="16" Margin="0,3,0,0"/>
-                    <Button Content="Delete" Style="{StaticResource userClearButton}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="86" Height="30" Background="#FF99E489" FontSize="16" Margin="283,3,0,0"/>
+                    <Button Content="Add" Command="{Binding AddCommand}" Style="{StaticResource userSaveButton}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="78" Height="30" Background="#FF99E489" FontSize="16" Margin="74,3,0,0"/>
+                    <Button Content="Clear" Command="{Binding ClearCommand}" Style="{StaticResource userUpdateButton}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Height="30" Background="#FF99E489" FontSize="16" Margin="255,3,0,0"/>
 
                 </Grid>
 

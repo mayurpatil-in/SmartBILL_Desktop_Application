@@ -291,40 +291,58 @@
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
                     <Border
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="15">
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="15">
                         <!-- PART_ContentHost is where the text appears -->
                         <ScrollViewer x:Name="PART_ContentHost"
-                                      Margin="0"
-                                      VerticalAlignment="Center" />
+                                  Margin="0"
+                                  VerticalAlignment="Center" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
+
     <Style x:Key="RoundedTextBox" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
-        
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
                     <Border 
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="5"
-                        SnapsToDevicePixels="True">
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="5"
+                SnapsToDevicePixels="True">
 
                         <!-- this PART is required for the TextBox's text editing -->
                         <ScrollViewer 
-                          x:Name="PART_ContentHost" 
-                          Margin="0" 
-                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                  x:Name="PART_ContentHost" 
+                  Margin="0" 
+                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+    <Style x:Key="ValidateOnSaveTextBox"
+         TargetType="TextBox"
+         BasedOn="{StaticResource RoundedTextBox}">
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <!-- 1) Save was clicked with empty name -->
+                    <Condition Binding="{Binding ShowNameError}" Value="True"/>
+                    <!-- 2) The box really is empty -->
+                    <Condition Binding="{Binding Text,
+                             RelativeSource={RelativeSource Self}}" Value=""/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="BorderBrush" Value="Red"/>
+                <Setter Property="BorderThickness" Value="2"/>
+            </MultiDataTrigger>
+        </Style.Triggers>
     </Style>
 
     <!--Calender Save-->

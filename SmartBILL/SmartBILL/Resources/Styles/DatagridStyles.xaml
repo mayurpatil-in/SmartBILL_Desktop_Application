@@ -28,5 +28,69 @@
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="FontSize" Value="16"/>
     </Style>
+    <!-- A red Delete button with hover/pressed feedback -->
+    <Style x:Key="DeleteButtonStyle" TargetType="Button">
+        <Setter Property="Background"    Value="#E74C3C"/>
+        <!-- tomato red -->
+        <Setter Property="Foreground"    Value="White"/>
+        <Setter Property="BorderBrush"   Value="#C0392B"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding"       Value="4,2"/>
+        <Setter Property="Margin"        Value="2"/>
+        <Style.Triggers>
+            <!-- mouse-over -->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#C0392B"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <!-- darker red -->
+            </Trigger>
+            <!-- pressed -->
+            <Trigger Property="IsPressed"   Value="True">
+                <Setter Property="Background" Value="#922B21"/>
+                <!-- darkest red -->
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="GreenCenteredCheckBox" TargetType="CheckBox">
+        <!-- center it in the grid cell -->
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment"   Value="Center"/>
+        <!-- override the visual tree -->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <Grid Width="16" Height="16">
+                        <!-- the box outline -->
+                        <Border x:Name="Box"
+                      Background="Transparent"
+                      BorderBrush="Green"
+                      BorderThickness="1"
+                      CornerRadius="2"/>
+                        <!-- the checkmark path -->
+                        <Path x:Name="CheckMark"
+                    Data="M2,8 L6,12 14,2"
+                    Stroke="Green"
+                    StrokeThickness="2"
+                    Visibility="Collapsed"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <!-- when checked, show the checkmark -->
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="CheckMark"
+                        Property="Visibility"
+                        Value="Visible"/>
+                        </Trigger>
+                        <!-- when disabled, gray it out -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Box"       Property="BorderBrush" Value="Gray"/>
+                            <Setter TargetName="CheckMark" Property="Stroke"      Value="Gray"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 </ResourceDictionary>

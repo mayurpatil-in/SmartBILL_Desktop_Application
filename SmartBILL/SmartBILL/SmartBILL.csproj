@@ -130,11 +130,16 @@
     <Compile Include="Migrations\202504261129138_ChangeRelCustpAndItem.Designer.cs">
       <DependentUpon>202504261129138_ChangeRelCustpAndItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202504280555400_AddProcess.cs" />
+    <Compile Include="Migrations\202504280555400_AddProcess.Designer.cs">
+      <DependentUpon>202504280555400_AddProcess.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CustParty.cs" />
     <Compile Include="Models\CustUser.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\ProcessItem.cs" />
     <Compile Include="Models\UsedProductKey.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\YearAccount.cs" />
@@ -321,6 +326,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202504261129138_ChangeRelCustpAndItem.resx">
       <DependentUpon>202504261129138_ChangeRelCustpAndItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202504280555400_AddProcess.resx">
+      <DependentUpon>202504280555400_AddProcess.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
