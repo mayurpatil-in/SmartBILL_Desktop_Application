@@ -61,15 +61,19 @@
                                                         <TextBlock TextWrapping="Wrap" Text="Item Name : " FontSize="18" Foreground="WhiteSmoke" Margin="59,61,532,39"/>
                                                         <TextBlock TextWrapping="Wrap" Text="Item Rate : " FontSize="18" Foreground="WhiteSmoke" Margin="59,99,532,1"/>
                                                         <TextBlock TextWrapping="Wrap" Text="₹" FontSize="21" Foreground="WhiteSmoke" Margin="540,99,123,1"/>
-                                                        <Button Command="{Binding ClearFormCommand}" Background="{x:Null}" BorderThickness="0" ToolTip="Clear All Data" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" Margin="575,18,0,0" >
-
-                                                            <fa:IconImage Icon="WindowClose"
-          Width="35"
-          Height="35"
-          Opacity="0.9"
-          Foreground="OrangeRed"
-          VerticalAlignment="Center"
-          HorizontalAlignment="Left"/>
+                                                        <Button
+    Style="{StaticResource ClearIconButton}"
+    Command="{Binding ClearFormCommand}"
+    ToolTip="Clear All Data"
+    HorizontalAlignment="Left"
+    VerticalAlignment="Top"
+    Margin="575,18,0,0">
+                                                            <fa:IconImage
+      Icon="WindowClose"
+      Width="35"
+      Height="35"
+      Opacity="0.9"
+      Foreground="OrangeRed"/>
                                                         </Button>
 
                                                         <ComboBox Margin="195,16,130,83" ItemsSource="{Binding Parties}"
@@ -101,23 +105,18 @@
                                         <Border BorderThickness="2" BorderBrush="WhiteSmoke" Background="#FF18454E">
                                             <Grid>
                                                 <Button x:Name="ShowBtnProcess" Command="{Binding AddItemCommand}"
-                Background="{x:Null}"
-                BorderThickness="0"
-                ToolTip="Add new process"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top" Margin="167,34,0,0" Click="ShowBtnProcess_Click">
-
-
+                                                    Style="{StaticResource ModernIconButton}"
+                                                    ToolTip="Add new process"
+                                                    Click="ShowBtnProcess_Click" Margin="163,27,78,160" >
 
                                                     <fa:IconImage Icon="PlusCircle"
-                          Width="30"
-                          Height="30"
-                          Opacity="0.9"
-                          Foreground="DarkSeaGreen"
-                          VerticalAlignment="Center"
-                          HorizontalAlignment="Left"/>
+                                                      Width="30"
+                                                      Height="30"
+                                                      Opacity="0.9"
+                                                      Foreground="DarkSeaGreen"
+/>
                                                 </Button>
-                                                <TextBlock TextWrapping="Wrap" Text="Add Process : " FontSize="18" Foreground="WhiteSmoke" Margin="53,34,116,160" />
+                                                <TextBlock TextWrapping="Wrap" Text="Add Process : " FontSize="18" Foreground="WhiteSmoke" Margin="44,32,135,161" />
                                                 <TextBlock TextWrapping="Wrap" Text="Casting Weight : " FontSize="18" Foreground="WhiteSmoke" Margin="23,114,116,81" />
                                                 <TextBlock TextWrapping="Wrap" Text="Scrap Weight : " FontSize="18" Foreground="WhiteSmoke" Margin="23,168,116,27" />
 

@@ -465,10 +465,220 @@
         </Style.Triggers>
     </Style>
 
+    <!-- In your ResourceDictionary or Window/UserControl.Resources -->
+    <Style x:Key="ModernIconButton" TargetType="Button">
+        <!-- Base properties -->
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <!-- subtle default shadow -->
+                <DropShadowEffect Color="Black" Opacity="0.2" BlurRadius="8" ShadowDepth="2"/>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border"
+                Background="{TemplateBinding Background}"
+                CornerRadius="20"
+                RenderTransform="{TemplateBinding RenderTransform}"
+                RenderTransformOrigin="0.5,0.5"
+                Effect="{TemplateBinding Effect}">
+                        <ContentPresenter HorizontalAlignment="Center"
+                            VerticalAlignment="Center"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <!-- Hover: scale up + glow intensifies -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <!-- scale -->
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                   Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                   To="1.2" Duration="0:0:0.2"/>
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                   Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                   To="1.2" Duration="0:0:0.2"/>
+
+                                        <!-- glow color -->
+                                        <ColorAnimation Storyboard.TargetName="border"
+                                  Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Color)"
+                                  To="#FF80CBC4" Duration="0:0:0.2"/>
+                                        <!-- stronger blur -->
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                   Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)"
+                                   To="20" Duration="0:0:0.2"/>
+                                        <!-- increased opacity -->
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                   Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Opacity)"
+                                   To="0.7" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <!-- revert scale -->
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                   Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                   To="1.0" Duration="0:0:0.2"/>
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                   Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                   To="1.0" Duration="0:0:0.2"/>
+
+                                        <!-- revert color -->
+                                        <ColorAnimation Storyboard.TargetName="border"
+                                  Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Color)"
+                                  To="Black" Duration="0:0:0.2"/>
+                                        <!-- revert blur -->
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                   Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)"
+                                   To="8" Duration="0:0:0.2"/>
+                                        <!-- revert opacity -->
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                   Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Opacity)"
+                                   To="0.2" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+
+                            <!-- optional: light background on hover -->
+                            <Setter TargetName="border" Property="Background" Value="#F5F5F5"/>
+                        </Trigger>
+
+                        <!-- Pressed: slightly darker -->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#E0E0E0"/>
+                        </Trigger>
+
+                        <!-- Disabled: dimmed -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ClearIconButton" TargetType="Button">
+        <!-- Base appearance -->
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Width" Value="38" />
+        <Setter Property="Height" Value="38" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="RenderTransformOrigin" Value="0.5,0.5" />
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <ScaleTransform ScaleX="1" ScaleY="1" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Black" Opacity="0.2" BlurRadius="8" ShadowDepth="2" />
+            </Setter.Value>
+        </Setter>
+
+        <!-- ControlTemplate defines the shape + content -->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border"
+                  Background="{TemplateBinding Background}"
+                  CornerRadius="6"
+                  RenderTransform="{TemplateBinding RenderTransform}"
+                  RenderTransformOrigin="0.5,0.5"
+                  Effect="{TemplateBinding Effect}">
+                        <ContentPresenter HorizontalAlignment="Center"
+                              VerticalAlignment="Center" />
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <!-- Hover: scale up + glow -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <!-- Scale -->
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                     To="1.2" Duration="0:0:0.2" />
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                     To="1.2" Duration="0:0:0.2" />
+                                        <!-- Glow color -->
+                                        <ColorAnimation Storyboard.TargetName="border"
+                                    Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Color)"
+                                    To="OrangeRed" Duration="0:0:0.2" />
+                                        <!-- Blur radius -->
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                     Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)"
+                                     To="20" Duration="0:0:0.2" />
+                                        <!-- Opacity -->
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                     Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Opacity)"
+                                     To="0.7" Duration="0:0:0.2" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <!-- Revert scale -->
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                     To="1.0" Duration="0:0:0.2" />
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                     To="1.0" Duration="0:0:0.2" />
+                                        <!-- Revert glow -->
+                                        <ColorAnimation Storyboard.TargetName="border"
+                                    Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Color)"
+                                    To="Black" Duration="0:0:0.2" />
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                     Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)"
+                                     To="8" Duration="0:0:0.2" />
+                                        <DoubleAnimation Storyboard.TargetName="border"
+                                     Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Opacity)"
+                                     To="0.2" Duration="0:0:0.2" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+
+                        <!-- Pressed state -->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#FFF3E0"/>
+                        </Trigger>
+
+                        <!-- Disabled state -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 
 
 
-    
-    
+
+
+
 </ResourceDictionary>
