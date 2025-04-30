@@ -33,6 +33,16 @@ namespace SmartBILL.ViewModels
                 OnPropertyChanged(nameof(IsCustomersExpanded));
             }
         }
+        private bool _isPartyExpanded;
+        public bool IsPartyExpanded
+        {
+            get => _isPartyExpanded;
+            set
+            {
+                _isPartyExpanded = value;
+                OnPropertyChanged(nameof(IsPartyExpanded));
+            }
+        }
 
         #region Copyrights Year
         // Fixed start year

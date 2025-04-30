@@ -132,6 +132,39 @@
                             </StackPanel>
                         </RadioButton>
 
+                         <!--Party Challan Parent RadioButton-->
+                        <RadioButton x:Name="RadioParty" Style="{StaticResource menuButton}" Tag="{StaticResource color4}" IsChecked="{Binding IsPartyExpanded, Mode=TwoWay}">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="Industry" Style="{StaticResource menuButtonIcon}"/>
+                                <TextBlock Text="Party Challan" Style="{StaticResource menuButtonText}"/>
+                                <TextBlock Text="▼" Margin="5,0,0,0" VerticalAlignment="Center" FontSize="10" RenderTransformOrigin="0.5,0.5">
+                                    <TextBlock.RenderTransform>
+                                        <RotateTransform Angle="{Binding IsPartyExpanded, Converter={StaticResource BoolToAngleConverter}}"/>
+                                    </TextBlock.RenderTransform>
+                                </TextBlock>
+                            </StackPanel>
+                        </RadioButton>
+
+
+                        <StackPanel Margin="30,0,0,0" Visibility="{Binding IsPartyExpanded, Converter={StaticResource BoolToVisibilityConverter}}">
+
+                            <RadioButton Style="{StaticResource menuButton}" Tag="{StaticResource color4}" Command="{Binding ShowPartyChallanViewCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:IconImage Icon="PlusCircle" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Add Party Challan" Style="{StaticResource menuButtonText}"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <RadioButton Style="{StaticResource menuButton}" Tag="{StaticResource color4}">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:IconImage Icon="SearchPlus" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Search Party Challan" Style="{StaticResource menuButtonText}"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                        </StackPanel>
+                        
+
                         <RadioButton Style="{StaticResource menuButton}"
                         Tag="{StaticResource color4}" Command="{Binding ShowPartyChallanViewCommand}">
                             <StackPanel Orientation="Horizontal">
