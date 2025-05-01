@@ -131,7 +131,7 @@
                                         <Grid Grid.Column="1">
                                             <Border BorderThickness="0,0,2,0" BorderBrush="WhiteSmoke">
                                                 <Grid>
-                                                    <ComboBox ItemsSource="{Binding Parties}" DisplayMemberPath="CompanyP" SelectedItem="{Binding SelectedParty, Mode=TwoWay}" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" Margin="10,0,10,0" Height="40"/>
+                                                    <ComboBox ItemsSource="{Binding ProcessItems}" DisplayMemberPath="ProcessName" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" Margin="10,0,10,0" Height="40"/>
                                                 </Grid>
                                             </Border>
                                         </Grid>

@@ -58,7 +58,7 @@ namespace SmartBILL.ViewModels
         }
         #endregion
 
-        #region Show Party Name in ComboBox
+        #region Load Party Name with Related Load Item in ComboBox
         private ObservableCollection<CustParty> _customers;
         public ObservableCollection<CustParty> Customers
         {
@@ -142,10 +142,43 @@ namespace SmartBILL.ViewModels
         }
         #endregion
 
+        #region Load Process Name in Combobox
+        private ObservableCollection<ProcessItem> _processitem;
+        public ObservableCollection<ProcessItem> ProcessItems
+        {
+            get => _processitem;
+            set { _processitem = value; OnPropertyChanged(); }
+        }
+        private void LoadProcess()
+        {
+            try
+            {
+                // Load only active customers
+                ProcessItems = new ObservableCollection<ProcessItem>(
+                    _db.ProcessItems
+                            .Where(c => c.IsActive)
+                            .ToList()
+                );
+            }
+            catch (Exception ex)
+            {
+                // Handle or log error as needed
+                Customers = new ObservableCollection<CustParty>();
+                MessageBox.Show(
+                   $"An error occurred loading customer:\n{ex.Message}",
+                   "Load Error",
+                   MessageBoxButton.OK,
+                   MessageBoxImage.Error
+               );
+            }
+        }
+        #endregion
+
         public PartyChallanViewModel()
         {
             LoadActiveYearDates();
             LoadCustomers();
+            LoadProcess();
         }
 
         
