@@ -75,10 +75,19 @@
                             IsReadOnly="False" ColumnHeaderStyle="{StaticResource HeaderStyle}" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="195">
                                 <DataGrid.Columns>
 
-                                    <DataGridCheckBoxColumn Header="Select" Binding="{Binding IsActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="60"/>
+                                    <DataGridCheckBoxColumn Header="Select" Binding="{Binding IsActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="60" ElementStyle="{StaticResource GreenCenteredCheckBox}" EditingElementStyle="{StaticResource GreenCenteredCheckBox}"/>
 
                                     <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate, StringFormat={}{0:dd/MM/yyyy}}" Width="*" IsReadOnly="True"/>
                                     <DataGridTextColumn Header="End Date" Binding="{Binding EndDate, StringFormat={}{0:dd/MM/yyyy}}" Width="*" IsReadOnly="True"/>
+                                    <DataGridTemplateColumn Header="Delete">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Content="Delete"
+        Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+        CommandParameter="{Binding}" Style="{StaticResource ModernDeleteButtonStyle}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
 
                             </DataGrid>

@@ -56,6 +56,7 @@ namespace SmartBILL.ViewModels
         }
 
         public ICommand SaveCommand { get; }
+        public ICommand DeleteCommand { get; }
 
 
         #region Load Company Name
@@ -85,6 +86,7 @@ namespace SmartBILL.ViewModels
 
             YearAccounts.CollectionChanged += OnCollectionChanged;
             SaveCommand = new RelayCommand(_ => AddYearAccount());
+            DeleteCommand = new RelayCommand(DeleteYearAccount);
 
             var alreadyActive = YearAccounts.FirstOrDefault(a => a.IsActive);
             if (alreadyActive != null)
@@ -97,6 +99,22 @@ namespace SmartBILL.ViewModels
            
         }
 
+        private void DeleteYearAccount(object obj)
+        {
+            if (obj is YearAccount accountToDelete)
+            {
+                var result = MessageBox.Show(
+                    $"Are you sure you want to delete the Year Account from: {accountToDelete.StartDate:dd-MMM-yyyy} to {accountToDelete.EndDate:dd-MMM-yyyy}?",
+                    "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    YearAccounts.Remove(accountToDelete);
+                    _db.YearAccounts.Remove(accountToDelete);
+                    _db.SaveChanges();
+                }
+            }
+        }
         private void AddYearAccount()
         {
             try
