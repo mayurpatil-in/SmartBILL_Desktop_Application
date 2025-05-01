@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,9 +58,94 @@ namespace SmartBILL.ViewModels
         }
         #endregion
 
+        #region Show Party Name in ComboBox
+        private ObservableCollection<CustParty> _customers;
+        public ObservableCollection<CustParty> Customers
+        {
+            get => _customers;
+            set { _customers = value; OnPropertyChanged(); }
+        }
+
+        private CustParty _selectedCustomer;
+        public CustParty SelectedCustomer
+        {
+            get => _selectedCustomer;
+            set
+            {
+                if (_selectedCustomer != value)
+                {
+                    _selectedCustomer = value;
+                    OnPropertyChanged();
+                    LoadItemsForCustomer();
+                }
+            }
+        }
+
+        private ObservableCollection<Item> _items;
+        public ObservableCollection<Item> Items
+        {
+            get => _items;
+            set { _items = value; OnPropertyChanged(); }
+        }
+
+        private void LoadCustomers()
+        {
+            try
+            {
+                // Load only active customers
+                Customers = new ObservableCollection<CustParty>(
+                    _db.CustPartys
+                            .Where(c => c.IsActive)
+                            .ToList()
+                );
+            }
+            catch (Exception ex)
+            {
+                // Handle or log error as needed
+                Customers = new ObservableCollection<CustParty>();
+                MessageBox.Show(
+                   $"An error occurred loading customer:\n{ex.Message}",
+                   "Load Error",
+                   MessageBoxButton.OK,
+                   MessageBoxImage.Error
+               );
+            }
+        }
+
+        private void LoadItemsForCustomer()
+        {
+            try
+            {
+                if (SelectedCustomer != null)
+                {
+                    // Load only active items for selected active customer
+                    Items = new ObservableCollection<Item>(
+                        _db.Items
+                                .Where(i => i.CustomerPId == SelectedCustomer.CustomerPId && i.IsActive)
+                                .ToList()
+                    );
+                }
+                else
+                {
+                    Items = new ObservableCollection<Item>();
+                }
+            }
+            catch (Exception ex)
+            {
+                Items = new ObservableCollection<Item>();
+                MessageBox.Show(
+                   $"An error occurred loading Items:\n{ex.Message}",
+                   "Load Error",
+                   MessageBoxButton.OK,
+                   MessageBoxImage.Error);
+            }
+        }
+        #endregion
+
         public PartyChallanViewModel()
         {
             LoadActiveYearDates();
+            LoadCustomers();
         }
 
         

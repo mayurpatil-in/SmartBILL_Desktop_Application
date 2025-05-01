@@ -44,7 +44,7 @@
                     <Border BorderThickness="1" BorderBrush="WhiteSmoke" Background="#FF95863B">
                         <Grid>
                             <TextBlock TextWrapping="Wrap" Text="Select Party : " FontSize="18" Foreground="WhiteSmoke" Margin="59,21,824,99"/>
-                            <ComboBox Margin="177,17,498,92" ItemsSource="{Binding Parties}" DisplayMemberPath="CompanyP" SelectedItem="{Binding SelectedParty, Mode=TwoWay}" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                            <ComboBox Margin="177,17,498,92" ItemsSource="{Binding Customers}" SelectedItem="{Binding SelectedCustomer}" DisplayMemberPath="CompanyP" SelectedValuePath="CustomerPId" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold"/>
                             <TextBlock TextWrapping="Wrap" Text="Party Challan No. : " FontSize="18" Foreground="WhiteSmoke" Margin="12,82,822,29"/>
                             <TextBlock TextWrapping="Wrap" Text="Working Days : " FontSize="18" Foreground="WhiteSmoke" Margin="707,82,160,29"/>
                             <TextBlock TextWrapping="Wrap" Text="Select Date : " FontSize="18" Foreground="WhiteSmoke" Margin="727,21,156,90"/>
@@ -124,7 +124,7 @@
                                         <Grid Grid.Column="0">
                                             <Border BorderThickness="0,0,2,0" BorderBrush="WhiteSmoke">
                                                 <Grid>
-                                                    <ComboBox ItemsSource="{Binding Parties}" DisplayMemberPath="CompanyP" SelectedItem="{Binding SelectedParty, Mode=TwoWay}" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" Margin="10,0,10,0" Height="40"/>
+                                                    <ComboBox ItemsSource="{Binding Items}" DisplayMemberPath="ItemName" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" Margin="10,0,10,0" Height="40"/>
                                                 </Grid>
                                             </Border>
                                         </Grid>
