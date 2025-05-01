@@ -42,6 +42,9 @@ SmartBILL software built with C#, WPF MVVM, .NET 4.8.1, SAP Crystal Report SP 37
 ## 📃 Items Process Form
 ![Item Process View](./images/Process.png)
 
+## 📃 Party Challan Form
+![Party Challan View](./images/PartyChllan.png)
+
 ## ⚙️ Requirements
 
 **Basics:**
