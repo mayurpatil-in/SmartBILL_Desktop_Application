@@ -53,7 +53,8 @@
                             </Button>
                             <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text="{Binding CurrentItem.ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="177,80,498,32" FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold"/>
                             <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text="180" Margin="840,80,22,32" FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold" HorizontalContentAlignment="Center"/>
-                            <DatePicker Margin="840,21,22,95" FontSize="16"/>
+                            <DatePicker DisplayDateStart="{Binding StartDate}"
+                    DisplayDateEnd="{Binding EndDate}" Margin="840,21,22,95" FontSize="16"/>
                         </Grid>
                     </Border>
                 </Grid>
