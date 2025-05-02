@@ -97,6 +97,7 @@ namespace SmartBILL.Models
         }
 
         public virtual ICollection<Item> Items { get; set; } = new HashSet<Item>();
+        public virtual ICollection<PartyChallan> PartyChallans { get; set; } = new HashSet<PartyChallan>();
 
         public string Address
             => $"{HouseP}, {PlaceP}, {TalP}, {DistP}, {StateP} – {PincodeP}";

@@ -5,7 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using CrystalDecisions.ReportAppServer;
+using SmartBILL.Commands;
 using SmartBILL.Models;
 
 namespace SmartBILL.ViewModels
@@ -174,11 +176,122 @@ namespace SmartBILL.ViewModels
         }
         #endregion
 
+        #region PartyChallan Input Properties
+
+        private int _partyChallanNumber;
+        public int PartyChallanNumber
+        {
+            get => _partyChallanNumber;
+            set { _partyChallanNumber = value; OnPropertyChanged(); }
+        }
+
+        private int _workingDays = 180; // default value
+        public int WorkingDays
+        {
+            get => _workingDays;
+            set { _workingDays = value; OnPropertyChanged(); }
+        }
+
+        private DateTime _selectDate = DateTime.Now; // Optional default
+
+        public DateTime SelectDate
+        {
+            get => _selectDate;
+            set { _selectDate = value; OnPropertyChanged(); }
+        }
+        #endregion
+
+        public ICommand AddCommand { get; }
         public PartyChallanViewModel()
         {
             LoadActiveYearDates();
             LoadCustomers();
             LoadProcess();
+            AddCommand = new RelayCommand(_ => AddItem());
+        }
+        private void AddItem()
+        {
+            //try
+            //{
+            //    if (SelectedCustomer == null)
+            //    {
+            //        MessageBox.Show("Please select a customer.");
+            //        return;
+            //    }
+
+            //    var activeYear = _db.YearAccounts.FirstOrDefault(y => y.IsActive);
+            //    if (activeYear == null)
+            //    {
+            //        MessageBox.Show("Active financial year not found.");
+            //        return;
+            //    }
+
+            //    var newChallan = new PartyChallan
+            //    {
+            //        CustomerPId = SelectedCustomer.CustomerPId,
+            //        YearId = activeYear.YearId,
+            //        PartyChNo = PartyChallanNumber,
+            //        WorkDay = WorkingDays,
+            //        PartyDate = SelectDate
+            //    };
+
+            //    _db.PartyChallans.Add(newChallan);
+            //    _db.SaveChanges();
+
+            //    MessageBox.Show("Party Challan added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"Error adding Party Challan:\n{ex.Message}", "Add Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            //}
+
+            try
+            {
+                if (SelectedCustomer == null)
+                {
+                    MessageBox.Show("Please select a customer.");
+                    return;
+                }
+
+                var activeYear = _db.YearAccounts.FirstOrDefault(y => y.IsActive);
+                if (activeYear == null)
+                {
+                    MessageBox.Show("Active financial year not found.");
+                    return;
+                }
+
+                // ✅ Check if PartyChallanNumber already exists for selected Customer and Year
+                bool exists = _db.PartyChallans.Any(pc =>
+                    pc.CustomerPId == SelectedCustomer.CustomerPId &&
+                    pc.YearId == activeYear.YearId &&
+                    pc.PartyChNo == PartyChallanNumber
+                );
+
+                if (exists)
+                {
+                    MessageBox.Show("This Party Challan Number already exists for the selected customer and year.", "Duplicate Entry", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                // ✅ Add new entry
+                var newChallan = new PartyChallan
+                {
+                    CustomerPId = SelectedCustomer.CustomerPId,
+                    YearId = activeYear.YearId,
+                    PartyChNo = PartyChallanNumber,
+                    WorkDay = WorkingDays,
+                    PartyDate = SelectDate
+                };
+
+                _db.PartyChallans.Add(newChallan);
+                _db.SaveChanges();
+
+                MessageBox.Show("Party Challan added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error adding Party Challan:\n{ex.Message}", "Add Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         

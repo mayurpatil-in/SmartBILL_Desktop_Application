@@ -51,9 +51,9 @@
                             <Button Style="{StaticResource ClearIconButton}" Command="{Binding ClearFormCommand}" ToolTip="Clear All Data" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="510,18,0,0">
                                 <fa:IconImage Icon="WindowClose" Width="35" Height="35" Opacity="0.9" Foreground="OrangeRed"/>
                             </Button>
-                            <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text="{Binding CurrentItem.ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="177,80,498,32" FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold"/>
-                            <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text="180" Margin="840,80,22,32" FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold" HorizontalContentAlignment="Center"/>
-                            <DatePicker DisplayDateStart="{Binding StartDate}"
+                            <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text="{Binding PartyChallanNumber, UpdateSourceTrigger=PropertyChanged}" Margin="177,80,498,32" FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold"/>
+                            <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text="{Binding WorkingDays, UpdateSourceTrigger=PropertyChanged}" Margin="840,80,22,32" FontSize="14" VerticalContentAlignment="Center" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+                            <DatePicker DisplayDateStart="{Binding StartDate}" SelectedDate="{Binding SelectDate, UpdateSourceTrigger=PropertyChanged}"
                     DisplayDateEnd="{Binding EndDate}" Margin="840,21,22,95" FontSize="16"/>
                         </Grid>
                     </Border>
@@ -151,7 +151,7 @@
                                         </Grid>
                                         <Grid Grid.Column="4">
                                             <Grid>
-                                            <Button x:Name="BtnPartySave" Command="{Binding SaveItemCommand}" Style="{StaticResource userSaveButton}" Height="35" Margin="21,6,29,5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <Button x:Name="BtnPartySave" Command="{Binding AddCommand}" Style="{StaticResource userSaveButton}" Height="35" Margin="21,6,29,5" VerticalAlignment="Center" HorizontalAlignment="Center">
                                                 <StackPanel Orientation="Horizontal">
                                                     <fa:IconImage Icon="PlusCircle" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Opacity="0.9" Width="20" Margin="0,0,5,0"></fa:IconImage>
                                                     <TextBlock Text="Add" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="15"/>
