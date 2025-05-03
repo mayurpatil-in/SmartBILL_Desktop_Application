@@ -34,6 +34,8 @@ namespace SmartBILL.Models
             set => SetProperty(ref _isActive, value);
         }
 
+        public virtual ICollection<PartyChallanItem> PartyChallanItems { get; set; } = new HashSet<PartyChallanItem>();
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)

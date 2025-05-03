@@ -142,12 +142,29 @@
     <Compile Include="Migrations\202505020541289_PartyChallnAdd.Designer.cs">
       <DependentUpon>202505020541289_PartyChallnAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202505031459572_addPartyChallanItems.cs" />
+    <Compile Include="Migrations\202505031459572_addPartyChallanItems.Designer.cs">
+      <DependentUpon>202505031459572_addPartyChallanItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202505031504344_addPartyChallanItemsRelProcessItem.cs" />
+    <Compile Include="Migrations\202505031504344_addPartyChallanItemsRelProcessItem.Designer.cs">
+      <DependentUpon>202505031504344_addPartyChallanItemsRelProcessItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202505031523092_addPartyChallanItemsRelItems.cs" />
+    <Compile Include="Migrations\202505031523092_addPartyChallanItemsRelItems.Designer.cs">
+      <DependentUpon>202505031523092_addPartyChallanItemsRelItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202505031532112_addPartyChallanItemsRelUpdate.cs" />
+    <Compile Include="Migrations\202505031532112_addPartyChallanItemsRelUpdate.Designer.cs">
+      <DependentUpon>202505031532112_addPartyChallanItemsRelUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CustParty.cs" />
     <Compile Include="Models\CustUser.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\PartyChallan.cs" />
+    <Compile Include="Models\PartyChallanItem.cs" />
     <Compile Include="Models\ProcessItem.cs" />
     <Compile Include="Models\UsedProductKey.cs" />
     <Compile Include="Models\User.cs" />
@@ -348,6 +365,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202505020541289_PartyChallnAdd.resx">
       <DependentUpon>202505020541289_PartyChallnAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202505031459572_addPartyChallanItems.resx">
+      <DependentUpon>202505031459572_addPartyChallanItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202505031504344_addPartyChallanItemsRelProcessItem.resx">
+      <DependentUpon>202505031504344_addPartyChallanItemsRelProcessItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202505031523092_addPartyChallanItemsRelItems.resx">
+      <DependentUpon>202505031523092_addPartyChallanItemsRelItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202505031532112_addPartyChallanItemsRelUpdate.resx">
+      <DependentUpon>202505031532112_addPartyChallanItemsRelUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

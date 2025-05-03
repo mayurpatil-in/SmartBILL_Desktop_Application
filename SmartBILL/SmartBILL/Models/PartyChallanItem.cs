@@ -10,35 +10,72 @@ using System.Threading.Tasks;
 
 namespace SmartBILL.Models
 {
-    public class PartyChallan : INotifyPropertyChanged
+    public class PartyChallanItem : INotifyPropertyChanged
     {
-        private int _partychId;
+        private int _partyChallanItemId;
         [Key]
-        public int PartyChId
+        public int PartyChallanItemId
+        {
+            get => _partyChallanItemId;
+            set => SetProperty(ref _partyChallanItemId, value);
+        }
+
+        private int _partychId;
+        [Required]                               // make it non-nullable in the database
+        public int PartychId
         {
             get => _partychId;
             set => SetProperty(ref _partychId, value);
         }
 
-        private int _partychNo;
-        public int PartyChNo
+        // 1b) Add the navigation property:
+        private PartyChallan _partyChallan;
+        [ForeignKey(nameof(PartychId))]
+        public virtual PartyChallan PartyChallans
         {
-            get => _partychNo;
-            set => SetProperty(ref _partychNo, value);
+            get => _partyChallan;
+            set => SetProperty(ref _partyChallan, value);
         }
 
-        private DateTime _partyDate;
-        public DateTime PartyDate
+        private int _quantity;
+        public int Quantity
         {
-            get => _partyDate;
-            set => SetProperty(ref _partyDate, value);
+            get => _quantity;
+            set => SetProperty(ref _quantity, value);
         }
 
-        private int _workDay;
-        public int WorkDay
+        private int _itemId;
+        [Required]                               // make it non-nullable in the database
+        public int ItemId
         {
-            get => _workDay;
-            set => SetProperty(ref _workDay, value);
+            get => _itemId;
+            set => SetProperty(ref _itemId, value);
+        }
+
+        // 1b) Add the navigation property:
+        private Item _item;
+        [ForeignKey(nameof(ItemId))]
+        public virtual Item Items
+        {
+            get => _item;
+            set => SetProperty(ref _item, value);
+        }
+
+        private int _processId;
+        [Required]                               // make it non-nullable in the database
+        public int ProcessId
+        {
+            get => _processId;
+            set => SetProperty(ref _processId, value);
+        }
+
+        // 1b) Add the navigation property:
+        private ProcessItem _processItem;
+        [ForeignKey(nameof(ProcessId))]
+        public virtual ProcessItem ProcessItems
+        {
+            get => _processItem;
+            set => SetProperty(ref _processItem, value);
         }
 
         private int _customerPId;
@@ -75,7 +112,6 @@ namespace SmartBILL.Models
             set => SetProperty(ref _yearAccount, value);
         }
 
-        public virtual ICollection<PartyChallanItem> PartyChallanItems { get; set; } = new HashSet<PartyChallanItem>();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
