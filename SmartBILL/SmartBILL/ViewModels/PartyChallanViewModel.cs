@@ -201,98 +201,170 @@ namespace SmartBILL.ViewModels
         }
         #endregion
 
-        public ICommand AddCommand { get; }
+        #region Add PartyChallanItems And Save Party Challan
+
+        private Item _selectedItem;
+        public Item SelectedItem
+        {
+            get => _selectedItem;
+            set { _selectedItem = value; OnPropertyChanged(); }
+        }
+
+        private ProcessItem _selectedProcessItem;
+        public ProcessItem SelectedProcessItem
+        {
+            get => _selectedProcessItem;
+            set { _selectedProcessItem = value; OnPropertyChanged(); }
+        }
+
+        private int _quantity;
+        public int Quantity
+        {
+            get => _quantity;
+            set { _quantity = value; OnPropertyChanged(); }
+        }
+
+        public ObservableCollection<PartyChallanItem> PartyChallanItems { get; set; } = new ObservableCollection<PartyChallanItem>();
+
+        private void AddItemToChallan()
+        {
+            // Basic validation
+            if (SelectedItem == null)
+            {
+                MessageBox.Show("Please select an item.");
+                return;
+            }
+
+            if (SelectedProcessItem == null)
+            {
+                MessageBox.Show("Please select a process for the item.");
+                return;
+            }
+
+            if (Quantity <= 0)
+            {
+                MessageBox.Show("Quantity must be greater than 0.");
+                return;
+            }
+
+            if (SelectedCustomer == null)
+            {
+                MessageBox.Show("Please select a customer before adding items.");
+                return;
+            }
+
+            // Ensure active financial year exists
+            var activeYear = _db.YearAccounts.FirstOrDefault(y => y.IsActive);
+            if (activeYear == null)
+            {
+                MessageBox.Show("Active financial year not found.");
+                return;
+            }
+
+            // Check for existing item-process combination to avoid duplication
+            var existingItem = PartyChallanItems.FirstOrDefault(i =>
+                i.ItemId == SelectedItem.ItemId &&
+                i.ProcessId == SelectedProcessItem.ProcessId);
+
+            if (existingItem != null)
+            {
+                existingItem.Quantity += Quantity;
+                OnPropertyChanged(nameof(PartyChallanItems)); // Refresh UI
+            }
+            else
+            {
+                var newItem = new PartyChallanItem
+                {
+                    ItemId = SelectedItem.ItemId,
+                    ProcessId = SelectedProcessItem.ProcessId,
+                    Quantity = Quantity,
+                    CustomerPId = SelectedCustomer.CustomerPId,
+                    YearId = activeYear.YearId,
+                    Items = SelectedItem,
+                    ProcessItems = SelectedProcessItem
+                };
+
+                PartyChallanItems.Add(newItem);
+            }
+
+            // Reset form fields
+            SelectedItem = null;
+            SelectedProcessItem = null;
+            Quantity = 0;
+
+            OnPropertyChanged(nameof(SelectedItem));
+            OnPropertyChanged(nameof(SelectedProcessItem));
+            OnPropertyChanged(nameof(Quantity));
+        }
+        private void SaveChallan()
+        {
+            if (SelectedCustomer == null || PartyChallanNumber <= 0)
+            {
+                MessageBox.Show("Customer and valid Challan number are required.");
+                return;
+            }
+
+            var activeYear = _db.YearAccounts.FirstOrDefault(y => y.IsActive);
+            if (activeYear == null)
+            {
+                MessageBox.Show("Active financial year not found.");
+                return;
+            }
+
+            bool exists = _db.PartyChallans.Any(pc =>
+                pc.CustomerPId == SelectedCustomer.CustomerPId &&
+                pc.YearId == activeYear.YearId &&
+                pc.PartyChNo == PartyChallanNumber);
+
+            if (exists)
+            {
+                MessageBox.Show("Challan Number already exists for this customer and year.");
+                return;
+            }
+
+            var newChallan = new PartyChallan
+            {
+                CustomerPId = SelectedCustomer.CustomerPId,
+                YearId = activeYear.YearId,
+                PartyChNo = PartyChallanNumber,
+                WorkDay = WorkingDays,
+                PartyDate = SelectDate,
+                PartyChallanItems = PartyChallanItems.ToList()
+            };
+
+            _db.PartyChallans.Add(newChallan);
+            _db.SaveChanges();
+
+            MessageBox.Show("Challan saved successfully!");
+
+            // Clear form
+            PartyChallanItems.Clear();
+
+            WorkingDays = 0;
+
+            OnPropertyChanged(nameof(PartyChallanItems));
+            OnPropertyChanged(nameof(PartyChallanNumber));
+            OnPropertyChanged(nameof(WorkingDays));
+        }
+        #endregion
+
+        public ICommand AddItemToChallanCommand { get; }
+        public ICommand SaveChallanCommand { get; }
+        public ICommand DeleteCommand { get; }
+
         public PartyChallanViewModel()
         {
             LoadActiveYearDates();
             LoadCustomers();
             LoadProcess();
-            AddCommand = new RelayCommand(_ => AddItem());
+            
+            AddItemToChallanCommand = new RelayCommand(_ => AddItemToChallan());
+            SaveChallanCommand = new RelayCommand(_ => SaveChallan());
+            
         }
-        private void AddItem()
-        {
-            //try
-            //{
-            //    if (SelectedCustomer == null)
-            //    {
-            //        MessageBox.Show("Please select a customer.");
-            //        return;
-            //    }
+        
 
-            //    var activeYear = _db.YearAccounts.FirstOrDefault(y => y.IsActive);
-            //    if (activeYear == null)
-            //    {
-            //        MessageBox.Show("Active financial year not found.");
-            //        return;
-            //    }
-
-            //    var newChallan = new PartyChallan
-            //    {
-            //        CustomerPId = SelectedCustomer.CustomerPId,
-            //        YearId = activeYear.YearId,
-            //        PartyChNo = PartyChallanNumber,
-            //        WorkDay = WorkingDays,
-            //        PartyDate = SelectDate
-            //    };
-
-            //    _db.PartyChallans.Add(newChallan);
-            //    _db.SaveChanges();
-
-            //    MessageBox.Show("Party Challan added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"Error adding Party Challan:\n{ex.Message}", "Add Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
-
-            try
-            {
-                if (SelectedCustomer == null)
-                {
-                    MessageBox.Show("Please select a customer.");
-                    return;
-                }
-
-                var activeYear = _db.YearAccounts.FirstOrDefault(y => y.IsActive);
-                if (activeYear == null)
-                {
-                    MessageBox.Show("Active financial year not found.");
-                    return;
-                }
-
-                // ✅ Check if PartyChallanNumber already exists for selected Customer and Year
-                bool exists = _db.PartyChallans.Any(pc =>
-                    pc.CustomerPId == SelectedCustomer.CustomerPId &&
-                    pc.YearId == activeYear.YearId &&
-                    pc.PartyChNo == PartyChallanNumber
-                );
-
-                if (exists)
-                {
-                    MessageBox.Show("This Party Challan Number already exists for the selected customer and year.", "Duplicate Entry", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return;
-                }
-
-                // ✅ Add new entry
-                var newChallan = new PartyChallan
-                {
-                    CustomerPId = SelectedCustomer.CustomerPId,
-                    YearId = activeYear.YearId,
-                    PartyChNo = PartyChallanNumber,
-                    WorkDay = WorkingDays,
-                    PartyDate = SelectDate
-                };
-
-                _db.PartyChallans.Add(newChallan);
-                _db.SaveChanges();
-
-                MessageBox.Show("Party Challan added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error adding Party Challan:\n{ex.Message}", "Add Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
+        
 
         
     }

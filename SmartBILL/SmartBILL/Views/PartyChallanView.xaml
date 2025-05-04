@@ -124,14 +124,14 @@
                                         <Grid Grid.Column="0">
                                             <Border BorderThickness="0,0,2,0" BorderBrush="WhiteSmoke">
                                                 <Grid>
-                                                    <ComboBox ItemsSource="{Binding Items}" DisplayMemberPath="ItemName" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" Margin="10,0,10,0" Height="40"/>
+                                                    <ComboBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" DisplayMemberPath="ItemName" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" Margin="10,0,10,0" Height="40"/>
                                                 </Grid>
                                             </Border>
                                         </Grid>
                                         <Grid Grid.Column="1">
                                             <Border BorderThickness="0,0,2,0" BorderBrush="WhiteSmoke">
                                                 <Grid>
-                                                    <ComboBox ItemsSource="{Binding ProcessItems}" DisplayMemberPath="ProcessName" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" Margin="10,0,10,0" Height="40"/>
+                                                    <ComboBox ItemsSource="{Binding ProcessItems}" SelectedItem="{Binding SelectedProcessItem}" DisplayMemberPath="ProcessName" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" Margin="10,0,10,0" Height="40"/>
                                                 </Grid>
                                             </Border>
                                         </Grid>
@@ -145,13 +145,13 @@
                                         <Grid Grid.Column="3">
                                             <Border BorderThickness="0,0,2,0" BorderBrush="WhiteSmoke">
                                                 <Grid>
-                                                    <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text="" FontSize="18" VerticalContentAlignment="Center" FontWeight="Bold" Height="40" Width="140" HorizontalContentAlignment="Center"/>
+                                                    <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text="{Binding Quantity}" FontSize="18" VerticalContentAlignment="Center" FontWeight="Bold" Height="40" Width="140" HorizontalContentAlignment="Center"/>
                                                 </Grid>
                                             </Border>
                                         </Grid>
                                         <Grid Grid.Column="4">
                                             <Grid>
-                                            <Button x:Name="BtnPartySave" Command="{Binding AddCommand}" Style="{StaticResource userSaveButton}" Height="35" Margin="21,6,29,5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                <Button x:Name="BtnPartySave" Command="{Binding AddItemToChallanCommand}" Style="{StaticResource userSaveButton}" Height="35" Margin="21,6,29,5" VerticalAlignment="Center" HorizontalAlignment="Center">
                                                 <StackPanel Orientation="Horizontal">
                                                     <fa:IconImage Icon="PlusCircle" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Opacity="0.9" Width="20" Margin="0,0,5,0"></fa:IconImage>
                                                     <TextBlock Text="Add" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="15"/>
@@ -169,7 +169,7 @@
                     <Border BorderThickness="1" BorderBrush="WhiteSmoke">
                         <Grid>
                             <DataGrid x:Name="Userdatagrid" Grid.Column="0"
-                        ItemsSource="{Binding ProcessItems}"
+                        ItemsSource="{Binding PartyChallanItems}"
                         SelectedItem="{Binding SelectedProcess}"
                         CanUserAddRows="False"
                         AutoGenerateColumns="False"
@@ -177,10 +177,10 @@
 IsReadOnly="False" ColumnHeaderStyle="{StaticResource HeaderStyle}" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                                 <DataGrid.Columns>
 
-                                    
-                                    <DataGridTextColumn Header="Item Name" Binding="{Binding ProcessName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="350" CellStyle="{StaticResource EmptyProcessNameCellStyle}" ElementStyle="{StaticResource ProcessNameElementStyle}" EditingElementStyle="{StaticResource EmptyProcessNameEditingStyle}"/>
-                                    <DataGridTextColumn Header="Process Name" Binding="{Binding ProcessName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="200" CellStyle="{StaticResource EmptyProcessNameCellStyle}" ElementStyle="{StaticResource ProcessNameElementStyle}" EditingElementStyle="{StaticResource EmptyProcessNameEditingStyle}"/>
-                                    <DataGridTextColumn Header="Quantity" Binding="{Binding ProcessName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="300" CellStyle="{StaticResource EmptyProcessNameCellStyle}" ElementStyle="{StaticResource ProcessNameElementStyle}" EditingElementStyle="{StaticResource EmptyProcessNameEditingStyle}"/>
+
+                                    <DataGridTextColumn Header="Item Name" Binding="{Binding Items.ItemName}" Width="350" CellStyle="{StaticResource EmptyProcessNameCellStyle}" ElementStyle="{StaticResource ProcessNameElementStyle}" EditingElementStyle="{StaticResource EmptyProcessNameEditingStyle}"/>
+                                    <DataGridTextColumn Header="Process Name" Binding="{Binding ProcessItems.ProcessName}" Width="200" CellStyle="{StaticResource EmptyProcessNameCellStyle}" ElementStyle="{StaticResource ProcessNameElementStyle}" EditingElementStyle="{StaticResource EmptyProcessNameEditingStyle}"/>
+                                    <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="300" CellStyle="{StaticResource EmptyProcessNameCellStyle}" ElementStyle="{StaticResource ProcessNameElementStyle}" EditingElementStyle="{StaticResource EmptyProcessNameEditingStyle}"/>
 
 
 
@@ -208,7 +208,7 @@ IsReadOnly="False" ColumnHeaderStyle="{StaticResource HeaderStyle}" FontSize="14
             <Grid Grid.Row="2">
                 <Border BorderThickness="1" BorderBrush="WhiteSmoke" CornerRadius="0,0,10,10" Background="#362f54">
                     <Grid>
-                        <Button x:Name="BtnPartySav" Command="{Binding SaveItemCommand}" Style="{StaticResource userSaveButton}" Margin="100,5,780,5" Height="NaN">
+                        <Button x:Name="BtnPartySav" Command="{Binding SaveChallanCommand}" Style="{StaticResource userSaveButton}" Margin="100,5,780,5" Height="NaN">
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="Save" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Opacity="0.9" Width="20" Margin="0,0,5,0"></fa:IconImage>
                                 <TextBlock Text="Save" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="15"/>
