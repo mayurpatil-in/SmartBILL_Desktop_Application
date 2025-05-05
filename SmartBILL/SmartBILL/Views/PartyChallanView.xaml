@@ -191,7 +191,7 @@ IsReadOnly="False" ColumnHeaderStyle="{StaticResource HeaderStyle}" FontSize="14
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
                                                 <Button Content="Delete"
-                                    Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                    Command="{Binding DataContext.RemoveSelectedItemCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                     CommandParameter="{Binding}" Style="{StaticResource ModernDeleteButtonStyle}" />
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>

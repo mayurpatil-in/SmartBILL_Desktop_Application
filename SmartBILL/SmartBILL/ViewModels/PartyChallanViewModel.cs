@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows;
 using System.Windows.Input;
 using CrystalDecisions.ReportAppServer;
@@ -348,9 +349,28 @@ namespace SmartBILL.ViewModels
         }
         #endregion
 
+        #region Remove PartyChallanItem
+        private void RemoveSelectedChallanItem(PartyChallanItem selectedItem)
+        {
+            if (selectedItem == null)
+            {
+                MessageBox.Show("Please select an item to delete.");
+                return;
+            }
+
+            var result = MessageBox.Show("Are you sure you want to delete the selected item?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                PartyChallanItems.Remove(selectedItem);
+                OnPropertyChanged(nameof(PartyChallanItems));
+            }
+        }
+
+        #endregion
         public ICommand AddItemToChallanCommand { get; }
         public ICommand SaveChallanCommand { get; }
         public ICommand DeleteCommand { get; }
+        public ICommand RemoveSelectedItemCommand { get; }
 
         public PartyChallanViewModel()
         {
@@ -360,12 +380,14 @@ namespace SmartBILL.ViewModels
             
             AddItemToChallanCommand = new RelayCommand(_ => AddItemToChallan());
             SaveChallanCommand = new RelayCommand(_ => SaveChallan());
-            
+            //DeleteCommand = new RelayCommand(_ => Delete(), _ => SelectedProcess != null);
+            RemoveSelectedItemCommand = new RelayCommand<PartyChallanItem>(RemoveSelectedChallanItem);
         }
-        
 
         
 
-        
+
+
+
     }
 }
