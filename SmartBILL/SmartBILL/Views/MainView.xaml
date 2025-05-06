@@ -31,6 +31,9 @@
         <DataTemplate DataType="{x:Type viewModel:PartyChallanViewModel}">
             <local:PartyChallanView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:PartyChallanSearchViewModel}">
+            <local:PartyChallanSearchView/>
+        </DataTemplate>
 
     </Window.Resources>
 
@@ -155,7 +158,7 @@
                                 </StackPanel>
                             </RadioButton>
 
-                            <RadioButton Style="{StaticResource menuButton}" Tag="{StaticResource color4}">
+                            <RadioButton Style="{StaticResource menuButton}" Tag="{StaticResource color4}" Command="{Binding ShowPartyChallanSearchViewCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <fa:IconImage Icon="SearchPlus" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Search Party Challan" Style="{StaticResource menuButtonText}"/>

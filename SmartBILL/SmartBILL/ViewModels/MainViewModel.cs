@@ -121,6 +121,7 @@ namespace SmartBILL.ViewModels
         public ICommand ShowCustomerPartyViewCommand { get; }
         public ICommand ShowItemViewCommand { get; }
         public ICommand ShowPartyChallanViewCommand { get; }
+        public ICommand ShowPartyChallanSearchViewCommand { get; }
 
         private void ExecuteShowCustomerViewCommand(object obj)
         {
@@ -157,6 +158,13 @@ namespace SmartBILL.ViewModels
             Icon = IconChar.Industry;
             
         }
+        private void ExecuteShowPartyChallanSearchViewCommand(object obj)
+        {
+            CurrentChildView = new PartyChallanSearchViewModel();
+            Caption = "Party Challan";
+            Icon = IconChar.Industry;
+
+        }
         #endregion
 
         public MainViewModel(string username)
@@ -181,6 +189,7 @@ namespace SmartBILL.ViewModels
             ShowCustomerPartyViewCommand = new RelayCommand(ExecuteShowCustomerPartyViewCommand);
             ShowItemViewCommand = new RelayCommand(ExecuteShowItemViewCommand);
             ShowPartyChallanViewCommand = new RelayCommand(ExecuteShowPartyChallanViewCommand);
+            ShowPartyChallanSearchViewCommand = new RelayCommand(ExecuteShowPartyChallanSearchViewCommand);
             //Default view
             ExecuteShowHomeViewCommand(null);
         }

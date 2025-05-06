@@ -190,6 +190,7 @@
     <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\PartyChallanSearchViewModel.cs" />
     <Compile Include="ViewModels\PartyChallanViewModel.cs" />
     <Compile Include="ViewModels\ProcessViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
@@ -211,6 +212,9 @@
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PartyChallanSearchView.xaml.cs">
+      <DependentUpon>PartyChallanSearchView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PartyChallanView.xaml.cs">
       <DependentUpon>PartyChallanView.xaml</DependentUpon>
@@ -293,6 +297,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PartyChallanSearchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
