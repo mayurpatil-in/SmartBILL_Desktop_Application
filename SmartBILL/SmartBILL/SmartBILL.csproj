@@ -190,6 +190,7 @@
     <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\PartyChallanGroupViewModel.cs" />
     <Compile Include="ViewModels\PartyChallanSearchViewModel.cs" />
     <Compile Include="ViewModels\PartyChallanViewModel.cs" />
     <Compile Include="ViewModels\ProcessViewModel.cs" />

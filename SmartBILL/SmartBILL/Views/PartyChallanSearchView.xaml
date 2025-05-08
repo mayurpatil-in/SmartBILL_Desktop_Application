@@ -142,7 +142,7 @@
                 </Border>
             </Grid>
             <Grid Grid.Row="2">
-                <DataGrid x:Name="PartySearchdatagrid" Grid.Column="0"
+                <!--<DataGrid x:Name="PartySearchdatagrid" Grid.Column="0"
                         ItemsSource="{Binding PartyChallanItems}"
                         SelectedItem="{Binding SelectedProcess}"
                         CanUserAddRows="False"
@@ -151,9 +151,9 @@
 IsReadOnly="False" ColumnHeaderStyle="{StaticResource HeaderStyle}" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                     <DataGrid.Columns>
 
-                        <DataGridTextColumn Header="Challan No." Binding="{Binding Items.ItemName}" Width="90" CellStyle="{StaticResource EmptyProcessNameCellStyle}" ElementStyle="{StaticResource ProcessNameElementStyle}" EditingElementStyle="{StaticResource EmptyProcessNameEditingStyle}"/>
-                        <DataGridTextColumn Header="Date" Binding="{Binding StartDate, StringFormat={}{0:dd/MM/yyyy}}" Width="90" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Party Name" Binding="{Binding Items.ItemName}" Width="240" CellStyle="{StaticResource EmptyProcessNameCellStyle}" ElementStyle="{StaticResource ProcessNameElementStyle}" EditingElementStyle="{StaticResource EmptyProcessNameEditingStyle}"/>
+                        <DataGridTextColumn Header="Challan No." Binding="{Binding PartyChallans.PartyChNo}" Width="90" CellStyle="{StaticResource EmptyProcessNameCellStyle}" ElementStyle="{StaticResource ProcessNameElementStyle}" EditingElementStyle="{StaticResource EmptyProcessNameEditingStyle}"/>
+                        <DataGridTextColumn Header="Date" Binding="{Binding PartyChallans.PartyDate, StringFormat={}{0:dd/MM/yyyy}}" Width="90" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Party Name" Binding="{Binding CustomerParty.CompanyP}" Width="240" CellStyle="{StaticResource EmptyProcessNameCellStyle}" ElementStyle="{StaticResource ProcessNameElementStyle}" EditingElementStyle="{StaticResource EmptyProcessNameEditingStyle}"/>
                         <DataGridTextColumn Header="Item Name" Binding="{Binding Items.ItemName}" Width="280" CellStyle="{StaticResource EmptyProcessNameCellStyle}" ElementStyle="{StaticResource ProcessNameElementStyle}" EditingElementStyle="{StaticResource EmptyProcessNameEditingStyle}"/>
                         <DataGridTextColumn Header="Process Name" Binding="{Binding ProcessItems.ProcessName}" Width="110" CellStyle="{StaticResource EmptyProcessNameCellStyle}" ElementStyle="{StaticResource ProcessNameElementStyle}" EditingElementStyle="{StaticResource EmptyProcessNameEditingStyle}"/>
                         <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="90" CellStyle="{StaticResource EmptyProcessNameCellStyle}" ElementStyle="{StaticResource ProcessNameElementStyle}" EditingElementStyle="{StaticResource EmptyProcessNameEditingStyle}"/>
@@ -184,7 +184,80 @@ IsReadOnly="False" ColumnHeaderStyle="{StaticResource HeaderStyle}" FontSize="14
                     </DataGrid.Columns>
 
 
+                </DataGrid>-->
+                <DataGrid x:Name="PartySearchdatagrid"
+          ItemsSource="{Binding GroupedChallans}"
+          AutoGenerateColumns="False"
+          HeadersVisibility="Column"
+          CanUserAddRows="False"
+          IsReadOnly="True"
+          AlternatingRowBackground="#F0F8FF"
+          GridLinesVisibility="All"
+          FontSize="14"
+          RowHeaderWidth="0"
+          BorderBrush="#DDD"
+          BorderThickness="1"
+          ColumnHeaderStyle="{StaticResource HeaderStyle}"
+          Margin="10"
+          RowBackground="WhiteSmoke">
+
+                    <DataGrid.Columns>
+                        <!-- Challan No -->
+                        <DataGridTextColumn Header="Challan No." Binding="{Binding PartyChallanNo}" Width="120"/>
+
+                        <!-- Date -->
+                        <DataGridTextColumn Header="Date" Binding="{Binding PartyDate, StringFormat={}{0:dd/MM/yyyy}}" Width="120"/>
+
+                        <!-- Party Name -->
+                        <DataGridTextColumn Header="Party Name" Binding="{Binding PartyName}" Width="200"/>
+
+                        <!-- Items Column (Directly Showing Subtable with Header Row) -->
+                        <DataGridTemplateColumn Header="Items">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <!-- Subtable Header Row -->
+                                        <DockPanel Margin="0,0,0,5" Background="#EEE" LastChildFill="False">
+                                            <TextBlock Text="Item Name" Width="180" FontWeight="Bold" Foreground="#222"/>
+                                            <TextBlock Text="Process" Width="150" Margin="10,0,0,0" FontWeight="Bold" Foreground="#222"/>
+                                            <TextBlock Text="Quantity" Width="80" Margin="10,0,0,0" FontWeight="Bold" Foreground="#222"/>
+                                        </DockPanel>
+
+                                        <!-- Subtable Items List -->
+                                        <ItemsControl ItemsSource="{Binding PartyChallanItems}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <DockPanel Margin="0,3" LastChildFill="False">
+                                                        <TextBlock Text="{Binding Items.ItemName}" Width="180" Foreground="#333"/>
+                                                        <TextBlock Text="{Binding ProcessItems.ProcessName}" Width="150" Margin="10,0,0,0" Foreground="#444"/>
+                                                        <TextBlock Text="{Binding Quantity}" Width="80" Margin="10,0,0,0" Foreground="#555"/>
+                                                    </DockPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+
+                    <!-- Optional: Customize the grid line style -->
+                    <DataGrid.Resources>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="BorderBrush" Value="#B0C4DE"/>
+                            <!-- Light blue grid lines -->
+                            <Setter Property="BorderThickness" Value="0.5"/>
+                        </Style>
+                    </DataGrid.Resources>
                 </DataGrid>
+
+
+
+
+
+
+
+
             </Grid>
         </Grid>
     </Border>

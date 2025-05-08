@@ -17,6 +17,7 @@ namespace SmartBILL.ViewModels
     {
         private readonly AppDbContext _db = new AppDbContext();
 
+
         #region DatePicker Load Date
         private DateTime? _startDate;
         private DateTime? _endDate;
