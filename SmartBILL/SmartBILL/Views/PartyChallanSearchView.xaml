@@ -191,45 +191,46 @@ IsReadOnly="False" ColumnHeaderStyle="{StaticResource HeaderStyle}" FontSize="14
           HeadersVisibility="Column"
           CanUserAddRows="False"
           IsReadOnly="True"
-          AlternatingRowBackground="#F0F8FF"
+          AlternatingRowBackground="#FFA2F7D4"
           GridLinesVisibility="All"
           FontSize="14"
           RowHeaderWidth="0"
           BorderBrush="#DDD"
           BorderThickness="1"
           ColumnHeaderStyle="{StaticResource HeaderStyle}"
-          Margin="10"
-          RowBackground="WhiteSmoke">
+          RowBackground="WhiteSmoke"
+                          >
 
                     <DataGrid.Columns>
                         <!-- Challan No -->
-                        <DataGridTextColumn Header="Challan No." Binding="{Binding PartyChallanNo}" Width="120"/>
+                        <DataGridTextColumn Header="Challan No." Binding="{Binding PartyChallanNo}" Width="90" ElementStyle="{StaticResource ProcessNameElementStyle}" FontWeight="Bold" FontSize="14"/>
 
                         <!-- Date -->
-                        <DataGridTextColumn Header="Date" Binding="{Binding PartyDate, StringFormat={}{0:dd/MM/yyyy}}" Width="120"/>
+                        <DataGridTextColumn Header="Date" Binding="{Binding PartyDate, StringFormat={}{0:dd/MM/yyyy}}" Width="90" ElementStyle="{StaticResource ProcessNameElementStyle}"/>
 
                         <!-- Party Name -->
-                        <DataGridTextColumn Header="Party Name" Binding="{Binding PartyName}" Width="200"/>
+                        <DataGridTextColumn Header="Party Name" Binding="{Binding PartyName}" Width="240" ElementStyle="{StaticResource ProcessNameElementStyle}"/>
 
                         <!-- Items Column (Directly Showing Subtable with Header Row) -->
-                        <DataGridTemplateColumn Header="Items">
+                        <DataGridTemplateColumn Header="Items" Width="420">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel>
                                         <!-- Subtable Header Row -->
-                                        <DockPanel Margin="0,0,0,5" Background="#EEE" LastChildFill="False">
-                                            <TextBlock Text="Item Name" Width="180" FontWeight="Bold" Foreground="#222"/>
-                                            <TextBlock Text="Process" Width="150" Margin="10,0,0,0" FontWeight="Bold" Foreground="#222"/>
+                                        
+                                        <DockPanel Margin="0,0,0,5" Background="CadetBlue" LastChildFill="False">
+                                            <TextBlock Text="Item Name" Width="240" FontWeight="Bold" Foreground="#222"/>
+                                            <TextBlock Text="Process" Width="100" Margin="10,0,0,0" FontWeight="Bold" Foreground="#222"/>
                                             <TextBlock Text="Quantity" Width="80" Margin="10,0,0,0" FontWeight="Bold" Foreground="#222"/>
                                         </DockPanel>
-
+                                            
                                         <!-- Subtable Items List -->
                                         <ItemsControl ItemsSource="{Binding PartyChallanItems}">
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate>
                                                     <DockPanel Margin="0,3" LastChildFill="False">
-                                                        <TextBlock Text="{Binding Items.ItemName}" Width="180" Foreground="#333"/>
-                                                        <TextBlock Text="{Binding ProcessItems.ProcessName}" Width="150" Margin="10,0,0,0" Foreground="#444"/>
+                                                        <TextBlock Text="{Binding Items.ItemName}" Width="240" Foreground="#333"/>
+                                                        <TextBlock Text="{Binding ProcessItems.ProcessName}" Width="100" Margin="10,0,0,0" Foreground="#444"/>
                                                         <TextBlock Text="{Binding Quantity}" Width="80" Margin="10,0,0,0" Foreground="#555"/>
                                                     </DockPanel>
                                                 </DataTemplate>
@@ -239,16 +240,30 @@ IsReadOnly="False" ColumnHeaderStyle="{StaticResource HeaderStyle}" FontSize="14
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                    </DataGrid.Columns>
+                        <DataGridTemplateColumn Header="View" Width="77">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="View" Background="Green"
+            Command="{Binding DataContext.RemoveSelectedItemCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+            CommandParameter="{Binding}" Style="{StaticResource ModernDeleteButtonStyle}" Width="60" Height="30" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
 
-                    <!-- Optional: Customize the grid line style -->
-                    <DataGrid.Resources>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="BorderBrush" Value="#B0C4DE"/>
-                            <!-- Light blue grid lines -->
-                            <Setter Property="BorderThickness" Value="0.5"/>
-                        </Style>
-                    </DataGrid.Resources>
+                        <DataGridTemplateColumn Header="Delete" Width="77">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Delete"
+Command="{Binding DataContext.DeleteChallanItemCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+CommandParameter="{Binding}" Style="{StaticResource ModernDeleteButtonStyle}" Width="60" Height="30" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                    
+                    
+
+                    
                 </DataGrid>
 
 

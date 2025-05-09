@@ -179,4 +179,13 @@
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="Padding"             Value="4,2"/>
     </Style>
+
+    <Style TargetType="DataGridCell">
+        <Setter Property="BorderBrush" Value="#B0C4DE"/>
+        <!-- Light blue grid lines -->
+        <Setter Property="BorderThickness" Value="0.5"/>
+    </Style>
+
+    
+
 </ResourceDictionary>
