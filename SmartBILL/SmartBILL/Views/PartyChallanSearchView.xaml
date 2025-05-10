@@ -105,8 +105,8 @@
                                     <Grid Grid.Column="0">
                                         <Border BorderThickness="0,0,2,0" BorderBrush="WhiteSmoke">
                                             <Grid>
-                                                <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text="{Binding Quantity}" FontSize="18" VerticalContentAlignment="Center" FontWeight="Bold" Height="40" HorizontalContentAlignment="Center" Margin="10,4,56,3"/>
-                                                <Button Style="{StaticResource ClearIconButton}" Command="{Binding ClearFormCommand}" ToolTip="Search Challan No." HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">
+                                                <TextBox TextWrapping="Wrap" Style="{StaticResource RoundedTextBox}" Text="{Binding SearchChallanNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="18" VerticalContentAlignment="Center" FontWeight="Bold" Height="40" HorizontalContentAlignment="Center" Margin="10,4,56,3"/>
+                                                <Button Style="{StaticResource ClearIconButton}" Command="{Binding SearchChallanCommand}" ToolTip="Search Challan No." HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">
                                                     <fa:IconImage Icon="SearchPlus" Width="35" Height="35" Opacity="0.9" Foreground="GreenYellow"/>
                                                 </Button>
                                             </Grid>
@@ -115,23 +115,23 @@
                                     <Grid Grid.Column="1">
                                         <Border BorderThickness="0,0,2,0" BorderBrush="WhiteSmoke">
                                             <Grid>
-                                                <ComboBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" DisplayMemberPath="ItemName" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" Margin="10,0,10,0" Height="40"/>
+                                                <ComboBox ItemsSource="{Binding Customers}" DisplayMemberPath="CompanyP" SelectedValuePath="CustomerPId" SelectedValue="{Binding SelectedPartyId, Mode=TwoWay}" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" Margin="10,0,10,0" Height="40"/>
                                             </Grid>
                                         </Border>
                                     </Grid>
                                     <Grid Grid.Column="2">
                                         <Border BorderThickness="0,0,2,0" BorderBrush="WhiteSmoke">
                                             <Grid>
-                                                <ComboBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" DisplayMemberPath="ItemName" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" Margin="10,0,10,0" Height="40"/>
+                                                <ComboBox ItemsSource="{Binding Items}" DisplayMemberPath="ItemName" SelectedValuePath="ItemId" SelectedItem="{Binding SelectedItemName}" SelectedValue="{Binding SelectedItemId, Mode=TwoWay}" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" Margin="10,0,10,0" Height="40"/>
                                             </Grid>
                                         </Border>
                                     </Grid>
                                     <Grid Grid.Column="3">
                                         <Border BorderThickness="0,0,2,0" BorderBrush="WhiteSmoke">
                                             <Grid>
-                                                <DatePicker DisplayDateStart="{Binding StartDate}" SelectedDate="{Binding SelectDate, UpdateSourceTrigger=PropertyChanged}" DisplayDateEnd="{Binding EndDate}" FontSize="16" Margin="10,6,162,6"/>
+                                                <DatePicker DisplayDateStart="{Binding StartDate}" SelectedDate="{Binding StartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayDateEnd="{Binding EndDate}" FontSize="16" Margin="10,6,162,6"/>
                                                 <TextBlock TextWrapping="Wrap" Text="To" FontSize="20" Foreground="WhiteSmoke" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
-                                                <DatePicker DisplayDateStart="{Binding StartDate}" SelectedDate="{Binding SelectDate, UpdateSourceTrigger=PropertyChanged}" DisplayDateEnd="{Binding EndDate}" FontSize="16" Margin="164,6,8,6"/>
+                                                <DatePicker DisplayDateStart="{Binding StartDate}" SelectedDate="{Binding EndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayDateEnd="{Binding EndDate}" FontSize="16" Margin="164,6,8,6"/>
                                             </Grid>
                                         </Border>
                                     </Grid>
@@ -244,7 +244,7 @@ IsReadOnly="False" ColumnHeaderStyle="{StaticResource HeaderStyle}" FontSize="14
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Content="View" Background="Green"
-            Command="{Binding DataContext.RemoveSelectedItemCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+            Command="{Binding DataContext.LoadChallanCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
             CommandParameter="{Binding}" Style="{StaticResource ModernDeleteButtonStyle}" Width="60" Height="30" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

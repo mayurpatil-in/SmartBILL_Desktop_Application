@@ -27,6 +27,8 @@ namespace SmartBILL.Views
             InitializeComponent();
             if (!DesignerProperties.GetIsInDesignMode(this))
                 DataContext = new PartyChallanSearchViewModel();
+
+
         }
     }
 }
