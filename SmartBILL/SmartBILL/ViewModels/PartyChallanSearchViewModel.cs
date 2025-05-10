@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -113,7 +114,35 @@ namespace SmartBILL.ViewModels
 
         // This will be your DataGrid's ItemsSource
         public ObservableCollection<PartyChallanGroupViewModel> GroupedChallans { get; set; }
-        
+
+        private void LoadGroupedChallans()
+        {
+            try
+            {
+                var challanGroups = _db.PartyChallans
+                    .Include(c => c.CustomerParty)
+                    .Include(c => c.PartyChallanItems)
+                    .Include(c => c.YearAccounts) // Include YearAccounts
+                    .Where(c => c.YearAccounts.IsActive) // Filter active years
+                    .ToList()
+                    .Select(ch => new PartyChallanGroupViewModel
+                    {
+                        PartyChId = ch.PartyChId,
+                        PartyChallanNo = ch.PartyChNo.ToString(),
+                        PartyDate = ch.PartyDate,
+                        PartyName = ch.CustomerParty?.CompanyP ?? "N/A",
+                        PartyChallanItems = new ObservableCollection<PartyChallanItem>(ch.PartyChallanItems)
+                    });
+
+                GroupedChallans = new ObservableCollection<PartyChallanGroupViewModel>(challanGroups);
+                OnPropertyChanged(nameof(GroupedChallans));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to load Challans: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
         #region Search PartyChallan number
         private string _searchChallanNo;
         public string SearchChallanNo
@@ -216,39 +245,37 @@ namespace SmartBILL.ViewModels
         #endregion
 
         #region Search Date Range (Start Date and End Date)
-        
+
         // Hides inherited StartDate property from DateRangeViewModel
-        private DateTime? _startDate;
-        public new DateTime? StartDate
+        private DateTime? _selectstartDate;
+        public DateTime? SelectStartDate
         {
-            get => _startDate;
+            get => _selectstartDate;
             set
             {
-                if (_startDate != value)
+                if (_selectstartDate != value)
                 {
-                    _startDate = value;
-                    OnPropertyChanged(nameof(StartDate));
-                    SearchChallan(null); // Trigger search on date change
+                    _selectstartDate = value;
+                    OnPropertyChanged(nameof(SelectStartDate));
+                    SearchChallan(null);
                 }
             }
         }
 
-        // Hides inherited EndDate property from DateRangeViewModel
-        private DateTime? _endDate;
-        public new DateTime? EndDate
+        private DateTime? _selectendDate;
+        public DateTime? SelectEndDate
         {
-            get => _endDate;
+            get => _selectendDate;
             set
             {
-                if (_endDate != value)
+                if (_selectendDate != value)
                 {
-                    _endDate = value;
-                    OnPropertyChanged(nameof(EndDate));
-                    SearchChallan(null); // Trigger search on date change
+                    _selectendDate = value;
+                    OnPropertyChanged(nameof(SelectEndDate));
+                    SearchChallan(null);
                 }
             }
         }
-
         #endregion
 
         #region navigate
@@ -257,69 +284,59 @@ namespace SmartBILL.ViewModels
 
         public ICommand DeleteChallanItemCommand { get; set; }
         public ICommand SearchChallanCommand { get; set; }
-        
+        public ICommand ResetCommand { get; set; }
+
         public PartyChallanSearchViewModel()
-        {
-            LoadData();
+        {            
             LoadPartyNames();
             LoadCustomers();
+            LoadGroupedChallans();
             DeleteChallanItemCommand = new RelayCommand(DeleteGroupedChallan);
+            ResetCommand = new RelayCommand(ResetFilters);
         }
-
-        private void LoadData()
-        {
-            // Fetching PartyChallanItems with related entities and filtering YearAccounts.IsActive == true
-            var items = _db.PartyChallanItems
-                           .Include("PartyChallans")
-                           .Include("Items")
-                           .Include("ProcessItems")
-                           .Include("CustomerParty")
-                           .Include("YearAccounts")
-                           .Where(i => i.YearAccounts.IsActive) // Filter only active YearAccounts
-                           .OrderByDescending(i => i.PartyChallans.PartyDate) // Sort by PartyDate descending
-                           .ToList();
-
-            // Grouping by PartyChNo and creating the ViewModel
-            var groupedData = items
-                              .GroupBy(i => i.PartyChallans.PartyChNo)
-                              .Select(g => new PartyChallanGroupViewModel
-                              {
-                                  PartyChallanNo = g.Key.ToString(),
-                                  PartyDate = g.First().PartyChallans.PartyDate,
-                                  PartyName = g.First().PartyChallans.CustomerParty.CompanyP,
-                                  PartyChallanItems = new ObservableCollection<PartyChallanItem>(g)
-                              })
-                              .OrderByDescending(g => g.PartyDate) // Ensure groups are also in descending order
-                              .ToList();
-
-            GroupedChallans = new ObservableCollection<PartyChallanGroupViewModel>(groupedData);
-            OnPropertyChanged(nameof(GroupedChallans));
-        }
-
         private void DeleteGroupedChallan(object parameter)
         {
             if (parameter is PartyChallanGroupViewModel groupToDelete)
             {
-                // Confirm (optional)
-                var result = System.Windows.MessageBox.Show($"Are you sure you want to delete Challan {groupToDelete.PartyChallanNo}?",
-                                                            "Confirm Delete",
-                                                            System.Windows.MessageBoxButton.YesNo,
-                                                            System.Windows.MessageBoxImage.Warning);
-                if (result != System.Windows.MessageBoxResult.Yes)
+                var result = MessageBox.Show($"Are you sure you want to delete Challan {groupToDelete.PartyChallanNo}?",
+                                             "Confirm Delete",
+                                             MessageBoxButton.YesNo,
+                                             MessageBoxImage.Warning);
+
+                if (result != MessageBoxResult.Yes)
                     return;
 
-                // Delete all associated PartyChallanItems from DB
-                foreach (var item in groupToDelete.PartyChallanItems)
+                var challanToDelete = _db.PartyChallans
+                                         .Include(c => c.PartyChallanItems)
+                                         .FirstOrDefault(c => c.PartyChId == groupToDelete.PartyChId);
+
+                if (challanToDelete != null)
                 {
-                    _db.PartyChallanItems.Remove(item);
+                    foreach (var item in challanToDelete.PartyChallanItems.ToList())
+                    {
+                        _db.PartyChallanItems.Remove(item);
+                    }
+
+                    _db.PartyChallans.Remove(challanToDelete);
+
+                    try
+                    {
+                        _db.SaveChanges();
+                        GroupedChallans.Remove(groupToDelete); // update UI
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error deleting: {ex.Message}");
+                    }
                 }
-
-                _db.SaveChanges();
-
-                // Remove group from UI
-                GroupedChallans.Remove(groupToDelete);
             }
         }
+
+
+
+
+
+        
 
         private void SearchChallan(object obj)
         {
@@ -328,8 +345,8 @@ namespace SmartBILL.ViewModels
                 var searchTerm = SearchChallanNo?.Trim();
                 int? partyId = SelectedPartyId;
                 int? itemId = SelectedItemId;
-                DateTime? startDate = StartDate;
-                DateTime? endDate = EndDate;
+                DateTime? startDate = SelectStartDate;
+                DateTime? endDate = SelectEndDate;
 
                 var query = _db.PartyChallanItems
                                .Include("PartyChallans")
@@ -376,17 +393,23 @@ namespace SmartBILL.ViewModels
                     return;
                 }
 
+                // ✅ Corrected: Include PartyChId to support Delete functionality
                 var groupedData = filteredItems
-                                  .GroupBy(i => i.PartyChallans.PartyChNo)
-                                  .Select(g => new PartyChallanGroupViewModel
-                                  {
-                                      PartyChallanNo = g.Key.ToString(),
-                                      PartyDate = g.First().PartyChallans.PartyDate,
-                                      PartyName = g.First().PartyChallans.CustomerParty.CompanyP,
-                                      PartyChallanItems = new ObservableCollection<PartyChallanItem>(g)
-                                  })
-                                  .OrderByDescending(g => g.PartyDate)
-                                  .ToList();
+                    .GroupBy(i => i.PartyChallans.PartyChNo)
+                    .Select(g =>
+                    {
+                        var firstItem = g.First();
+                        return new PartyChallanGroupViewModel
+                        {
+                            PartyChId = firstItem.PartyChallans.PartyChId,               // ✅ Needed for delete
+                            PartyChallanNo = firstItem.PartyChallans.PartyChNo.ToString(),
+                            PartyDate = firstItem.PartyChallans.PartyDate,
+                            PartyName = firstItem.PartyChallans.CustomerParty.CompanyP,
+                            PartyChallanItems = new ObservableCollection<PartyChallanItem>(g)
+                        };
+                    })
+                    .OrderByDescending(g => g.PartyDate)
+                    .ToList();
 
                 GroupedChallans = new ObservableCollection<PartyChallanGroupViewModel>(groupedData);
                 OnPropertyChanged(nameof(GroupedChallans));
@@ -396,5 +419,21 @@ namespace SmartBILL.ViewModels
                 MessageBox.Show($"Error searching Challans: {ex.Message}", "Search Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+
+        private void ResetFilters(object obj)
+        {
+            SelectedPartyId = null;
+            SelectedItemId = null;
+            SelectedItemName = null;
+            SelectedCustomer = null;
+            SearchChallanNo = string.Empty;
+            SelectStartDate = null;
+            SelectEndDate = null;
+
+            LoadItemsForSelectedParty(); // Optional, to clear the item list
+            SearchChallan(null);         // Refresh the data grid
+        }
+
     }
 }

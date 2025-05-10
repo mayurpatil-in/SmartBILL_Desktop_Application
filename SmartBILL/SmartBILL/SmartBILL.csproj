@@ -186,6 +186,7 @@
     </Compile>
     <Compile Include="ViewModels\CustomerPartyViewModel.cs" />
     <Compile Include="ViewModels\CustomerUserViewModel.cs" />
+    <Compile Include="ViewModels\DateRangeViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />

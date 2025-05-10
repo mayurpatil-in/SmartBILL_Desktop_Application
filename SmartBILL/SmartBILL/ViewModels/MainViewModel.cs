@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using FontAwesome.Sharp;
 using SmartBILL.Commands;
+using SmartBILL.Models;
 using SmartBILL.Views;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 

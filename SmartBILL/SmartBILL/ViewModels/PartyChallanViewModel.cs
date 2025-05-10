@@ -385,7 +385,43 @@ namespace SmartBILL.ViewModels
             RemoveSelectedItemCommand = new RelayCommand<PartyChallanItem>(RemoveSelectedChallanItem);
         }
 
-        
+        public void LoadChallanData(PartyChallan challan)
+        {
+            if (challan == null)
+            {
+                MessageBox.Show("Invalid Challan data.");
+                return;
+            }
+
+            // Load related data
+            SelectedCustomer = Customers.FirstOrDefault(c => c.CustomerPId == challan.CustomerPId);
+            PartyChallanNumber = challan.PartyChNo;
+            SelectDate = challan.PartyDate;
+            WorkingDays = challan.WorkDay;
+
+            PartyChallanItems.Clear();
+
+            foreach (var item in challan.PartyChallanItems)
+            {
+                var fullItem = _db.Items.FirstOrDefault(i => i.ItemId == item.ItemId);
+                var fullProcess = _db.ProcessItems.FirstOrDefault(p => p.ProcessId == item.ProcessId);
+
+                PartyChallanItems.Add(new PartyChallanItem
+                {
+                    ItemId = item.ItemId,
+                    ProcessId = item.ProcessId,
+                    Quantity = item.Quantity,
+                    Items = fullItem,
+                    ProcessItems = fullProcess,
+                    CustomerPId = challan.CustomerPId,
+                    YearId = challan.YearId
+                });
+            }
+
+            OnPropertyChanged(nameof(PartyChallanItems));
+        }
+
+
 
 
 

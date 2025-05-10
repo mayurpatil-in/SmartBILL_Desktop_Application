@@ -10,6 +10,7 @@ namespace SmartBILL.ViewModels
 {
     public class PartyChallanGroupViewModel
     {
+        public int PartyChId { get; set; }
         public string PartyChallanNo { get; set; }
         public DateTime PartyDate { get; set; }
         public string PartyName { get; set; }
