@@ -26,7 +26,30 @@ namespace SmartBILL.Views
         {
             InitializeComponent();
             if (!DesignerProperties.GetIsInDesignMode(this))
-                DataContext = new PartyChallanSearchViewModel();
+            {
+                // Get the MainViewModel from the Window
+                Window mainWindow = Window.GetWindow(this); // Change this line
+                if (mainWindow != null)
+                {
+                    if (mainWindow is MainWindow smartBillMainWindow)
+                    {
+                        DataContext = new PartyChallanSearchViewModel((SmartBILL.ViewModels.MainViewModel)smartBillMainWindow.DataContext);
+                    }
+                    else
+                    {
+                        // Handle the case where the window is not of type MainWindow
+                        // Perhaps log an error or set a default DataContext
+                        DataContext = null; // Or some other default/error value
+                    }
+                }
+                else
+                {
+                    // Handle the case where MainWindow is null (e.g., for design mode)
+                    DataContext = new PartyChallanSearchViewModel(null); // Or some other default/null value
+                }
+            }
+
+
 
 
         }

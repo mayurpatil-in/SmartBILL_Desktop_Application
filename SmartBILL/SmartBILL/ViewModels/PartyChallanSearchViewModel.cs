@@ -7,8 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using FontAwesome.Sharp;
 using SmartBILL.Commands;
 using SmartBILL.Models;
+using System.Diagnostics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace SmartBILL.ViewModels
 {
@@ -285,14 +288,29 @@ namespace SmartBILL.ViewModels
         public ICommand DeleteChallanItemCommand { get; set; }
         public ICommand SearchChallanCommand { get; set; }
         public ICommand ResetCommand { get; set; }
-
-        public PartyChallanSearchViewModel()
-        {            
+        public ICommand ViewChallanCommand { get; set; } // Add this command
+        private MainViewModel _mainVM;
+        
+        
+        public PartyChallanSearchViewModel(MainViewModel mainVM)
+        {
+            _mainVM = mainVM;
             LoadPartyNames();
             LoadCustomers();
             LoadGroupedChallans();
             DeleteChallanItemCommand = new RelayCommand(DeleteGroupedChallan);
             ResetCommand = new RelayCommand(ResetFilters);
+            //ViewChallanCommand = new RelayCommand(_ => _mainVM.ShowPartyChallanViewCommand.Execute(null));
+            ViewChallanCommand = new RelayCommand(ViewChallan);
+        }
+        
+        private void ViewChallan(object obj)
+        {
+            // Optionally, pass data related to the selected row (challan) from DataGrid here
+            _mainVM.CurrentChildView = new PartyChallanViewModel();
+            _mainVM.Caption = "Party Challan";
+            _mainVM.Icon = IconChar.Industry;
+
         }
         private void DeleteGroupedChallan(object parameter)
         {
@@ -434,6 +452,7 @@ namespace SmartBILL.ViewModels
             LoadItemsForSelectedParty(); // Optional, to clear the item list
             SearchChallan(null);         // Refresh the data grid
         }
+
 
     }
 }

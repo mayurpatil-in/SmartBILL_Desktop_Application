@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -161,7 +162,7 @@ namespace SmartBILL.ViewModels
         }
         private void ExecuteShowPartyChallanSearchViewCommand(object obj)
         {
-            CurrentChildView = new PartyChallanSearchViewModel();
+            CurrentChildView = new PartyChallanSearchViewModel(this);
             Caption = "Party Challan";
             Icon = IconChar.Industry;
 

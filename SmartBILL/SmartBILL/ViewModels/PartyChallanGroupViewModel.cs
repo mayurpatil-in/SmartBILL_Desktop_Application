@@ -21,5 +21,6 @@ namespace SmartBILL.ViewModels
         {
             PartyChallanItems = new ObservableCollection<PartyChallanItem>();
         }
+        
     }
 }

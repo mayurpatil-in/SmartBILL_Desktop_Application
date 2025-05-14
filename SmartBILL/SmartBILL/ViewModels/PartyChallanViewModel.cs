@@ -372,9 +372,11 @@ namespace SmartBILL.ViewModels
         public ICommand SaveChallanCommand { get; }
         public ICommand DeleteCommand { get; }
         public ICommand RemoveSelectedItemCommand { get; }
-
+        private PartyChallan _challan; // This will hold the selected data
+        
         public PartyChallanViewModel()
         {
+            
             LoadActiveYearDates();
             LoadCustomers();
             LoadProcess();
@@ -383,45 +385,54 @@ namespace SmartBILL.ViewModels
             SaveChallanCommand = new RelayCommand(_ => SaveChallan());
             //DeleteCommand = new RelayCommand(_ => Delete(), _ => SelectedProcess != null);
             RemoveSelectedItemCommand = new RelayCommand<PartyChallanItem>(RemoveSelectedChallanItem);
+            
         }
 
-        public void LoadChallanData(PartyChallan challan)
-        {
-            if (challan == null)
-            {
-                MessageBox.Show("Invalid Challan data.");
-                return;
-            }
+        //public void LoadChallanData(PartyChallan challan)
+        //{
+        //    if (challan == null)
+        //    {
+        //        MessageBox.Show("Invalid Challan data.");
+        //        return;
+        //    }
 
-            // Load related data
-            SelectedCustomer = Customers.FirstOrDefault(c => c.CustomerPId == challan.CustomerPId);
-            PartyChallanNumber = challan.PartyChNo;
-            SelectDate = challan.PartyDate;
-            WorkingDays = challan.WorkDay;
+        //    // Load the PartyChallan by its primary key (PartyChId).
+        //    var fullChallan = _db.PartyChallans.FirstOrDefault(c => c.PartyChId == challan.PartyChId);
+        //    if (fullChallan == null)
+        //    {
+        //        MessageBox.Show("Challan not found.");
+        //        return;
+        //    }
 
-            PartyChallanItems.Clear();
+        //    // Assign values from the fullChallan.
+        //    SelectedCustomer = Customers.FirstOrDefault(c => c.CustomerPId == fullChallan.CustomerPId);
+        //    PartyChallanNumber = fullChallan.PartyChNo;
+        //    SelectDate = fullChallan.PartyDate;
+        //    WorkingDays = fullChallan.WorkDay;
 
-            foreach (var item in challan.PartyChallanItems)
-            {
-                var fullItem = _db.Items.FirstOrDefault(i => i.ItemId == item.ItemId);
-                var fullProcess = _db.ProcessItems.FirstOrDefault(p => p.ProcessId == item.ProcessId);
+        //    PartyChallanItems.Clear();
 
-                PartyChallanItems.Add(new PartyChallanItem
-                {
-                    ItemId = item.ItemId,
-                    ProcessId = item.ProcessId,
-                    Quantity = item.Quantity,
-                    Items = fullItem,
-                    ProcessItems = fullProcess,
-                    CustomerPId = challan.CustomerPId,
-                    YearId = challan.YearId
-                });
-            }
+        //    foreach (var item in fullChallan.PartyChallanItems)
+        //    {
+        //        var fullItem = _db.Items.FirstOrDefault(i => i.ItemId == item.ItemId);
+        //        var fullProcess = _db.ProcessItems.FirstOrDefault(p => p.ProcessId == item.ProcessId);
 
-            OnPropertyChanged(nameof(PartyChallanItems));
-        }
+        //        PartyChallanItems.Add(new PartyChallanItem
+        //        {
+        //            ItemId = item.ItemId,
+        //            ProcessId = item.ProcessId,
+        //            Quantity = item.Quantity,
+        //            Items = fullItem,
+        //            ProcessItems = fullProcess,
+        //            CustomerPId = fullChallan.CustomerPId,
+        //            YearId = fullChallan.YearId
+        //        });
+        //    }
 
+        //    OnPropertyChanged(nameof(PartyChallanItems));
+        //}
 
+        
 
 
 
