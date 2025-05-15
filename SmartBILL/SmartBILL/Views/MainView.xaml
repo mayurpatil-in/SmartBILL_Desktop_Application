@@ -34,6 +34,9 @@
         <DataTemplate DataType="{x:Type viewModel:PartyChallanSearchViewModel}">
             <local:PartyChallanSearchView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:DeliveryChallanViewModel}">
+            <local:DeliveryChallanView/>
+        </DataTemplate>
 
     </Window.Resources>
 
@@ -177,7 +180,7 @@
                         </RadioButton>-->
 
                         <RadioButton Style="{StaticResource menuButton}"
-                        Tag="{StaticResource color5}">
+                        Tag="{StaticResource color5}" Command="{Binding ShowDeliveryChallanViewCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="TruckFast" Style="{StaticResource menuButtonIcon}"/>
                                 <TextBlock Text="Delivery Challan" Style="{StaticResource menuButtonText}"/>
